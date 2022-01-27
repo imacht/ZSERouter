@@ -1,0 +1,78 @@
+# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
+project_name: ZSERouter
+label: ZSERouter
+description: |-
+  ZigBee Minimal Application
+
+  The ZigbeeMinimal application provides a minimal functional subset to perform
+  ZigBee 3.0 network joining and serve as a starting point for users wishing to
+  build their own ZigBee applications. The application is configured to operate
+  as a ZigBee Router, but can easily be modified to operate as a Coordinator
+  or End Device.
+
+  The ZigbeeMinimal application provides a simple interface to the user
+  via the command line interface (CLI). When the node is not on a network,
+  it can initiate network steering to join a network with the CLI command
+  "plugin network-steering start 1".
+
+  As configured, only network-layer functionality is provided; no ZigBee
+  Cluster Library (ZCL) application-layer functionality is implemented. The
+  application's ZCL ProfileId and DeviceId are set to undefined value 0xFFFF,
+  and no ZCL clusters are enabled. Refer to the other sample applications for
+  examples of how this layer of functionality is configured and enabled.
+
+  The current debug printing settings in this application are to aid the user
+  to understand and debug this sample scenario. Debug printing should be turned
+  off in order to save code size on a final product.
+
+  The application maintains persistent storage using the NVM3 plugin.
+category: ZigBee Application
+package: Zigbee
+quality: alpha
+source:
+- {path: main.c}
+- {path: ZigbeeMinimal_callbacks.c}
+include:
+- {path: ''}
+sdk: {id: gecko_sdk, version: 3.3.0}
+toolchain_settings: []
+component:
+- {id: zigbee_multi_network_stub}
+- instance: [btn0]
+  id: simple_button
+- instance: [example]
+  id: cli
+- {id: EFR32MG24B010F1536IM48}
+- {id: zigbee_binding_table}
+- instance: [led0, led1]
+  id: simple_led
+- {id: zigbee_key_establishment}
+- {id: zigbee_zcl_framework_core}
+- {id: zigbee_debug_basic}
+- {id: zigbee_network_find}
+- {id: zigbee_counters}
+- {id: zigbee_cbke_163k1}
+- {id: brd4186b}
+- {id: brd4001a}
+- instance: [vcom]
+  id: iostream_usart
+- {id: zigbee_scan_dispatch}
+- {id: zigbee_source_route}
+- {id: zigbee_packet_validate}
+- {id: zigbee_pro_stack}
+- {id: zigbee_smart_energy_registration}
+- {id: zigbee_cbke_283k1}
+- {id: zigbee_debug_print}
+- {id: zigbee_install_code}
+config_file:
+- {path: ../../../../../SiliconLabs/SimplicityStudio/v5/developer/sdks/gecko_sdk_suite/v3.3/protocol/zigbee/app/framework/scenarios/z3/ZigbeeMinimal/config/zcl/zcl_config.zap,
+  directory: zcl}
+configuration:
+- {name: SL_BOARD_ENABLE_VCOM, value: '1'}
+- {name: SL_IOSTREAM_USART_VCOM_FLOW_CONTROL_TYPE, value: usartHwFlowControlCtsAndRts}
+- {name: SL_CLI_MAX_INPUT_ARGUMENTS, value: '16'}
+- {name: SLI_ZIGBEE_PRIMARY_NETWORK_DEVICE_TYPE, value: SLI_ZIGBEE_NETWORK_DEVICE_TYPE_ROUTER}
+- {name: SLI_ZIGBEE_PRIMARY_NETWORK_SECURITY_TYPE, value: SLI_ZIGBEE_NETWORK_SECURITY_TYPE_3_0}
+- {name: EMBER_BINDING_TABLE_SIZE, value: '10'}
+ui_hints: {}
+
