@@ -816,10 +816,6 @@
                 <file name="sl_zigbee_debug_print.c" uri="studio:/sdk/protocol/zigbee/app/framework/plugin/debug-print/sl_zigbee_debug_print.c"/>
                 <file name="sl_zigbee_debug_print.h" uri="studio:/sdk/protocol/zigbee/app/framework/plugin/debug-print/sl_zigbee_debug_print.h"/>
               </folder>
-              <folder name="esi-management">
-                <file name="esi-management.c" uri="studio:/sdk/protocol/zigbee/app/framework/plugin/esi-management/esi-management.c"/>
-                <file name="esi-management.h" uri="studio:/sdk/protocol/zigbee/app/framework/plugin/esi-management/esi-management.h"/>
-              </folder>
               <folder name="form-and-join">
                 <file name="form-and-join-afv2.c" uri="studio:/sdk/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-afv2.c"/>
                 <file name="form-and-join-cb.c" uri="studio:/sdk/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-cb.c"/>
@@ -848,18 +844,6 @@
               <folder name="scan-dispatch">
                 <file name="scan-dispatch.c" uri="studio:/sdk/protocol/zigbee/app/framework/plugin/scan-dispatch/scan-dispatch.c"/>
                 <file name="scan-dispatch.h" uri="studio:/sdk/protocol/zigbee/app/framework/plugin/scan-dispatch/scan-dispatch.h"/>
-              </folder>
-              <folder name="smart-energy-registration">
-                <file name="smart-energy-registration.c" uri="studio:/sdk/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration.c"/>
-                <file name="smart-energy-registration-cli.c" uri="studio:/sdk/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration-cli.c"/>
-                <file name="smart-energy-registration.h" uri="studio:/sdk/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration.h"/>
-              </folder>
-              <folder name="test-harness">
-                <file name="test-harness.c" uri="studio:/sdk/protocol/zigbee/app/framework/plugin/test-harness/test-harness.c"/>
-                <file name="read-write-attributes.c" uri="studio:/sdk/protocol/zigbee/app/framework/plugin/test-harness/read-write-attributes.c"/>
-                <file name="test-harness-soc.c" uri="studio:/sdk/protocol/zigbee/app/framework/plugin/test-harness/test-harness-soc.c"/>
-                <file name="test-harness.h" uri="studio:/sdk/protocol/zigbee/app/framework/plugin/test-harness/test-harness.h"/>
-                <file name="test-harness-cli.h" uri="studio:/sdk/protocol/zigbee/app/framework/plugin/test-harness/test-harness-cli.h"/>
               </folder>
               <folder name="zcl_cli">
                 <file name="zigbee-zcl-cli.c" uri="studio:/sdk/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-cli.c"/>
@@ -1030,7 +1014,9 @@
           </folder>
           <folder name="security">
             <folder name="ecc">
+              <file name="eccapi-stub.c" uri="studio:/sdk/protocol/zigbee/stack/security/ecc/eccapi-stub.c"/>
               <file name="eccapi.h" uri="studio:/sdk/protocol/zigbee/stack/security/ecc/eccapi.h"/>
+              <file name="eccapi-283k1-stub.c" uri="studio:/sdk/protocol/zigbee/stack/security/ecc/eccapi-283k1-stub.c"/>
               <file name="eccapi-283k1.h" uri="studio:/sdk/protocol/zigbee/stack/security/ecc/eccapi-283k1.h"/>
             </folder>
             <file name="cbke-crypto-engine-dsa-verify-stub.c" uri="studio:/sdk/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-stub.c"/>
@@ -1086,10 +1072,6 @@
           </folder>
           <folder name="uc-debug-basic-library-cortexm3-gcc-efr32mg24-rail">
             <file name="uc-debug-basic-library.a" uri="studio:/sdk/protocol/zigbee/build/uc-debug-basic-library-cortexm3-gcc-efr32mg24-rail/uc-debug-basic-library.a"/>
-          </folder>
-          <folder name="ECC">
-            <file name="ecc-163k1-library.a" uri="studio:/sdk/protocol/zigbee/build/ECC/ecc-163k1-library.a"/>
-            <file name="ecc-283k1-library.a" uri="studio:/sdk/protocol/zigbee/build/ECC/ecc-283k1-library.a"/>
           </folder>
           <folder name="install-code-library-cortexm3-gcc-efr32mg24-rail">
             <file name="install-code-library.a" uri="studio:/sdk/protocol/zigbee/build/install-code-library-cortexm3-gcc-efr32mg24-rail/install-code-library.a"/>
@@ -1175,14 +1157,12 @@
   <includePath uri="studio:/sdk/protocol/zigbee/stack/framework"/>
   <includePath uri="studio:/sdk/protocol/zigbee/app/framework/plugin/debug-print"/>
   <includePath uri="studio:/sdk/protocol/zigbee/stack/security/ecc"/>
-  <includePath uri="studio:/sdk/protocol/zigbee/app/framework/plugin/esi-management"/>
   <includePath uri="studio:/sdk/protocol/zigbee/app/util/common"/>
   <includePath uri="studio:/sdk/protocol/zigbee/app/framework/plugin/fragmentation"/>
   <includePath uri="studio:/sdk/protocol/zigbee/app/framework/plugin/key-establishment"/>
   <includePath uri="studio:/sdk/protocol/zigbee/stack/core"/>
   <includePath uri="studio:/sdk/protocol/zigbee/app/framework/plugin/network-find"/>
   <includePath uri="studio:/sdk/protocol/zigbee/app/framework/plugin/scan-dispatch"/>
-  <includePath uri="studio:/sdk/protocol/zigbee/app/framework/plugin/smart-energy-registration"/>
   <includePath uri="studio:/sdk/platform/radio/rail_lib/plugin"/>
   <includePath uri="studio:/sdk/protocol/zigbee"/>
   <includePath uri="studio:/sdk/protocol/zigbee/stack"/>
@@ -1191,7 +1171,6 @@
   <includePath uri="studio:/sdk/platform/radio/mac"/>
   <includePath uri="studio:/sdk/util/silicon_labs/silabs_core"/>
   <includePath uri="studio:/sdk/protocol/zigbee/stack/mac"/>
-  <includePath uri="studio:/sdk/protocol/zigbee/app/framework/plugin/test-harness"/>
   <includePath uri="studio:/sdk/protocol/zigbee/app/framework/include"/>
   <includePath uri="studio:/sdk/protocol/zigbee/app/framework/util"/>
   <includePath uri="studio:/sdk/protocol/zigbee/app/framework/security"/>
@@ -1226,8 +1205,6 @@
   <libraryFile uri="studio:/sdk/protocol/zigbee/build/cbke-283k1-library-cortexm3-gcc-efr32mg24-rail/cbke-283k1-library.a"/>
   <libraryFile uri="studio:/sdk/protocol/zigbee/build/cbke-library-core-cortexm3-gcc-efr32mg24-rail/cbke-library-core.a"/>
   <libraryFile uri="studio:/sdk/protocol/zigbee/build/uc-debug-basic-library-cortexm3-gcc-efr32mg24-rail/uc-debug-basic-library.a"/>
-  <libraryFile uri="studio:/sdk/protocol/zigbee/build/ECC/ecc-163k1-library.a"/>
-  <libraryFile uri="studio:/sdk/protocol/zigbee/build/ECC/ecc-283k1-library.a"/>
   <libraryFile uri="studio:/sdk/protocol/zigbee/build/install-code-library-cortexm3-gcc-efr32mg24-rail/install-code-library.a"/>
   <libraryFile uri="studio:/sdk/protocol/zigbee/build/multi-network-stub-library-cortexm3-gcc-efr32mg24-rail/multi-network-stub-library.a"/>
   <libraryFile uri="studio:/sdk/protocol/zigbee/build/multi-pan-stub-library-cortexm3-gcc-efr32mg24-rail/multi-pan-stub-library.a"/>

@@ -1086,16 +1086,6 @@
 			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/app/em260/command-handlers-binding.h</locationURI>
 		</link>
 		<link>
-			<name>gecko_sdk_3.3.0/protocol/zigbee/build/ECC/ecc-163k1-library.a</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/build/ECC/ecc-163k1-library.a</locationURI>
-		</link>
-		<link>
-			<name>gecko_sdk_3.3.0/protocol/zigbee/build/ECC/ecc-283k1-library.a</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/build/ECC/ecc-283k1-library.a</locationURI>
-		</link>
-		<link>
 			<name>gecko_sdk_3.3.0/protocol/zigbee/build/binding-table-library-cortexm3-gcc-efr32mg24-rail/binding-table-library.a</name>
 			<type>1</type>
 			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/build/binding-table-library-cortexm3-gcc-efr32mg24-rail/binding-table-library.a</locationURI>
@@ -2306,9 +2296,19 @@
 			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/stack/routing/zigbee/enhanced-beacon-request-stub.c</locationURI>
 		</link>
 		<link>
+			<name>gecko_sdk_3.3.0/protocol/zigbee/stack/security/ecc/eccapi-283k1-stub.c</name>
+			<type>1</type>
+			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/stack/security/ecc/eccapi-283k1-stub.c</locationURI>
+		</link>
+		<link>
 			<name>gecko_sdk_3.3.0/protocol/zigbee/stack/security/ecc/eccapi-283k1.h</name>
 			<type>1</type>
 			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/stack/security/ecc/eccapi-283k1.h</locationURI>
+		</link>
+		<link>
+			<name>gecko_sdk_3.3.0/protocol/zigbee/stack/security/ecc/eccapi-stub.c</name>
+			<type>1</type>
+			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/stack/security/ecc/eccapi-stub.c</locationURI>
 		</link>
 		<link>
 			<name>gecko_sdk_3.3.0/protocol/zigbee/stack/security/ecc/eccapi.h</name>
@@ -2596,16 +2596,6 @@
 			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/app/framework/plugin/debug-print/sl_zigbee_debug_print.h</locationURI>
 		</link>
 		<link>
-			<name>gecko_sdk_3.3.0/protocol/zigbee/app/framework/plugin/esi-management/esi-management.c</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/app/framework/plugin/esi-management/esi-management.c</locationURI>
-		</link>
-		<link>
-			<name>gecko_sdk_3.3.0/protocol/zigbee/app/framework/plugin/esi-management/esi-management.h</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/app/framework/plugin/esi-management/esi-management.h</locationURI>
-		</link>
-		<link>
 			<name>gecko_sdk_3.3.0/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-afv2.c</name>
 			<type>1</type>
 			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-afv2.c</locationURI>
@@ -2704,46 +2694,6 @@
 			<name>gecko_sdk_3.3.0/protocol/zigbee/app/framework/plugin/scan-dispatch/scan-dispatch.h</name>
 			<type>1</type>
 			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/app/framework/plugin/scan-dispatch/scan-dispatch.h</locationURI>
-		</link>
-		<link>
-			<name>gecko_sdk_3.3.0/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration-cli.c</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration-cli.c</locationURI>
-		</link>
-		<link>
-			<name>gecko_sdk_3.3.0/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration.c</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration.c</locationURI>
-		</link>
-		<link>
-			<name>gecko_sdk_3.3.0/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration.h</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration.h</locationURI>
-		</link>
-		<link>
-			<name>gecko_sdk_3.3.0/protocol/zigbee/app/framework/plugin/test-harness/read-write-attributes.c</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/app/framework/plugin/test-harness/read-write-attributes.c</locationURI>
-		</link>
-		<link>
-			<name>gecko_sdk_3.3.0/protocol/zigbee/app/framework/plugin/test-harness/test-harness-cli.h</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/app/framework/plugin/test-harness/test-harness-cli.h</locationURI>
-		</link>
-		<link>
-			<name>gecko_sdk_3.3.0/protocol/zigbee/app/framework/plugin/test-harness/test-harness-soc.c</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/app/framework/plugin/test-harness/test-harness-soc.c</locationURI>
-		</link>
-		<link>
-			<name>gecko_sdk_3.3.0/protocol/zigbee/app/framework/plugin/test-harness/test-harness.c</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/app/framework/plugin/test-harness/test-harness.c</locationURI>
-		</link>
-		<link>
-			<name>gecko_sdk_3.3.0/protocol/zigbee/app/framework/plugin/test-harness/test-harness.h</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/app/framework/plugin/test-harness/test-harness.h</locationURI>
 		</link>
 		<link>
 			<name>gecko_sdk_3.3.0/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-cli.c</name>

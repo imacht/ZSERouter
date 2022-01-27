@@ -29,14 +29,11 @@ void emAfEventInit(void)
   emAfPluginKeyEstablishmentInitCallback(SL_ZIGBEE_INIT_LEVEL_EVENT);
   emberAfPluginNetworkFindInitCallback(SL_ZIGBEE_INIT_LEVEL_EVENT);
   emAfPluginScanDispatchInitCallback(SL_ZIGBEE_INIT_LEVEL_EVENT);
-  emAfPluginSmartEnergyRegistrationInitCallback(SL_ZIGBEE_INIT_LEVEL_EVENT);
-  emAfPluginTestHarnessInitCallback(SL_ZIGBEE_INIT_LEVEL_EVENT);
 }
 
 void emAfLocalDataInit(void)
 {
   emberAfPluginCountersInitCallback(SL_ZIGBEE_INIT_LEVEL_LOCAL_DATA);
-  emberAfPluginEsiManagementInitCallback(SL_ZIGBEE_INIT_LEVEL_LOCAL_DATA);
   emberAfPluginFragmentationInitCallback(SL_ZIGBEE_INIT_LEVEL_LOCAL_DATA);
   emberAfPluginNetworkFindInitCallback(SL_ZIGBEE_INIT_LEVEL_LOCAL_DATA);
 }

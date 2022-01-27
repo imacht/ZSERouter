@@ -20,7 +20,6 @@
     <file name="sl_token_manager_config.h" generated="true" linked="false" uri="studio:/project/config/sl_token_manager_config.h"/>
     <file name="sl_custom_token_header.h" generated="true" linked="false" uri="studio:/project/config/sl_custom_token_header.h"/>
     <file name="sl_custom_manufacturing_token_header.h" generated="true" linked="false" uri="studio:/project/config/sl_custom_manufacturing_token_header.h"/>
-    <file name="smart-energy-registration-config.h" generated="true" linked="false" uri="studio:/project/config/smart-energy-registration-config.h"/>
     <file name="sl_zigbee_debug_print_config.h" generated="true" linked="false" uri="studio:/project/config/sl_zigbee_debug_print_config.h"/>
     <file name="sl_simple_button_config.h" generated="true" linked="false" uri="studio:/project/config/sl_simple_button_config.h"/>
     <file name="sl_sleeptimer_config.h" generated="true" linked="false" uri="studio:/project/config/sl_sleeptimer_config.h"/>
@@ -35,13 +34,11 @@
     <file name="fragmentation-config.h" generated="true" linked="false" uri="studio:/project/config/fragmentation-config.h"/>
     <file name="counters-config.h" generated="true" linked="false" uri="studio:/project/config/counters-config.h"/>
     <file name="legacy_hal_config.h" generated="true" linked="false" uri="studio:/project/config/legacy_hal_config.h"/>
-    <file name="esi-management-config.h" generated="true" linked="false" uri="studio:/project/config/esi-management-config.h"/>
     <file name="zigbee_sleep_config.h" generated="true" linked="false" uri="studio:/project/config/zigbee_sleep_config.h"/>
     <file name="sl_iostream_usart_vcom_config.h" generated="true" linked="false" uri="studio:/project/config/sl_iostream_usart_vcom_config.h"/>
     <file name="sl_device_init_emu_config.h" generated="true" linked="false" uri="studio:/project/config/sl_device_init_emu_config.h"/>
     <file name="sl_zigbee_source_route_config.h" generated="true" linked="false" uri="studio:/project/config/sl_zigbee_source_route_config.h"/>
     <file name="tempdrv_config.h" generated="true" linked="false" uri="studio:/project/config/tempdrv_config.h"/>
-    <file name="test-harness-config.h" generated="true" linked="false" uri="studio:/project/config/test-harness-config.h"/>
     <file name="zigbee_device_config.h" generated="true" linked="false" uri="studio:/project/config/zigbee_device_config.h"/>
     <file name="sl_device_init_hfxo_config.h" generated="true" linked="false" uri="studio:/project/config/sl_device_init_hfxo_config.h"/>
     <file name="address-table-config.h" generated="true" linked="false" uri="studio:/project/config/address-table-config.h"/>
