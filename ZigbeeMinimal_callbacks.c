@@ -27,12 +27,14 @@
 
 #define ROUTER_ENDPOINT (1)
 
-#define COMMISSIONING_DELAY_MS 5000
+#define INIT_KE_DELAY_MS        1000
 #define BUTTON0         0
 #define BUTTON1         1
 
 static sl_zigbee_event_t commissioning_event;
+static sl_zigbee_event_t init_ke_event;
 #define commissioningEvent (&commissioning_event)
+#define initKeEvent (&init_ke_event)
 
 static bool commissioning = false;
 
@@ -52,25 +54,31 @@ void commissioningEventHandler(SLXU_UC_EVENT)
     commissioning = true;
 }
 
+void initKeEventHandler(SLXU_UC_EVENT)
+{
+    EmberStatus status;
+
+    slxu_zigbee_event_set_inactive(initKeEvent);
+
+    status = emberAfInitiateKeyEstablishment(0x0000,1);
+    emberAfCorePrintln("** InitiateKeyEstablishment returned : 0x%X", status);
+}
+
 #ifdef UC_BUILD
 void emberAfMainInitCallback(void)
 {
     slxu_zigbee_event_init(commissioningEvent, commissioningEventHandler);
-
-    //slxu_zigbee_event_set_delay_ms(commissioningEvent,
-    //                               COMMISSIONING_DELAY_MS);
-
-    //emberAfPluginUpdateTcLinkKeySetInactive();
+    slxu_zigbee_event_init(initKeEvent, initKeEventHandler);
 }
 #endif
 
 /** @brief Stack Status
  *
  * This function is called by the application framework from the stack status
- * handler.  This callbacks provides applications an opportunity to be notified
- * of changes to the stack status and take appropriate action.  The return code
- * from this callback is ignored by the framework.  The framework will always
- * process the stack status after the callback returns.
+ * handler. The framework will always process the stack status after the
+ * callback returns.
+ *
+ * Respond to network going up with proceeding to KE
  *
  * @param status   Ver.: always
  */
@@ -80,6 +88,10 @@ void emberAfStackStatusCallback(EmberStatus status)
 bool emberAfStackStatusCallback(EmberStatus status)
 #endif
 {
+    if (status == EMBER_NETWORK_UP) {
+//        slxu_zigbee_event_set_delay_ms(initKeEvent, INIT_KE_DELAY_MS);
+        slxu_zigbee_event_set_active(initKeEvent);
+    }
   #ifndef UC_BUILD
   // This value is ignored by the framework.
   return false;
@@ -92,10 +104,9 @@ bool emberAfStackStatusCallback(EmberStatus status)
  * device. This callback is called within ISR context.
  *
  * @param button The button which has changed state, either BUTTON0 or BUTTON1
- * as defined in the appropriate BOARD_HEADER.  Ver.: always
- * @param state The new state of the button referenced by the button parameter,
- * either ::BUTTON_PRESSED if the button has been pressed or ::BUTTON_RELEASED
- * if the button has been released.  Ver.: always
+ * as defined in the appropriate BOARD_HEADER.
+ *
+ * Use Button0 release to kick off trying to join network
  */
 #if defined(SL_CATALOG_SIMPLE_BUTTON_PRESENT) && (EMBER_AF_PLUGIN_IDLE_SLEEP_USE_BUTTONS == 0)
 #include "sl_simple_button.h"

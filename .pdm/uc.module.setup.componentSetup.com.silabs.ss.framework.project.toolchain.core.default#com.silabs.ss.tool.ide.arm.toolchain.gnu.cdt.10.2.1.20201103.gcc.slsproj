@@ -1014,9 +1014,7 @@
           </folder>
           <folder name="security">
             <folder name="ecc">
-              <file name="eccapi-stub.c" uri="studio:/sdk/protocol/zigbee/stack/security/ecc/eccapi-stub.c"/>
               <file name="eccapi.h" uri="studio:/sdk/protocol/zigbee/stack/security/ecc/eccapi.h"/>
-              <file name="eccapi-283k1-stub.c" uri="studio:/sdk/protocol/zigbee/stack/security/ecc/eccapi-283k1-stub.c"/>
               <file name="eccapi-283k1.h" uri="studio:/sdk/protocol/zigbee/stack/security/ecc/eccapi-283k1.h"/>
             </folder>
             <file name="cbke-crypto-engine-dsa-verify-stub.c" uri="studio:/sdk/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-stub.c"/>
@@ -1072,6 +1070,10 @@
           </folder>
           <folder name="uc-debug-basic-library-cortexm3-gcc-efr32mg24-rail">
             <file name="uc-debug-basic-library.a" uri="studio:/sdk/protocol/zigbee/build/uc-debug-basic-library-cortexm3-gcc-efr32mg24-rail/uc-debug-basic-library.a"/>
+          </folder>
+          <folder name="ECC">
+            <file name="ecc-163k1-library.a" uri="studio:/sdk/protocol/zigbee/build/ECC/ecc-163k1-library.a"/>
+            <file name="ecc-283k1-library.a" uri="studio:/sdk/protocol/zigbee/build/ECC/ecc-283k1-library.a"/>
           </folder>
           <folder name="install-code-library-cortexm3-gcc-efr32mg24-rail">
             <file name="install-code-library.a" uri="studio:/sdk/protocol/zigbee/build/install-code-library-cortexm3-gcc-efr32mg24-rail/install-code-library.a"/>
@@ -1205,6 +1207,8 @@
   <libraryFile uri="studio:/sdk/protocol/zigbee/build/cbke-283k1-library-cortexm3-gcc-efr32mg24-rail/cbke-283k1-library.a"/>
   <libraryFile uri="studio:/sdk/protocol/zigbee/build/cbke-library-core-cortexm3-gcc-efr32mg24-rail/cbke-library-core.a"/>
   <libraryFile uri="studio:/sdk/protocol/zigbee/build/uc-debug-basic-library-cortexm3-gcc-efr32mg24-rail/uc-debug-basic-library.a"/>
+  <libraryFile uri="studio:/sdk/protocol/zigbee/build/ECC/ecc-163k1-library.a"/>
+  <libraryFile uri="studio:/sdk/protocol/zigbee/build/ECC/ecc-283k1-library.a"/>
   <libraryFile uri="studio:/sdk/protocol/zigbee/build/install-code-library-cortexm3-gcc-efr32mg24-rail/install-code-library.a"/>
   <libraryFile uri="studio:/sdk/protocol/zigbee/build/multi-network-stub-library-cortexm3-gcc-efr32mg24-rail/multi-network-stub-library.a"/>
   <libraryFile uri="studio:/sdk/protocol/zigbee/build/multi-pan-stub-library-cortexm3-gcc-efr32mg24-rail/multi-pan-stub-library.a"/>

@@ -2296,21 +2296,6 @@
 			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/stack/routing/zigbee/enhanced-beacon-request-stub.c</locationURI>
 		</link>
 		<link>
-			<name>gecko_sdk_3.3.0/protocol/zigbee/stack/security/ecc/eccapi-283k1-stub.c</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/stack/security/ecc/eccapi-283k1-stub.c</locationURI>
-		</link>
-		<link>
-			<name>gecko_sdk_3.3.0/protocol/zigbee/stack/security/ecc/eccapi-283k1.h</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/stack/security/ecc/eccapi-283k1.h</locationURI>
-		</link>
-		<link>
-			<name>gecko_sdk_3.3.0/protocol/zigbee/stack/security/ecc/eccapi-stub.c</name>
-			<type>1</type>
-			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/stack/security/ecc/eccapi-stub.c</locationURI>
-		</link>
-		<link>
 			<name>gecko_sdk_3.3.0/protocol/zigbee/stack/security/ecc/eccapi.h</name>
 			<type>1</type>
 			<locationURI>STUDIO_SDK_LOC/protocol/zigbee/stack/security/ecc/eccapi.h</locationURI>
