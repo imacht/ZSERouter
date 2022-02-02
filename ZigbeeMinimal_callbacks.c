@@ -22,11 +22,11 @@
 
 #include "app/framework/include/af.h"
 #include "network-find.h"
-//#include "network-steering.h"
 //#include "update-tc-link-key.h"
 
 #define ROUTER_ENDPOINT (1)
 
+#define ALL_CHANNELS_MASK       0x07FFF800
 #define INIT_KE_DELAY_MS        1000
 #define BUTTON0         0
 #define BUTTON1         1
@@ -36,8 +36,6 @@ static sl_zigbee_event_t init_ke_event;
 #define commissioningEvent (&commissioning_event)
 #define initKeEvent (&init_ke_event)
 
-static bool commissioning = false;
-
 
 void commissioningEventHandler(SLXU_UC_EVENT)
 {
@@ -45,13 +43,12 @@ void commissioningEventHandler(SLXU_UC_EVENT)
 
     slxu_zigbee_event_set_inactive(commissioningEvent);
 
-//    status = emberAfPluginNetworkSteeringStart();
-//    emberAfCorePrintln("%p network %p: 0x%X", "Join", "start", status);
-
+    // allow joining on all possible channels
+    // TODO: might be quicker to search preferred first, investigate?
+    status = emberAfSetFormAndJoinChannelMask(0, ALL_CHANNELS_MASK);
+    emberAfCorePrintln("------- SetFormAndJoinChannelMask returned : 0x%X", status);
     status = emberAfStartSearchForJoinableNetwork();
-    emberAfCorePrintln("** StartSearchForJoinableNetwork returned : 0x%X", status);
-
-    commissioning = true;
+    emberAfCorePrintln("------- StartSearchForJoinableNetwork returned : 0x%X", status);
 }
 
 void initKeEventHandler(SLXU_UC_EVENT)
@@ -61,16 +58,14 @@ void initKeEventHandler(SLXU_UC_EVENT)
     slxu_zigbee_event_set_inactive(initKeEvent);
 
     status = emberAfInitiateKeyEstablishment(0x0000,1);
-    emberAfCorePrintln("** InitiateKeyEstablishment returned : 0x%X", status);
+    emberAfCorePrintln("------- InitiateKeyEstablishment returned : 0x%X", status);
 }
 
-#ifdef UC_BUILD
 void emberAfMainInitCallback(void)
 {
     slxu_zigbee_event_init(commissioningEvent, commissioningEventHandler);
     slxu_zigbee_event_init(initKeEvent, initKeEventHandler);
 }
-#endif
 
 /** @brief Stack Status
  *
@@ -82,21 +77,19 @@ void emberAfMainInitCallback(void)
  *
  * @param status   Ver.: always
  */
-#ifdef UC_BUILD
 void emberAfStackStatusCallback(EmberStatus status)
-#else
-bool emberAfStackStatusCallback(EmberStatus status)
-#endif
 {
-    if (status == EMBER_NETWORK_UP) {
-//        slxu_zigbee_event_set_delay_ms(initKeEvent, INIT_KE_DELAY_MS);
+    if (EMBER_NETWORK_UP == status) {
         slxu_zigbee_event_set_active(initKeEvent);
     }
-  #ifndef UC_BUILD
-  // This value is ignored by the framework.
-  return false;
-  #endif
 }
+
+void emberAfRegistrationCallback(boolean success)
+{
+    char *val_str = success?"Success":"Fail";
+    emberAfCorePrintln("------- Registration Complete : %s", val_str);
+}
+
 
 /** @brief Hal Button Isr
  *
@@ -120,32 +113,3 @@ void sl_button_on_change(const sl_button_t *handle)
   }
 }
 #endif
-
-/** @brief Complete
- *
- * This callback is fired when the Network Steering plugin is complete.
- *
- * @param status On success this will be set to EMBER_SUCCESS to indicate a
- * network was joined successfully. On failure this will be the status code of
- * the last join or scan attempt. Ver.: always
- * @param totalBeacons The total number of 802.15.4 beacons that were heard,
- * including beacons from different devices with the same PAN ID. Ver.: always
- * @param joinAttempts The number of join attempts that were made to get onto
- * an open Zigbee network. Ver.: always
- * @param finalState The finishing state of the network steering process. From
- * this, one is able to tell on which channel mask and with which key the
- * process was complete. Ver.: always
- */
-void emberAfPluginNetworkSteeringCompleteCallback(EmberStatus status,
-                                                  uint8_t totalBeacons,
-                                                  uint8_t joinAttempts,
-                                                  uint8_t finalState)
-{
-  emberAfCorePrintln("%p network %p: 0x%X", "Join", "complete", status);
-
-//  if (status != EMBER_SUCCESS) {
-//    commissioning = false;
-//  } else {
-//    scheduleFindingAndBindingForInitiator();
-//  }
-}
