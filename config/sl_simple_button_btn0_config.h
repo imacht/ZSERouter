@@ -37,7 +37,6 @@
 // $[GPIO_SL_SIMPLE_BUTTON_BTN0]
 #define SL_SIMPLE_BUTTON_BTN0_PORT               gpioPortB
 #define SL_SIMPLE_BUTTON_BTN0_PIN                1
-
 // [GPIO_SL_SIMPLE_BUTTON_BTN0]$
 
 // <<< sl:end pin_tool >>>

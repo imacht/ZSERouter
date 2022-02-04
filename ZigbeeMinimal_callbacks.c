@@ -36,6 +36,8 @@ static sl_zigbee_event_t init_ke_event;
 #define commissioningEvent (&commissioning_event)
 #define initKeEvent (&init_ke_event)
 
+static void find_result(const EmberAfServiceDiscoveryResult *r);
+
 
 void commissioningEventHandler(SLXU_UC_EVENT)
 {
@@ -59,6 +61,40 @@ void initKeEventHandler(SLXU_UC_EVENT)
 
     status = emberAfInitiateKeyEstablishment(0x0000,1);
     emberAfCorePrintln("------- InitiateKeyEstablishment returned : 0x%X", status);
+}
+
+boolean emberAfPluginKeyEstablishmentEventCallback(EmberAfKeyEstablishmentNotifyMessage status,
+                                        boolean amInitiator,
+                                        EmberNodeId partnerShortId,
+                                        int8u delayInSeconds)
+{
+    EmberStatus stat;
+
+    slxu_zigbee_event_set_inactive(initKeEvent);
+    emberAfCorePrintln("------- KE_notification status: 0x%X  partnerID: 0x%X  delay 0x%Xs",
+                       status, partnerShortId, delayInSeconds);
+    if (LINK_KEY_ESTABLISHED == status)
+        emberAfCorePrintln("------- LINK_KEY_ESTABLISHED ------");
+
+    if ((stat = emberAfFindDevicesByProfileAndCluster(EMBER_RX_ON_WHEN_IDLE_BROADCAST_ADDRESS,
+                                                   SE_PROFILE_ID,
+                                                   ZCL_SIMPLE_METERING_CLUSTER_ID,
+                                                   EMBER_AF_SERVER_CLUSTER_DISCOVERY,
+                                                   find_result)))
+        emberAfCorePrintln("------- KE_xxxxxxx 0x%Xs",stat    );
+    return true;
+}
+
+static void find_result(const EmberAfServiceDiscoveryResult *r)
+{
+    /*
+    const EmberAfEndpointList *l = r->responseData;
+    emberAfCorePrintln("------- Meter Find result: addr: 0x%X  count: 0x%X",
+                       r->matchAddress, l->count);
+    if (l->count && l->list)
+        emberAfCorePrintln("------- Meter Find result: list entry: 0x%X", l->list);
+
+    */
 }
 
 void emberAfMainInitCallback(void)
