@@ -74,27 +74,52 @@ boolean emberAfPluginKeyEstablishmentEventCallback(EmberAfKeyEstablishmentNotify
     emberAfCorePrintln("------- KE_notification status: 0x%X  partnerID: 0x%X  delay 0x%Xs",
                        status, partnerShortId, delayInSeconds);
     if (LINK_KEY_ESTABLISHED == status)
+    {
         emberAfCorePrintln("------- LINK_KEY_ESTABLISHED ------");
 
-    if ((stat = emberAfFindDevicesByProfileAndCluster(EMBER_RX_ON_WHEN_IDLE_BROADCAST_ADDRESS,
-                                                   SE_PROFILE_ID,
-                                                   ZCL_SIMPLE_METERING_CLUSTER_ID,
-                                                   EMBER_AF_SERVER_CLUSTER_DISCOVERY,
-                                                   find_result)))
-        emberAfCorePrintln("------- KE_xxxxxxx 0x%Xs",stat    );
+        if ((stat = emberAfFindDevicesByProfileAndCluster(EMBER_RX_ON_WHEN_IDLE_BROADCAST_ADDRESS,
+                                                          SE_PROFILE_ID,
+                                                          //ZCL_SIMPLE_METERING_CLUSTER_ID,
+                                                          ZCL_TIME_CLUSTER_ID,
+                                                          EMBER_AF_SERVER_CLUSTER_DISCOVERY,
+                                                          find_result)))
+            emberAfCorePrintln("------- KE_xxxxxxx 0x%Xs",stat    );
+    }
     return true;
 }
 
 static void find_result(const EmberAfServiceDiscoveryResult *r)
 {
-    /*
-    const EmberAfEndpointList *l = r->responseData;
-    emberAfCorePrintln("------- Meter Find result: addr: 0x%X  count: 0x%X",
-                       r->matchAddress, l->count);
-    if (l->count && l->list)
-        emberAfCorePrintln("------- Meter Find result: list entry: 0x%X", l->list);
-
-    */
+    const EmberAfEndpointList* l;
+    boolean resp_rcvd = false;
+    emberAfCorePrintln("------- Meter Find result = 0x%04X", r);
+    switch (r->status) {
+        case EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE:
+            emberAfCorePrintln("------- Meter Find result status = EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE");
+            break;
+        case EMBER_AF_BROADCAST_SERVICE_DISCOVERY_RESPONSE_RECEIVED  :
+            emberAfCorePrintln("------- Meter Find result status = EMBER_AF_BROADCAST_SERVICE_DISCOVERY_RESPONSE_RECEIVED");
+            resp_rcvd = true;
+            break;
+        case EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE_WITH_RESPONSE  :
+            emberAfCorePrintln("------- Meter Find result status = EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE_WITH_RESPONSE");
+            resp_rcvd = true;
+            break;
+        case EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE_WITH_EMPTY_RESPONSE :
+            emberAfCorePrintln("------- Meter Find result status = EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE_WITH_EMPTY_RESPONSE");
+            resp_rcvd = true;
+            break;
+        default:
+            emberAfCorePrintln("------- UNICAST or unknown result status");
+    }
+    if (resp_rcvd && r) {
+        l = r->responseData;
+        emberAfCorePrintln("-------           l = 0x%04X", l);
+        emberAfCorePrintln("------- Meter Find result: addr: 0x%02X  count: %d",
+                           r->matchAddress, l->count);
+        if (l->count && l->list)
+            emberAfCorePrintln("------- Meter Find result: list entry: 0x%X", *l->list);
+    }
 }
 
 void emberAfMainInitCallback(void)
