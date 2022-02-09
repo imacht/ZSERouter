@@ -30,12 +30,9 @@ void emberAfPluginFragmentationInitCallback(uint8_t init_level);
 void emAfPluginKeyEstablishmentInitCallback(uint8_t init_level);
 void emberAfPluginNetworkFindInitCallback(uint8_t init_level);
 void emAfPluginScanDispatchInitCallback(uint8_t init_level);
-void emAfPluginSmartEnergyRegistrationInitCallback(uint8_t init_level);
-void emAfPluginTestHarnessInitCallback(uint8_t init_level);
 // Local data Init
 void emAfLocalDataInit(void);
 void emberAfPluginCountersInitCallback(uint8_t init_level);
-void emberAfPluginEsiManagementInitCallback(uint8_t init_level);
 void emberAfPluginFragmentationInitCallback(uint8_t init_level);
 void emberAfPluginNetworkFindInitCallback(uint8_t init_level);
 // Init done

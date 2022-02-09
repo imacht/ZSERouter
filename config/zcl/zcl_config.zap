@@ -55,7 +55,7 @@
     },
     {
       "name": "Anonymous Endpoint Type",
-      "deviceTypeName": "SE-rangeextender",
+      "deviceTypeName": "SE1.4-rangeextender",
       "deviceTypeCode": 8,
       "deviceTypeProfileId": 265,
       "clusters": [

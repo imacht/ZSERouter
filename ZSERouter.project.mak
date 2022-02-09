@@ -58,89 +58,86 @@ ASM_DEFS += \
 
 INCLUDES += \
  -Iconfig \
- -Iautogen \
  -I. \
- -I$(SDK_PATH)/platform/Device/SiliconLabs/EFR32MG24/Include \
- -I$(SDK_PATH)/platform/common/inc \
- -I$(SDK_PATH)/hardware/board/inc \
- -I$(SDK_PATH)/platform/driver/button/inc \
- -I$(SDK_PATH)/platform/service/cli/inc \
- -I$(SDK_PATH)/platform/CMSIS/Include \
- -I$(SDK_PATH)/platform/driver/debug/inc \
- -I$(SDK_PATH)/platform/service/device_init/inc \
- -I$(SDK_PATH)/platform/emdrv/common/inc \
- -I$(SDK_PATH)/platform/emlib/inc \
- -I$(SDK_PATH)/platform/emlib/host/inc \
- -I$(SDK_PATH)/platform/emdrv/gpiointerrupt/inc \
- -I$(SDK_PATH)/platform/service/hfxo_manager/inc \
- -I$(SDK_PATH)/platform/service/iostream/inc \
- -I$(SDK_PATH)/platform/driver/leddrv/inc \
- -I$(SDK_PATH)/platform/service/legacy_hal/inc \
- -I$(SDK_PATH)/platform/service/legacy_printf/inc \
- -I$(SDK_PATH)/util/third_party/crypto/sl_component/sl_mbedtls_support/config \
- -I$(SDK_PATH)/util/third_party/crypto/mbedtls/include \
- -I$(SDK_PATH)/util/third_party/crypto/mbedtls/library \
- -I$(SDK_PATH)/util/third_party/crypto/sl_component/sl_mbedtls_support/inc \
- -I$(SDK_PATH)/hardware/driver/mx25_flash_shutdown/inc/sl_mx25_flash_shutdown_eusart \
- -I$(SDK_PATH)/platform/emdrv/nvm3/inc \
- -I$(SDK_PATH)/platform/peripheral/inc \
- -I$(SDK_PATH)/platform/service/power_manager/inc \
- -I$(SDK_PATH)/util/third_party/printf \
- -I$(SDK_PATH)/util/third_party/printf/inc \
- -I$(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/inc \
- -I$(SDK_PATH)/platform/radio/rail_lib/common \
- -I$(SDK_PATH)/platform/radio/rail_lib/protocol/ble \
- -I$(SDK_PATH)/platform/radio/rail_lib/protocol/ieee802154 \
- -I$(SDK_PATH)/platform/radio/rail_lib/protocol/zwave \
- -I$(SDK_PATH)/platform/radio/rail_lib/chip/efr32/efr32xg2x \
- -I$(SDK_PATH)/platform/radio/rail_lib/plugin/rail_util_ieee802154 \
- -I$(SDK_PATH)/platform/radio/rail_lib/plugin/pa-conversions \
- -I$(SDK_PATH)/platform/radio/rail_lib/plugin/pa-conversions/efr32xg24 \
- -I$(SDK_PATH)/platform/radio/rail_lib/plugin/rail_util_pti \
- -I$(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/inc \
- -I$(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src \
- -I$(SDK_PATH)/util/silicon_labs/silabs_core/memory_manager \
- -I$(SDK_PATH)/platform/common/toolchain/inc \
- -I$(SDK_PATH)/platform/service/system/inc \
- -I$(SDK_PATH)/platform/service/sleeptimer/inc \
- -I$(SDK_PATH)/platform/emdrv/tempdrv/inc \
- -I$(SDK_PATH)/platform/service/token_manager/inc \
- -I$(SDK_PATH)/platform/service/udelay/inc \
- -I$(SDK_PATH)/protocol/zigbee/app/framework/plugin/address-table \
- -I$(SDK_PATH)/protocol/zigbee/stack/platform/micro \
- -I$(SDK_PATH)/protocol/zigbee/stack/include \
- -I$(SDK_PATH)/protocol/zigbee/app/framework/common \
- -I$(SDK_PATH)/protocol/zigbee/app/em260 \
- -I$(SDK_PATH)/protocol/zigbee/app/util/serial \
- -I$(SDK_PATH)/protocol/zigbee/app/framework/plugin/counters \
- -I$(SDK_PATH)/protocol/zigbee/stack/framework \
- -I$(SDK_PATH)/protocol/zigbee/app/framework/plugin/debug-print \
- -I$(SDK_PATH)/protocol/zigbee/stack/security/ecc \
- -I$(SDK_PATH)/protocol/zigbee/app/framework/plugin/esi-management \
- -I$(SDK_PATH)/protocol/zigbee/app/util/common \
- -I$(SDK_PATH)/protocol/zigbee/app/framework/plugin/fragmentation \
- -I$(SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment \
- -I$(SDK_PATH)/protocol/zigbee/stack/core \
- -I$(SDK_PATH)/protocol/zigbee/app/framework/plugin/network-find \
- -I$(SDK_PATH)/protocol/zigbee/app/framework/plugin/scan-dispatch \
- -I$(SDK_PATH)/protocol/zigbee/app/framework/plugin/smart-energy-registration \
- -I$(SDK_PATH)/platform/radio/rail_lib/plugin \
- -I$(SDK_PATH)/protocol/zigbee \
- -I$(SDK_PATH)/protocol/zigbee/stack \
- -I$(SDK_PATH)/protocol/zigbee/stack/gp \
- -I$(SDK_PATH)/protocol/zigbee/stack/zigbee \
- -I$(SDK_PATH)/platform/radio/mac \
- -I$(SDK_PATH)/util/silicon_labs/silabs_core \
- -I$(SDK_PATH)/protocol/zigbee/stack/mac \
- -I$(SDK_PATH)/protocol/zigbee/app/framework/plugin/test-harness \
- -I$(SDK_PATH)/protocol/zigbee/app/framework/include \
- -I$(SDK_PATH)/protocol/zigbee/app/framework/util \
- -I$(SDK_PATH)/protocol/zigbee/app/framework/security \
- -I$(SDK_PATH)/protocol/zigbee/app/util/zigbee-framework \
- -I$(SDK_PATH)/protocol/zigbee/app/util/counters \
- -I$(SDK_PATH)/protocol/zigbee/app/framework/cli \
- -I$(SDK_PATH)/protocol/zigbee/app/util/security \
- -I$(SDK_PATH)/protocol/zigbee/app/framework/plugin/ota-storage-common
+ -I$(COPIED_SDK_PATH)/platform/Device/SiliconLabs/EFR32MG24/Include \
+ -I$(COPIED_SDK_PATH)/platform/common/inc \
+ -I$(COPIED_SDK_PATH)/hardware/board/inc \
+ -I$(COPIED_SDK_PATH)/platform/driver/button/inc \
+ -I$(COPIED_SDK_PATH)/platform/service/cli/inc \
+ -I$(COPIED_SDK_PATH)/platform/CMSIS/Include \
+ -I$(COPIED_SDK_PATH)/platform/driver/debug/inc \
+ -I$(COPIED_SDK_PATH)/platform/service/device_init/inc \
+ -I$(COPIED_SDK_PATH)/platform/emdrv/common/inc \
+ -I$(COPIED_SDK_PATH)/platform/emlib/inc \
+ -I$(COPIED_SDK_PATH)/platform/emlib/host/inc \
+ -I$(COPIED_SDK_PATH)/platform/emdrv/gpiointerrupt/inc \
+ -I$(COPIED_SDK_PATH)/platform/service/hfxo_manager/inc \
+ -I$(COPIED_SDK_PATH)/platform/service/iostream/inc \
+ -I$(COPIED_SDK_PATH)/platform/driver/leddrv/inc \
+ -I$(COPIED_SDK_PATH)/platform/service/legacy_hal/inc \
+ -I$(COPIED_SDK_PATH)/platform/service/legacy_printf/inc \
+ -I$(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_mbedtls_support/config \
+ -I$(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/include \
+ -I$(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library \
+ -I$(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_mbedtls_support/inc \
+ -I$(COPIED_SDK_PATH)/hardware/driver/mx25_flash_shutdown/inc/sl_mx25_flash_shutdown_eusart \
+ -I$(COPIED_SDK_PATH)/platform/emdrv/nvm3/inc \
+ -I$(COPIED_SDK_PATH)/platform/peripheral/inc \
+ -I$(COPIED_SDK_PATH)/platform/service/power_manager/inc \
+ -I$(COPIED_SDK_PATH)/util/third_party/printf \
+ -I$(COPIED_SDK_PATH)/util/third_party/printf/inc \
+ -I$(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/inc \
+ -I$(COPIED_SDK_PATH)/platform/radio/rail_lib/common \
+ -I$(COPIED_SDK_PATH)/platform/radio/rail_lib/protocol/ble \
+ -I$(COPIED_SDK_PATH)/platform/radio/rail_lib/protocol/ieee802154 \
+ -I$(COPIED_SDK_PATH)/platform/radio/rail_lib/protocol/zwave \
+ -I$(COPIED_SDK_PATH)/platform/radio/rail_lib/chip/efr32/efr32xg2x \
+ -I$(COPIED_SDK_PATH)/platform/radio/rail_lib/plugin/rail_util_ieee802154 \
+ -I$(COPIED_SDK_PATH)/platform/radio/rail_lib/plugin/pa-conversions \
+ -I$(COPIED_SDK_PATH)/platform/radio/rail_lib/plugin/pa-conversions/efr32xg24 \
+ -I$(COPIED_SDK_PATH)/platform/radio/rail_lib/plugin/rail_util_pti \
+ -I$(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/inc \
+ -I$(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src \
+ -I$(COPIED_SDK_PATH)/util/silicon_labs/silabs_core/memory_manager \
+ -I$(COPIED_SDK_PATH)/platform/common/toolchain/inc \
+ -I$(COPIED_SDK_PATH)/platform/service/system/inc \
+ -I$(COPIED_SDK_PATH)/platform/service/sleeptimer/inc \
+ -I$(COPIED_SDK_PATH)/platform/emdrv/tempdrv/inc \
+ -I$(COPIED_SDK_PATH)/platform/service/token_manager/inc \
+ -I$(COPIED_SDK_PATH)/platform/service/udelay/inc \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/address-table \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/stack/platform/micro \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/stack/include \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/app/framework/common \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/app/em260 \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/app/util/serial \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/counters \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/stack/framework \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/debug-print \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/stack/security/ecc \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/app/util/common \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/fragmentation \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/stack/core \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/network-find \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/scan-dispatch \
+ -I$(COPIED_SDK_PATH)/platform/radio/rail_lib/plugin \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/stack \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/stack/gp \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/stack/zigbee \
+ -I$(COPIED_SDK_PATH)/platform/radio/mac \
+ -I$(COPIED_SDK_PATH)/util/silicon_labs/silabs_core \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/stack/mac \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/app/framework/include \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/app/framework/security \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/app/util/zigbee-framework \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/app/util/counters \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/app/framework/cli \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/app/util/security \
+ -I$(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/ota-storage-common \
+ -Iautogen
 
 GROUP_START =-Wl,--start-group
 GROUP_END =-Wl,--end-group
@@ -150,22 +147,22 @@ PROJECT_LIBS = \
  -lc \
  -lm \
  -lnosys \
- $(SDK_PATH)/platform/emdrv/nvm3/lib/libnvm3_CM33_gcc.a \
- $(SDK_PATH)/platform/radio/rail_lib/autogen/librail_release/librail_efr32xg24_gcc_release.a \
- $(SDK_PATH)/protocol/zigbee/build/binding-table-library-cortexm3-gcc-efr32mg24-rail/binding-table-library.a \
- $(SDK_PATH)/protocol/zigbee/build/cbke-163k1-library-cortexm3-gcc-efr32mg24-rail/cbke-163k1-library.a \
- $(SDK_PATH)/protocol/zigbee/build/cbke-283k1-library-cortexm3-gcc-efr32mg24-rail/cbke-283k1-library.a \
- $(SDK_PATH)/protocol/zigbee/build/cbke-library-core-cortexm3-gcc-efr32mg24-rail/cbke-library-core.a \
- $(SDK_PATH)/protocol/zigbee/build/uc-debug-basic-library-cortexm3-gcc-efr32mg24-rail/uc-debug-basic-library.a \
- $(SDK_PATH)/protocol/zigbee/build/ECC/ecc-163k1-library.a \
- $(SDK_PATH)/protocol/zigbee/build/ECC/ecc-283k1-library.a \
- $(SDK_PATH)/protocol/zigbee/build/install-code-library-cortexm3-gcc-efr32mg24-rail/install-code-library.a \
- $(SDK_PATH)/protocol/zigbee/build/multi-network-stub-library-cortexm3-gcc-efr32mg24-rail/multi-network-stub-library.a \
- $(SDK_PATH)/protocol/zigbee/build/multi-pan-stub-library-cortexm3-gcc-efr32mg24-rail/multi-pan-stub-library.a \
- $(SDK_PATH)/protocol/zigbee/build/packet-validate-library-cortexm3-gcc-efr32mg24-rail/packet-validate-library.a \
- $(SDK_PATH)/protocol/zigbee/build/zigbee-pro-stack-cortexm3-gcc-efr32mg24-rail/zigbee-pro-stack.a \
- $(SDK_PATH)/protocol/zigbee/build/security-library-link-keys-cortexm3-gcc-efr32mg24-rail/security-library-link-keys.a \
- $(SDK_PATH)/protocol/zigbee/build/source-route-library-cortexm3-gcc-efr32mg24-rail/source-route-library.a
+ $(COPIED_SDK_PATH)/platform/emdrv/nvm3/lib/libnvm3_CM33_gcc.a \
+ $(COPIED_SDK_PATH)/platform/radio/rail_lib/autogen/librail_release/librail_efr32xg24_gcc_release.a \
+ $(COPIED_SDK_PATH)/protocol/zigbee/build/binding-table-library-cortexm3-gcc-efr32mg24-rail/binding-table-library.a \
+ $(COPIED_SDK_PATH)/protocol/zigbee/build/cbke-163k1-library-cortexm3-gcc-efr32mg24-rail/cbke-163k1-library.a \
+ $(COPIED_SDK_PATH)/protocol/zigbee/build/cbke-283k1-library-cortexm3-gcc-efr32mg24-rail/cbke-283k1-library.a \
+ $(COPIED_SDK_PATH)/protocol/zigbee/build/cbke-library-core-cortexm3-gcc-efr32mg24-rail/cbke-library-core.a \
+ $(COPIED_SDK_PATH)/protocol/zigbee/build/uc-debug-basic-library-cortexm3-gcc-efr32mg24-rail/uc-debug-basic-library.a \
+ $(COPIED_SDK_PATH)/protocol/zigbee/build/ECC/ecc-163k1-library.a \
+ $(COPIED_SDK_PATH)/protocol/zigbee/build/ECC/ecc-283k1-library.a \
+ $(COPIED_SDK_PATH)/protocol/zigbee/build/install-code-library-cortexm3-gcc-efr32mg24-rail/install-code-library.a \
+ $(COPIED_SDK_PATH)/protocol/zigbee/build/multi-network-stub-library-cortexm3-gcc-efr32mg24-rail/multi-network-stub-library.a \
+ $(COPIED_SDK_PATH)/protocol/zigbee/build/multi-pan-stub-library-cortexm3-gcc-efr32mg24-rail/multi-pan-stub-library.a \
+ $(COPIED_SDK_PATH)/protocol/zigbee/build/packet-validate-library-cortexm3-gcc-efr32mg24-rail/packet-validate-library.a \
+ $(COPIED_SDK_PATH)/protocol/zigbee/build/zigbee-pro-stack-cortexm3-gcc-efr32mg24-rail/zigbee-pro-stack.a \
+ $(COPIED_SDK_PATH)/protocol/zigbee/build/security-library-link-keys-cortexm3-gcc-efr32mg24-rail/security-library-link-keys.a \
+ $(COPIED_SDK_PATH)/protocol/zigbee/build/source-route-library-cortexm3-gcc-efr32mg24-rail/source-route-library.a
 
 LIBS += $(GROUP_START) $(PROJECT_LIBS) $(GROUP_END)
 
@@ -237,1281 +234,1245 @@ LD_FLAGS += \
 ####################################################################
 # SDK Build Rules                                                  #
 ####################################################################
-$(OUTPUT_DIR)/sdk/hardware/board/src/sl_board_control_gpio.o: $(SDK_PATH)/hardware/board/src/sl_board_control_gpio.c
-	@echo 'Building $(SDK_PATH)/hardware/board/src/sl_board_control_gpio.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/hardware/board/src/sl_board_control_gpio.c
+$(OUTPUT_DIR)/sdk/hardware/board/src/sl_board_control_gpio.o: $(COPIED_SDK_PATH)/hardware/board/src/sl_board_control_gpio.c
+	@echo 'Building $(COPIED_SDK_PATH)/hardware/board/src/sl_board_control_gpio.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/hardware/board/src/sl_board_control_gpio.c
 CDEPS += $(OUTPUT_DIR)/sdk/hardware/board/src/sl_board_control_gpio.d
 OBJS += $(OUTPUT_DIR)/sdk/hardware/board/src/sl_board_control_gpio.o
 
-$(OUTPUT_DIR)/sdk/hardware/board/src/sl_board_init.o: $(SDK_PATH)/hardware/board/src/sl_board_init.c
-	@echo 'Building $(SDK_PATH)/hardware/board/src/sl_board_init.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/hardware/board/src/sl_board_init.c
+$(OUTPUT_DIR)/sdk/hardware/board/src/sl_board_init.o: $(COPIED_SDK_PATH)/hardware/board/src/sl_board_init.c
+	@echo 'Building $(COPIED_SDK_PATH)/hardware/board/src/sl_board_init.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/hardware/board/src/sl_board_init.c
 CDEPS += $(OUTPUT_DIR)/sdk/hardware/board/src/sl_board_init.d
 OBJS += $(OUTPUT_DIR)/sdk/hardware/board/src/sl_board_init.o
 
-$(OUTPUT_DIR)/sdk/hardware/driver/mx25_flash_shutdown/src/sl_mx25_flash_shutdown_eusart/sl_mx25_flash_shutdown.o: $(SDK_PATH)/hardware/driver/mx25_flash_shutdown/src/sl_mx25_flash_shutdown_eusart/sl_mx25_flash_shutdown.c
-	@echo 'Building $(SDK_PATH)/hardware/driver/mx25_flash_shutdown/src/sl_mx25_flash_shutdown_eusart/sl_mx25_flash_shutdown.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/hardware/driver/mx25_flash_shutdown/src/sl_mx25_flash_shutdown_eusart/sl_mx25_flash_shutdown.c
+$(OUTPUT_DIR)/sdk/hardware/driver/mx25_flash_shutdown/src/sl_mx25_flash_shutdown_eusart/sl_mx25_flash_shutdown.o: $(COPIED_SDK_PATH)/hardware/driver/mx25_flash_shutdown/src/sl_mx25_flash_shutdown_eusart/sl_mx25_flash_shutdown.c
+	@echo 'Building $(COPIED_SDK_PATH)/hardware/driver/mx25_flash_shutdown/src/sl_mx25_flash_shutdown_eusart/sl_mx25_flash_shutdown.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/hardware/driver/mx25_flash_shutdown/src/sl_mx25_flash_shutdown_eusart/sl_mx25_flash_shutdown.c
 CDEPS += $(OUTPUT_DIR)/sdk/hardware/driver/mx25_flash_shutdown/src/sl_mx25_flash_shutdown_eusart/sl_mx25_flash_shutdown.d
 OBJS += $(OUTPUT_DIR)/sdk/hardware/driver/mx25_flash_shutdown/src/sl_mx25_flash_shutdown_eusart/sl_mx25_flash_shutdown.o
 
-$(OUTPUT_DIR)/sdk/platform/common/src/sl_slist.o: $(SDK_PATH)/platform/common/src/sl_slist.c
-	@echo 'Building $(SDK_PATH)/platform/common/src/sl_slist.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/common/src/sl_slist.c
+$(OUTPUT_DIR)/sdk/platform/common/src/sl_slist.o: $(COPIED_SDK_PATH)/platform/common/src/sl_slist.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/common/src/sl_slist.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/common/src/sl_slist.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/common/src/sl_slist.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/common/src/sl_slist.o
 
-$(OUTPUT_DIR)/sdk/platform/common/src/sl_string.o: $(SDK_PATH)/platform/common/src/sl_string.c
-	@echo 'Building $(SDK_PATH)/platform/common/src/sl_string.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/common/src/sl_string.c
+$(OUTPUT_DIR)/sdk/platform/common/src/sl_string.o: $(COPIED_SDK_PATH)/platform/common/src/sl_string.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/common/src/sl_string.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/common/src/sl_string.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/common/src/sl_string.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/common/src/sl_string.o
 
-$(OUTPUT_DIR)/sdk/platform/common/toolchain/src/sl_memory.o: $(SDK_PATH)/platform/common/toolchain/src/sl_memory.c
-	@echo 'Building $(SDK_PATH)/platform/common/toolchain/src/sl_memory.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/common/toolchain/src/sl_memory.c
+$(OUTPUT_DIR)/sdk/platform/common/toolchain/src/sl_memory.o: $(COPIED_SDK_PATH)/platform/common/toolchain/src/sl_memory.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/common/toolchain/src/sl_memory.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/common/toolchain/src/sl_memory.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/common/toolchain/src/sl_memory.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/common/toolchain/src/sl_memory.o
 
-$(OUTPUT_DIR)/sdk/platform/Device/SiliconLabs/EFR32MG24/Source/GCC/startup_efr32mg24.o: $(SDK_PATH)/platform/Device/SiliconLabs/EFR32MG24/Source/GCC/startup_efr32mg24.c
-	@echo 'Building $(SDK_PATH)/platform/Device/SiliconLabs/EFR32MG24/Source/GCC/startup_efr32mg24.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/Device/SiliconLabs/EFR32MG24/Source/GCC/startup_efr32mg24.c
+$(OUTPUT_DIR)/sdk/platform/Device/SiliconLabs/EFR32MG24/Source/GCC/startup_efr32mg24.o: $(COPIED_SDK_PATH)/platform/Device/SiliconLabs/EFR32MG24/Source/GCC/startup_efr32mg24.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/Device/SiliconLabs/EFR32MG24/Source/GCC/startup_efr32mg24.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/Device/SiliconLabs/EFR32MG24/Source/GCC/startup_efr32mg24.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/Device/SiliconLabs/EFR32MG24/Source/GCC/startup_efr32mg24.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/Device/SiliconLabs/EFR32MG24/Source/GCC/startup_efr32mg24.o
 
-$(OUTPUT_DIR)/sdk/platform/Device/SiliconLabs/EFR32MG24/Source/system_efr32mg24.o: $(SDK_PATH)/platform/Device/SiliconLabs/EFR32MG24/Source/system_efr32mg24.c
-	@echo 'Building $(SDK_PATH)/platform/Device/SiliconLabs/EFR32MG24/Source/system_efr32mg24.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/Device/SiliconLabs/EFR32MG24/Source/system_efr32mg24.c
+$(OUTPUT_DIR)/sdk/platform/Device/SiliconLabs/EFR32MG24/Source/system_efr32mg24.o: $(COPIED_SDK_PATH)/platform/Device/SiliconLabs/EFR32MG24/Source/system_efr32mg24.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/Device/SiliconLabs/EFR32MG24/Source/system_efr32mg24.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/Device/SiliconLabs/EFR32MG24/Source/system_efr32mg24.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/Device/SiliconLabs/EFR32MG24/Source/system_efr32mg24.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/Device/SiliconLabs/EFR32MG24/Source/system_efr32mg24.o
 
-$(OUTPUT_DIR)/sdk/platform/driver/button/src/sl_button.o: $(SDK_PATH)/platform/driver/button/src/sl_button.c
-	@echo 'Building $(SDK_PATH)/platform/driver/button/src/sl_button.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/driver/button/src/sl_button.c
+$(OUTPUT_DIR)/sdk/platform/driver/button/src/sl_button.o: $(COPIED_SDK_PATH)/platform/driver/button/src/sl_button.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/driver/button/src/sl_button.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/driver/button/src/sl_button.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/driver/button/src/sl_button.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/driver/button/src/sl_button.o
 
-$(OUTPUT_DIR)/sdk/platform/driver/button/src/sl_simple_button.o: $(SDK_PATH)/platform/driver/button/src/sl_simple_button.c
-	@echo 'Building $(SDK_PATH)/platform/driver/button/src/sl_simple_button.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/driver/button/src/sl_simple_button.c
+$(OUTPUT_DIR)/sdk/platform/driver/button/src/sl_simple_button.o: $(COPIED_SDK_PATH)/platform/driver/button/src/sl_simple_button.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/driver/button/src/sl_simple_button.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/driver/button/src/sl_simple_button.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/driver/button/src/sl_simple_button.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/driver/button/src/sl_simple_button.o
 
-$(OUTPUT_DIR)/sdk/platform/driver/debug/src/sl_debug_swo.o: $(SDK_PATH)/platform/driver/debug/src/sl_debug_swo.c
-	@echo 'Building $(SDK_PATH)/platform/driver/debug/src/sl_debug_swo.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/driver/debug/src/sl_debug_swo.c
+$(OUTPUT_DIR)/sdk/platform/driver/debug/src/sl_debug_swo.o: $(COPIED_SDK_PATH)/platform/driver/debug/src/sl_debug_swo.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/driver/debug/src/sl_debug_swo.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/driver/debug/src/sl_debug_swo.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/driver/debug/src/sl_debug_swo.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/driver/debug/src/sl_debug_swo.o
 
-$(OUTPUT_DIR)/sdk/platform/driver/leddrv/src/sl_led.o: $(SDK_PATH)/platform/driver/leddrv/src/sl_led.c
-	@echo 'Building $(SDK_PATH)/platform/driver/leddrv/src/sl_led.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/driver/leddrv/src/sl_led.c
+$(OUTPUT_DIR)/sdk/platform/driver/leddrv/src/sl_led.o: $(COPIED_SDK_PATH)/platform/driver/leddrv/src/sl_led.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/driver/leddrv/src/sl_led.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/driver/leddrv/src/sl_led.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/driver/leddrv/src/sl_led.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/driver/leddrv/src/sl_led.o
 
-$(OUTPUT_DIR)/sdk/platform/driver/leddrv/src/sl_simple_led.o: $(SDK_PATH)/platform/driver/leddrv/src/sl_simple_led.c
-	@echo 'Building $(SDK_PATH)/platform/driver/leddrv/src/sl_simple_led.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/driver/leddrv/src/sl_simple_led.c
+$(OUTPUT_DIR)/sdk/platform/driver/leddrv/src/sl_simple_led.o: $(COPIED_SDK_PATH)/platform/driver/leddrv/src/sl_simple_led.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/driver/leddrv/src/sl_simple_led.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/driver/leddrv/src/sl_simple_led.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/driver/leddrv/src/sl_simple_led.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/driver/leddrv/src/sl_simple_led.o
 
-$(OUTPUT_DIR)/sdk/platform/emdrv/gpiointerrupt/src/gpiointerrupt.o: $(SDK_PATH)/platform/emdrv/gpiointerrupt/src/gpiointerrupt.c
-	@echo 'Building $(SDK_PATH)/platform/emdrv/gpiointerrupt/src/gpiointerrupt.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/emdrv/gpiointerrupt/src/gpiointerrupt.c
+$(OUTPUT_DIR)/sdk/platform/emdrv/gpiointerrupt/src/gpiointerrupt.o: $(COPIED_SDK_PATH)/platform/emdrv/gpiointerrupt/src/gpiointerrupt.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/emdrv/gpiointerrupt/src/gpiointerrupt.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/emdrv/gpiointerrupt/src/gpiointerrupt.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/emdrv/gpiointerrupt/src/gpiointerrupt.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/emdrv/gpiointerrupt/src/gpiointerrupt.o
 
-$(OUTPUT_DIR)/sdk/platform/emdrv/nvm3/src/nvm3_default_common_linker.o: $(SDK_PATH)/platform/emdrv/nvm3/src/nvm3_default_common_linker.c
-	@echo 'Building $(SDK_PATH)/platform/emdrv/nvm3/src/nvm3_default_common_linker.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/emdrv/nvm3/src/nvm3_default_common_linker.c
+$(OUTPUT_DIR)/sdk/platform/emdrv/nvm3/src/nvm3_default_common_linker.o: $(COPIED_SDK_PATH)/platform/emdrv/nvm3/src/nvm3_default_common_linker.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/emdrv/nvm3/src/nvm3_default_common_linker.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/emdrv/nvm3/src/nvm3_default_common_linker.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/emdrv/nvm3/src/nvm3_default_common_linker.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/emdrv/nvm3/src/nvm3_default_common_linker.o
 
-$(OUTPUT_DIR)/sdk/platform/emdrv/nvm3/src/nvm3_hal_flash.o: $(SDK_PATH)/platform/emdrv/nvm3/src/nvm3_hal_flash.c
-	@echo 'Building $(SDK_PATH)/platform/emdrv/nvm3/src/nvm3_hal_flash.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/emdrv/nvm3/src/nvm3_hal_flash.c
+$(OUTPUT_DIR)/sdk/platform/emdrv/nvm3/src/nvm3_hal_flash.o: $(COPIED_SDK_PATH)/platform/emdrv/nvm3/src/nvm3_hal_flash.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/emdrv/nvm3/src/nvm3_hal_flash.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/emdrv/nvm3/src/nvm3_hal_flash.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/emdrv/nvm3/src/nvm3_hal_flash.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/emdrv/nvm3/src/nvm3_hal_flash.o
 
-$(OUTPUT_DIR)/sdk/platform/emdrv/nvm3/src/nvm3_lock.o: $(SDK_PATH)/platform/emdrv/nvm3/src/nvm3_lock.c
-	@echo 'Building $(SDK_PATH)/platform/emdrv/nvm3/src/nvm3_lock.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/emdrv/nvm3/src/nvm3_lock.c
+$(OUTPUT_DIR)/sdk/platform/emdrv/nvm3/src/nvm3_lock.o: $(COPIED_SDK_PATH)/platform/emdrv/nvm3/src/nvm3_lock.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/emdrv/nvm3/src/nvm3_lock.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/emdrv/nvm3/src/nvm3_lock.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/emdrv/nvm3/src/nvm3_lock.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/emdrv/nvm3/src/nvm3_lock.o
 
-$(OUTPUT_DIR)/sdk/platform/emdrv/tempdrv/src/tempdrv.o: $(SDK_PATH)/platform/emdrv/tempdrv/src/tempdrv.c
-	@echo 'Building $(SDK_PATH)/platform/emdrv/tempdrv/src/tempdrv.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/emdrv/tempdrv/src/tempdrv.c
+$(OUTPUT_DIR)/sdk/platform/emdrv/tempdrv/src/tempdrv.o: $(COPIED_SDK_PATH)/platform/emdrv/tempdrv/src/tempdrv.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/emdrv/tempdrv/src/tempdrv.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/emdrv/tempdrv/src/tempdrv.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/emdrv/tempdrv/src/tempdrv.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/emdrv/tempdrv/src/tempdrv.o
 
-$(OUTPUT_DIR)/sdk/platform/emlib/src/em_assert.o: $(SDK_PATH)/platform/emlib/src/em_assert.c
-	@echo 'Building $(SDK_PATH)/platform/emlib/src/em_assert.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/emlib/src/em_assert.c
+$(OUTPUT_DIR)/sdk/platform/emlib/src/em_assert.o: $(COPIED_SDK_PATH)/platform/emlib/src/em_assert.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/emlib/src/em_assert.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/emlib/src/em_assert.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_assert.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_assert.o
 
-$(OUTPUT_DIR)/sdk/platform/emlib/src/em_burtc.o: $(SDK_PATH)/platform/emlib/src/em_burtc.c
-	@echo 'Building $(SDK_PATH)/platform/emlib/src/em_burtc.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/emlib/src/em_burtc.c
+$(OUTPUT_DIR)/sdk/platform/emlib/src/em_burtc.o: $(COPIED_SDK_PATH)/platform/emlib/src/em_burtc.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/emlib/src/em_burtc.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/emlib/src/em_burtc.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_burtc.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_burtc.o
 
-$(OUTPUT_DIR)/sdk/platform/emlib/src/em_cmu.o: $(SDK_PATH)/platform/emlib/src/em_cmu.c
-	@echo 'Building $(SDK_PATH)/platform/emlib/src/em_cmu.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/emlib/src/em_cmu.c
+$(OUTPUT_DIR)/sdk/platform/emlib/src/em_cmu.o: $(COPIED_SDK_PATH)/platform/emlib/src/em_cmu.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/emlib/src/em_cmu.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/emlib/src/em_cmu.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_cmu.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_cmu.o
 
-$(OUTPUT_DIR)/sdk/platform/emlib/src/em_core.o: $(SDK_PATH)/platform/emlib/src/em_core.c
-	@echo 'Building $(SDK_PATH)/platform/emlib/src/em_core.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/emlib/src/em_core.c
+$(OUTPUT_DIR)/sdk/platform/emlib/src/em_core.o: $(COPIED_SDK_PATH)/platform/emlib/src/em_core.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/emlib/src/em_core.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/emlib/src/em_core.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_core.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_core.o
 
-$(OUTPUT_DIR)/sdk/platform/emlib/src/em_emu.o: $(SDK_PATH)/platform/emlib/src/em_emu.c
-	@echo 'Building $(SDK_PATH)/platform/emlib/src/em_emu.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/emlib/src/em_emu.c
+$(OUTPUT_DIR)/sdk/platform/emlib/src/em_emu.o: $(COPIED_SDK_PATH)/platform/emlib/src/em_emu.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/emlib/src/em_emu.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/emlib/src/em_emu.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_emu.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_emu.o
 
-$(OUTPUT_DIR)/sdk/platform/emlib/src/em_eusart.o: $(SDK_PATH)/platform/emlib/src/em_eusart.c
-	@echo 'Building $(SDK_PATH)/platform/emlib/src/em_eusart.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/emlib/src/em_eusart.c
+$(OUTPUT_DIR)/sdk/platform/emlib/src/em_eusart.o: $(COPIED_SDK_PATH)/platform/emlib/src/em_eusart.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/emlib/src/em_eusart.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/emlib/src/em_eusart.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_eusart.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_eusart.o
 
-$(OUTPUT_DIR)/sdk/platform/emlib/src/em_gpio.o: $(SDK_PATH)/platform/emlib/src/em_gpio.c
-	@echo 'Building $(SDK_PATH)/platform/emlib/src/em_gpio.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/emlib/src/em_gpio.c
+$(OUTPUT_DIR)/sdk/platform/emlib/src/em_gpio.o: $(COPIED_SDK_PATH)/platform/emlib/src/em_gpio.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/emlib/src/em_gpio.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/emlib/src/em_gpio.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_gpio.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_gpio.o
 
-$(OUTPUT_DIR)/sdk/platform/emlib/src/em_msc.o: $(SDK_PATH)/platform/emlib/src/em_msc.c
-	@echo 'Building $(SDK_PATH)/platform/emlib/src/em_msc.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/emlib/src/em_msc.c
+$(OUTPUT_DIR)/sdk/platform/emlib/src/em_msc.o: $(COPIED_SDK_PATH)/platform/emlib/src/em_msc.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/emlib/src/em_msc.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/emlib/src/em_msc.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_msc.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_msc.o
 
-$(OUTPUT_DIR)/sdk/platform/emlib/src/em_prs.o: $(SDK_PATH)/platform/emlib/src/em_prs.c
-	@echo 'Building $(SDK_PATH)/platform/emlib/src/em_prs.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/emlib/src/em_prs.c
+$(OUTPUT_DIR)/sdk/platform/emlib/src/em_prs.o: $(COPIED_SDK_PATH)/platform/emlib/src/em_prs.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/emlib/src/em_prs.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/emlib/src/em_prs.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_prs.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_prs.o
 
-$(OUTPUT_DIR)/sdk/platform/emlib/src/em_rmu.o: $(SDK_PATH)/platform/emlib/src/em_rmu.c
-	@echo 'Building $(SDK_PATH)/platform/emlib/src/em_rmu.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/emlib/src/em_rmu.c
+$(OUTPUT_DIR)/sdk/platform/emlib/src/em_rmu.o: $(COPIED_SDK_PATH)/platform/emlib/src/em_rmu.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/emlib/src/em_rmu.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/emlib/src/em_rmu.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_rmu.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_rmu.o
 
-$(OUTPUT_DIR)/sdk/platform/emlib/src/em_se.o: $(SDK_PATH)/platform/emlib/src/em_se.c
-	@echo 'Building $(SDK_PATH)/platform/emlib/src/em_se.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/emlib/src/em_se.c
+$(OUTPUT_DIR)/sdk/platform/emlib/src/em_se.o: $(COPIED_SDK_PATH)/platform/emlib/src/em_se.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/emlib/src/em_se.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/emlib/src/em_se.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_se.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_se.o
 
-$(OUTPUT_DIR)/sdk/platform/emlib/src/em_system.o: $(SDK_PATH)/platform/emlib/src/em_system.c
-	@echo 'Building $(SDK_PATH)/platform/emlib/src/em_system.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/emlib/src/em_system.c
+$(OUTPUT_DIR)/sdk/platform/emlib/src/em_system.o: $(COPIED_SDK_PATH)/platform/emlib/src/em_system.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/emlib/src/em_system.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/emlib/src/em_system.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_system.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_system.o
 
-$(OUTPUT_DIR)/sdk/platform/emlib/src/em_usart.o: $(SDK_PATH)/platform/emlib/src/em_usart.c
-	@echo 'Building $(SDK_PATH)/platform/emlib/src/em_usart.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/emlib/src/em_usart.c
+$(OUTPUT_DIR)/sdk/platform/emlib/src/em_usart.o: $(COPIED_SDK_PATH)/platform/emlib/src/em_usart.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/emlib/src/em_usart.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/emlib/src/em_usart.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_usart.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_usart.o
 
-$(OUTPUT_DIR)/sdk/platform/emlib/src/em_wdog.o: $(SDK_PATH)/platform/emlib/src/em_wdog.c
-	@echo 'Building $(SDK_PATH)/platform/emlib/src/em_wdog.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/emlib/src/em_wdog.c
+$(OUTPUT_DIR)/sdk/platform/emlib/src/em_wdog.o: $(COPIED_SDK_PATH)/platform/emlib/src/em_wdog.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/emlib/src/em_wdog.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/emlib/src/em_wdog.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_wdog.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/emlib/src/em_wdog.o
 
-$(OUTPUT_DIR)/sdk/platform/peripheral/src/peripheral_sysrtc.o: $(SDK_PATH)/platform/peripheral/src/peripheral_sysrtc.c
-	@echo 'Building $(SDK_PATH)/platform/peripheral/src/peripheral_sysrtc.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/peripheral/src/peripheral_sysrtc.c
+$(OUTPUT_DIR)/sdk/platform/peripheral/src/peripheral_sysrtc.o: $(COPIED_SDK_PATH)/platform/peripheral/src/peripheral_sysrtc.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/peripheral/src/peripheral_sysrtc.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/peripheral/src/peripheral_sysrtc.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/peripheral/src/peripheral_sysrtc.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/peripheral/src/peripheral_sysrtc.o
 
-$(OUTPUT_DIR)/sdk/platform/radio/rail_lib/plugin/coexistence/protocol/ieee802154_uc/coexistence-802154.o: $(SDK_PATH)/platform/radio/rail_lib/plugin/coexistence/protocol/ieee802154_uc/coexistence-802154.c
-	@echo 'Building $(SDK_PATH)/platform/radio/rail_lib/plugin/coexistence/protocol/ieee802154_uc/coexistence-802154.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/radio/rail_lib/plugin/coexistence/protocol/ieee802154_uc/coexistence-802154.c
+$(OUTPUT_DIR)/sdk/platform/radio/rail_lib/plugin/coexistence/protocol/ieee802154_uc/coexistence-802154.o: $(COPIED_SDK_PATH)/platform/radio/rail_lib/plugin/coexistence/protocol/ieee802154_uc/coexistence-802154.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/radio/rail_lib/plugin/coexistence/protocol/ieee802154_uc/coexistence-802154.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/radio/rail_lib/plugin/coexistence/protocol/ieee802154_uc/coexistence-802154.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/radio/rail_lib/plugin/coexistence/protocol/ieee802154_uc/coexistence-802154.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/radio/rail_lib/plugin/coexistence/protocol/ieee802154_uc/coexistence-802154.o
 
-$(OUTPUT_DIR)/sdk/platform/radio/rail_lib/plugin/pa-conversions/pa_conversions_efr32.o: $(SDK_PATH)/platform/radio/rail_lib/plugin/pa-conversions/pa_conversions_efr32.c
-	@echo 'Building $(SDK_PATH)/platform/radio/rail_lib/plugin/pa-conversions/pa_conversions_efr32.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/radio/rail_lib/plugin/pa-conversions/pa_conversions_efr32.c
+$(OUTPUT_DIR)/sdk/platform/radio/rail_lib/plugin/pa-conversions/pa_conversions_efr32.o: $(COPIED_SDK_PATH)/platform/radio/rail_lib/plugin/pa-conversions/pa_conversions_efr32.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/radio/rail_lib/plugin/pa-conversions/pa_conversions_efr32.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/radio/rail_lib/plugin/pa-conversions/pa_conversions_efr32.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/radio/rail_lib/plugin/pa-conversions/pa_conversions_efr32.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/radio/rail_lib/plugin/pa-conversions/pa_conversions_efr32.o
 
-$(OUTPUT_DIR)/sdk/platform/radio/rail_lib/plugin/pa-conversions/pa_curves_efr32.o: $(SDK_PATH)/platform/radio/rail_lib/plugin/pa-conversions/pa_curves_efr32.c
-	@echo 'Building $(SDK_PATH)/platform/radio/rail_lib/plugin/pa-conversions/pa_curves_efr32.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/radio/rail_lib/plugin/pa-conversions/pa_curves_efr32.c
+$(OUTPUT_DIR)/sdk/platform/radio/rail_lib/plugin/pa-conversions/pa_curves_efr32.o: $(COPIED_SDK_PATH)/platform/radio/rail_lib/plugin/pa-conversions/pa_curves_efr32.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/radio/rail_lib/plugin/pa-conversions/pa_curves_efr32.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/radio/rail_lib/plugin/pa-conversions/pa_curves_efr32.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/radio/rail_lib/plugin/pa-conversions/pa_curves_efr32.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/radio/rail_lib/plugin/pa-conversions/pa_curves_efr32.o
 
-$(OUTPUT_DIR)/sdk/platform/radio/rail_lib/plugin/rail_util_ant_div/sl_rail_util_ant_div.o: $(SDK_PATH)/platform/radio/rail_lib/plugin/rail_util_ant_div/sl_rail_util_ant_div.c
-	@echo 'Building $(SDK_PATH)/platform/radio/rail_lib/plugin/rail_util_ant_div/sl_rail_util_ant_div.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/radio/rail_lib/plugin/rail_util_ant_div/sl_rail_util_ant_div.c
+$(OUTPUT_DIR)/sdk/platform/radio/rail_lib/plugin/rail_util_ant_div/sl_rail_util_ant_div.o: $(COPIED_SDK_PATH)/platform/radio/rail_lib/plugin/rail_util_ant_div/sl_rail_util_ant_div.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/radio/rail_lib/plugin/rail_util_ant_div/sl_rail_util_ant_div.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/radio/rail_lib/plugin/rail_util_ant_div/sl_rail_util_ant_div.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/radio/rail_lib/plugin/rail_util_ant_div/sl_rail_util_ant_div.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/radio/rail_lib/plugin/rail_util_ant_div/sl_rail_util_ant_div.o
 
-$(OUTPUT_DIR)/sdk/platform/radio/rail_lib/plugin/rail_util_pti/sl_rail_util_pti.o: $(SDK_PATH)/platform/radio/rail_lib/plugin/rail_util_pti/sl_rail_util_pti.c
-	@echo 'Building $(SDK_PATH)/platform/radio/rail_lib/plugin/rail_util_pti/sl_rail_util_pti.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/radio/rail_lib/plugin/rail_util_pti/sl_rail_util_pti.c
+$(OUTPUT_DIR)/sdk/platform/radio/rail_lib/plugin/rail_util_pti/sl_rail_util_pti.o: $(COPIED_SDK_PATH)/platform/radio/rail_lib/plugin/rail_util_pti/sl_rail_util_pti.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/radio/rail_lib/plugin/rail_util_pti/sl_rail_util_pti.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/radio/rail_lib/plugin/rail_util_pti/sl_rail_util_pti.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/radio/rail_lib/plugin/rail_util_pti/sl_rail_util_pti.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/radio/rail_lib/plugin/rail_util_pti/sl_rail_util_pti.o
 
-$(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli.o: $(SDK_PATH)/platform/service/cli/src/sl_cli.c
-	@echo 'Building $(SDK_PATH)/platform/service/cli/src/sl_cli.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/cli/src/sl_cli.c
+$(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli.o: $(COPIED_SDK_PATH)/platform/service/cli/src/sl_cli.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/cli/src/sl_cli.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/cli/src/sl_cli.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli.o
 
-$(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli_arguments.o: $(SDK_PATH)/platform/service/cli/src/sl_cli_arguments.c
-	@echo 'Building $(SDK_PATH)/platform/service/cli/src/sl_cli_arguments.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/cli/src/sl_cli_arguments.c
+$(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli_arguments.o: $(COPIED_SDK_PATH)/platform/service/cli/src/sl_cli_arguments.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/cli/src/sl_cli_arguments.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/cli/src/sl_cli_arguments.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli_arguments.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli_arguments.o
 
-$(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli_command.o: $(SDK_PATH)/platform/service/cli/src/sl_cli_command.c
-	@echo 'Building $(SDK_PATH)/platform/service/cli/src/sl_cli_command.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/cli/src/sl_cli_command.c
+$(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli_command.o: $(COPIED_SDK_PATH)/platform/service/cli/src/sl_cli_command.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/cli/src/sl_cli_command.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/cli/src/sl_cli_command.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli_command.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli_command.o
 
-$(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli_input.o: $(SDK_PATH)/platform/service/cli/src/sl_cli_input.c
-	@echo 'Building $(SDK_PATH)/platform/service/cli/src/sl_cli_input.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/cli/src/sl_cli_input.c
+$(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli_input.o: $(COPIED_SDK_PATH)/platform/service/cli/src/sl_cli_input.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/cli/src/sl_cli_input.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/cli/src/sl_cli_input.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli_input.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli_input.o
 
-$(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli_io.o: $(SDK_PATH)/platform/service/cli/src/sl_cli_io.c
-	@echo 'Building $(SDK_PATH)/platform/service/cli/src/sl_cli_io.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/cli/src/sl_cli_io.c
+$(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli_io.o: $(COPIED_SDK_PATH)/platform/service/cli/src/sl_cli_io.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/cli/src/sl_cli_io.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/cli/src/sl_cli_io.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli_io.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli_io.o
 
-$(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli_tokenize.o: $(SDK_PATH)/platform/service/cli/src/sl_cli_tokenize.c
-	@echo 'Building $(SDK_PATH)/platform/service/cli/src/sl_cli_tokenize.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/cli/src/sl_cli_tokenize.c
+$(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli_tokenize.o: $(COPIED_SDK_PATH)/platform/service/cli/src/sl_cli_tokenize.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/cli/src/sl_cli_tokenize.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/cli/src/sl_cli_tokenize.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli_tokenize.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/cli/src/sl_cli_tokenize.o
 
-$(OUTPUT_DIR)/sdk/platform/service/device_init/src/sl_device_init_dcdc_s2.o: $(SDK_PATH)/platform/service/device_init/src/sl_device_init_dcdc_s2.c
-	@echo 'Building $(SDK_PATH)/platform/service/device_init/src/sl_device_init_dcdc_s2.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/device_init/src/sl_device_init_dcdc_s2.c
+$(OUTPUT_DIR)/sdk/platform/service/device_init/src/sl_device_init_dcdc_s2.o: $(COPIED_SDK_PATH)/platform/service/device_init/src/sl_device_init_dcdc_s2.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/device_init/src/sl_device_init_dcdc_s2.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/device_init/src/sl_device_init_dcdc_s2.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/device_init/src/sl_device_init_dcdc_s2.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/device_init/src/sl_device_init_dcdc_s2.o
 
-$(OUTPUT_DIR)/sdk/platform/service/device_init/src/sl_device_init_emu_s2.o: $(SDK_PATH)/platform/service/device_init/src/sl_device_init_emu_s2.c
-	@echo 'Building $(SDK_PATH)/platform/service/device_init/src/sl_device_init_emu_s2.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/device_init/src/sl_device_init_emu_s2.c
+$(OUTPUT_DIR)/sdk/platform/service/device_init/src/sl_device_init_emu_s2.o: $(COPIED_SDK_PATH)/platform/service/device_init/src/sl_device_init_emu_s2.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/device_init/src/sl_device_init_emu_s2.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/device_init/src/sl_device_init_emu_s2.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/device_init/src/sl_device_init_emu_s2.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/device_init/src/sl_device_init_emu_s2.o
 
-$(OUTPUT_DIR)/sdk/platform/service/device_init/src/sl_device_init_hfxo_s2.o: $(SDK_PATH)/platform/service/device_init/src/sl_device_init_hfxo_s2.c
-	@echo 'Building $(SDK_PATH)/platform/service/device_init/src/sl_device_init_hfxo_s2.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/device_init/src/sl_device_init_hfxo_s2.c
+$(OUTPUT_DIR)/sdk/platform/service/device_init/src/sl_device_init_hfxo_s2.o: $(COPIED_SDK_PATH)/platform/service/device_init/src/sl_device_init_hfxo_s2.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/device_init/src/sl_device_init_hfxo_s2.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/device_init/src/sl_device_init_hfxo_s2.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/device_init/src/sl_device_init_hfxo_s2.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/device_init/src/sl_device_init_hfxo_s2.o
 
-$(OUTPUT_DIR)/sdk/platform/service/device_init/src/sl_device_init_lfxo_s2.o: $(SDK_PATH)/platform/service/device_init/src/sl_device_init_lfxo_s2.c
-	@echo 'Building $(SDK_PATH)/platform/service/device_init/src/sl_device_init_lfxo_s2.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/device_init/src/sl_device_init_lfxo_s2.c
+$(OUTPUT_DIR)/sdk/platform/service/device_init/src/sl_device_init_lfxo_s2.o: $(COPIED_SDK_PATH)/platform/service/device_init/src/sl_device_init_lfxo_s2.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/device_init/src/sl_device_init_lfxo_s2.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/device_init/src/sl_device_init_lfxo_s2.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/device_init/src/sl_device_init_lfxo_s2.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/device_init/src/sl_device_init_lfxo_s2.o
 
-$(OUTPUT_DIR)/sdk/platform/service/device_init/src/sl_device_init_nvic.o: $(SDK_PATH)/platform/service/device_init/src/sl_device_init_nvic.c
-	@echo 'Building $(SDK_PATH)/platform/service/device_init/src/sl_device_init_nvic.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/device_init/src/sl_device_init_nvic.c
+$(OUTPUT_DIR)/sdk/platform/service/device_init/src/sl_device_init_nvic.o: $(COPIED_SDK_PATH)/platform/service/device_init/src/sl_device_init_nvic.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/device_init/src/sl_device_init_nvic.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/device_init/src/sl_device_init_nvic.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/device_init/src/sl_device_init_nvic.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/device_init/src/sl_device_init_nvic.o
 
-$(OUTPUT_DIR)/sdk/platform/service/hfxo_manager/src/sl_hfxo_manager.o: $(SDK_PATH)/platform/service/hfxo_manager/src/sl_hfxo_manager.c
-	@echo 'Building $(SDK_PATH)/platform/service/hfxo_manager/src/sl_hfxo_manager.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/hfxo_manager/src/sl_hfxo_manager.c
+$(OUTPUT_DIR)/sdk/platform/service/hfxo_manager/src/sl_hfxo_manager.o: $(COPIED_SDK_PATH)/platform/service/hfxo_manager/src/sl_hfxo_manager.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/hfxo_manager/src/sl_hfxo_manager.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/hfxo_manager/src/sl_hfxo_manager.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/hfxo_manager/src/sl_hfxo_manager.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/hfxo_manager/src/sl_hfxo_manager.o
 
-$(OUTPUT_DIR)/sdk/platform/service/hfxo_manager/src/sl_hfxo_manager_hal_s2.o: $(SDK_PATH)/platform/service/hfxo_manager/src/sl_hfxo_manager_hal_s2.c
-	@echo 'Building $(SDK_PATH)/platform/service/hfxo_manager/src/sl_hfxo_manager_hal_s2.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/hfxo_manager/src/sl_hfxo_manager_hal_s2.c
+$(OUTPUT_DIR)/sdk/platform/service/hfxo_manager/src/sl_hfxo_manager_hal_s2.o: $(COPIED_SDK_PATH)/platform/service/hfxo_manager/src/sl_hfxo_manager_hal_s2.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/hfxo_manager/src/sl_hfxo_manager_hal_s2.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/hfxo_manager/src/sl_hfxo_manager_hal_s2.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/hfxo_manager/src/sl_hfxo_manager_hal_s2.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/hfxo_manager/src/sl_hfxo_manager_hal_s2.o
 
-$(OUTPUT_DIR)/sdk/platform/service/iostream/src/sl_iostream.o: $(SDK_PATH)/platform/service/iostream/src/sl_iostream.c
-	@echo 'Building $(SDK_PATH)/platform/service/iostream/src/sl_iostream.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/iostream/src/sl_iostream.c
+$(OUTPUT_DIR)/sdk/platform/service/iostream/src/sl_iostream.o: $(COPIED_SDK_PATH)/platform/service/iostream/src/sl_iostream.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/iostream/src/sl_iostream.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/iostream/src/sl_iostream.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/iostream/src/sl_iostream.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/iostream/src/sl_iostream.o
 
-$(OUTPUT_DIR)/sdk/platform/service/iostream/src/sl_iostream_debug.o: $(SDK_PATH)/platform/service/iostream/src/sl_iostream_debug.c
-	@echo 'Building $(SDK_PATH)/platform/service/iostream/src/sl_iostream_debug.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/iostream/src/sl_iostream_debug.c
+$(OUTPUT_DIR)/sdk/platform/service/iostream/src/sl_iostream_debug.o: $(COPIED_SDK_PATH)/platform/service/iostream/src/sl_iostream_debug.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/iostream/src/sl_iostream_debug.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/iostream/src/sl_iostream_debug.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/iostream/src/sl_iostream_debug.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/iostream/src/sl_iostream_debug.o
 
-$(OUTPUT_DIR)/sdk/platform/service/iostream/src/sl_iostream_swo_itm_8.o: $(SDK_PATH)/platform/service/iostream/src/sl_iostream_swo_itm_8.c
-	@echo 'Building $(SDK_PATH)/platform/service/iostream/src/sl_iostream_swo_itm_8.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/iostream/src/sl_iostream_swo_itm_8.c
+$(OUTPUT_DIR)/sdk/platform/service/iostream/src/sl_iostream_swo_itm_8.o: $(COPIED_SDK_PATH)/platform/service/iostream/src/sl_iostream_swo_itm_8.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/iostream/src/sl_iostream_swo_itm_8.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/iostream/src/sl_iostream_swo_itm_8.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/iostream/src/sl_iostream_swo_itm_8.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/iostream/src/sl_iostream_swo_itm_8.o
 
-$(OUTPUT_DIR)/sdk/platform/service/iostream/src/sl_iostream_uart.o: $(SDK_PATH)/platform/service/iostream/src/sl_iostream_uart.c
-	@echo 'Building $(SDK_PATH)/platform/service/iostream/src/sl_iostream_uart.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/iostream/src/sl_iostream_uart.c
+$(OUTPUT_DIR)/sdk/platform/service/iostream/src/sl_iostream_uart.o: $(COPIED_SDK_PATH)/platform/service/iostream/src/sl_iostream_uart.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/iostream/src/sl_iostream_uart.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/iostream/src/sl_iostream_uart.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/iostream/src/sl_iostream_uart.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/iostream/src/sl_iostream_uart.o
 
-$(OUTPUT_DIR)/sdk/platform/service/iostream/src/sl_iostream_usart.o: $(SDK_PATH)/platform/service/iostream/src/sl_iostream_usart.c
-	@echo 'Building $(SDK_PATH)/platform/service/iostream/src/sl_iostream_usart.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/iostream/src/sl_iostream_usart.c
+$(OUTPUT_DIR)/sdk/platform/service/iostream/src/sl_iostream_usart.o: $(COPIED_SDK_PATH)/platform/service/iostream/src/sl_iostream_usart.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/iostream/src/sl_iostream_usart.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/iostream/src/sl_iostream_usart.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/iostream/src/sl_iostream_usart.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/iostream/src/sl_iostream_usart.o
 
-$(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/base-replacement.o: $(SDK_PATH)/platform/service/legacy_hal/src/base-replacement.c
-	@echo 'Building $(SDK_PATH)/platform/service/legacy_hal/src/base-replacement.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/legacy_hal/src/base-replacement.c
+$(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/base-replacement.o: $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/base-replacement.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/base-replacement.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/base-replacement.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/base-replacement.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/base-replacement.o
 
-$(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/crc.o: $(SDK_PATH)/platform/service/legacy_hal/src/crc.c
-	@echo 'Building $(SDK_PATH)/platform/service/legacy_hal/src/crc.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/legacy_hal/src/crc.c
+$(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/crc.o: $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/crc.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/crc.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/crc.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/crc.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/crc.o
 
-$(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/diagnostic.o: $(SDK_PATH)/platform/service/legacy_hal/src/diagnostic.c
-	@echo 'Building $(SDK_PATH)/platform/service/legacy_hal/src/diagnostic.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/legacy_hal/src/diagnostic.c
+$(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/diagnostic.o: $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/diagnostic.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/diagnostic.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/diagnostic.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/diagnostic.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/diagnostic.o
 
-$(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/ember-phy.o: $(SDK_PATH)/platform/service/legacy_hal/src/ember-phy.c
-	@echo 'Building $(SDK_PATH)/platform/service/legacy_hal/src/ember-phy.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/legacy_hal/src/ember-phy.c
+$(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/ember-phy.o: $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/ember-phy.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/ember-phy.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/ember-phy.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/ember-phy.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/ember-phy.o
 
-$(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/faults.o: $(SDK_PATH)/platform/service/legacy_hal/src/faults.s
-	@echo 'Building $(SDK_PATH)/platform/service/legacy_hal/src/faults.s'
-	$(ECHO)$(CC) $(ASMFLAGS) -c -o $@ $(SDK_PATH)/platform/service/legacy_hal/src/faults.s
+$(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/faults.o: $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/faults.s
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/faults.s'
+	$(ECHO)$(CC) $(ASMFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/faults.s
 ASMDEPS_s += $(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/faults.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/faults.o
 
-$(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/random.o: $(SDK_PATH)/platform/service/legacy_hal/src/random.c
-	@echo 'Building $(SDK_PATH)/platform/service/legacy_hal/src/random.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/legacy_hal/src/random.c
+$(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/random.o: $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/random.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/random.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/random.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/random.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/random.o
 
-$(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/token_legacy.o: $(SDK_PATH)/platform/service/legacy_hal/src/token_legacy.c
-	@echo 'Building $(SDK_PATH)/platform/service/legacy_hal/src/token_legacy.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/legacy_hal/src/token_legacy.c
+$(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/token_legacy.o: $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/token_legacy.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/token_legacy.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/legacy_hal/src/token_legacy.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/token_legacy.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/legacy_hal/src/token_legacy.o
 
-$(OUTPUT_DIR)/sdk/platform/service/legacy_printf/src/sl_legacy_printf.o: $(SDK_PATH)/platform/service/legacy_printf/src/sl_legacy_printf.c
-	@echo 'Building $(SDK_PATH)/platform/service/legacy_printf/src/sl_legacy_printf.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/legacy_printf/src/sl_legacy_printf.c
+$(OUTPUT_DIR)/sdk/platform/service/legacy_printf/src/sl_legacy_printf.o: $(COPIED_SDK_PATH)/platform/service/legacy_printf/src/sl_legacy_printf.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/legacy_printf/src/sl_legacy_printf.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/legacy_printf/src/sl_legacy_printf.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/legacy_printf/src/sl_legacy_printf.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/legacy_printf/src/sl_legacy_printf.o
 
-$(OUTPUT_DIR)/sdk/platform/service/power_manager/src/sl_power_manager.o: $(SDK_PATH)/platform/service/power_manager/src/sl_power_manager.c
-	@echo 'Building $(SDK_PATH)/platform/service/power_manager/src/sl_power_manager.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/power_manager/src/sl_power_manager.c
+$(OUTPUT_DIR)/sdk/platform/service/power_manager/src/sl_power_manager.o: $(COPIED_SDK_PATH)/platform/service/power_manager/src/sl_power_manager.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/power_manager/src/sl_power_manager.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/power_manager/src/sl_power_manager.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/power_manager/src/sl_power_manager.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/power_manager/src/sl_power_manager.o
 
-$(OUTPUT_DIR)/sdk/platform/service/power_manager/src/sl_power_manager_debug.o: $(SDK_PATH)/platform/service/power_manager/src/sl_power_manager_debug.c
-	@echo 'Building $(SDK_PATH)/platform/service/power_manager/src/sl_power_manager_debug.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/power_manager/src/sl_power_manager_debug.c
+$(OUTPUT_DIR)/sdk/platform/service/power_manager/src/sl_power_manager_debug.o: $(COPIED_SDK_PATH)/platform/service/power_manager/src/sl_power_manager_debug.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/power_manager/src/sl_power_manager_debug.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/power_manager/src/sl_power_manager_debug.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/power_manager/src/sl_power_manager_debug.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/power_manager/src/sl_power_manager_debug.o
 
-$(OUTPUT_DIR)/sdk/platform/service/power_manager/src/sl_power_manager_hal_s2.o: $(SDK_PATH)/platform/service/power_manager/src/sl_power_manager_hal_s2.c
-	@echo 'Building $(SDK_PATH)/platform/service/power_manager/src/sl_power_manager_hal_s2.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/power_manager/src/sl_power_manager_hal_s2.c
+$(OUTPUT_DIR)/sdk/platform/service/power_manager/src/sl_power_manager_hal_s2.o: $(COPIED_SDK_PATH)/platform/service/power_manager/src/sl_power_manager_hal_s2.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/power_manager/src/sl_power_manager_hal_s2.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/power_manager/src/sl_power_manager_hal_s2.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/power_manager/src/sl_power_manager_hal_s2.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/power_manager/src/sl_power_manager_hal_s2.o
 
-$(OUTPUT_DIR)/sdk/platform/service/sleeptimer/src/sl_sleeptimer.o: $(SDK_PATH)/platform/service/sleeptimer/src/sl_sleeptimer.c
-	@echo 'Building $(SDK_PATH)/platform/service/sleeptimer/src/sl_sleeptimer.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/sleeptimer/src/sl_sleeptimer.c
+$(OUTPUT_DIR)/sdk/platform/service/sleeptimer/src/sl_sleeptimer.o: $(COPIED_SDK_PATH)/platform/service/sleeptimer/src/sl_sleeptimer.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/sleeptimer/src/sl_sleeptimer.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/sleeptimer/src/sl_sleeptimer.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/sleeptimer/src/sl_sleeptimer.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/sleeptimer/src/sl_sleeptimer.o
 
-$(OUTPUT_DIR)/sdk/platform/service/sleeptimer/src/sl_sleeptimer_hal_burtc.o: $(SDK_PATH)/platform/service/sleeptimer/src/sl_sleeptimer_hal_burtc.c
-	@echo 'Building $(SDK_PATH)/platform/service/sleeptimer/src/sl_sleeptimer_hal_burtc.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/sleeptimer/src/sl_sleeptimer_hal_burtc.c
+$(OUTPUT_DIR)/sdk/platform/service/sleeptimer/src/sl_sleeptimer_hal_burtc.o: $(COPIED_SDK_PATH)/platform/service/sleeptimer/src/sl_sleeptimer_hal_burtc.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/sleeptimer/src/sl_sleeptimer_hal_burtc.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/sleeptimer/src/sl_sleeptimer_hal_burtc.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/sleeptimer/src/sl_sleeptimer_hal_burtc.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/sleeptimer/src/sl_sleeptimer_hal_burtc.o
 
-$(OUTPUT_DIR)/sdk/platform/service/sleeptimer/src/sl_sleeptimer_hal_sysrtc.o: $(SDK_PATH)/platform/service/sleeptimer/src/sl_sleeptimer_hal_sysrtc.c
-	@echo 'Building $(SDK_PATH)/platform/service/sleeptimer/src/sl_sleeptimer_hal_sysrtc.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/sleeptimer/src/sl_sleeptimer_hal_sysrtc.c
+$(OUTPUT_DIR)/sdk/platform/service/sleeptimer/src/sl_sleeptimer_hal_sysrtc.o: $(COPIED_SDK_PATH)/platform/service/sleeptimer/src/sl_sleeptimer_hal_sysrtc.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/sleeptimer/src/sl_sleeptimer_hal_sysrtc.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/sleeptimer/src/sl_sleeptimer_hal_sysrtc.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/sleeptimer/src/sl_sleeptimer_hal_sysrtc.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/sleeptimer/src/sl_sleeptimer_hal_sysrtc.o
 
-$(OUTPUT_DIR)/sdk/platform/service/system/src/sl_system_init.o: $(SDK_PATH)/platform/service/system/src/sl_system_init.c
-	@echo 'Building $(SDK_PATH)/platform/service/system/src/sl_system_init.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/system/src/sl_system_init.c
+$(OUTPUT_DIR)/sdk/platform/service/system/src/sl_system_init.o: $(COPIED_SDK_PATH)/platform/service/system/src/sl_system_init.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/system/src/sl_system_init.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/system/src/sl_system_init.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/system/src/sl_system_init.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/system/src/sl_system_init.o
 
-$(OUTPUT_DIR)/sdk/platform/service/system/src/sl_system_process_action.o: $(SDK_PATH)/platform/service/system/src/sl_system_process_action.c
-	@echo 'Building $(SDK_PATH)/platform/service/system/src/sl_system_process_action.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/system/src/sl_system_process_action.c
+$(OUTPUT_DIR)/sdk/platform/service/system/src/sl_system_process_action.o: $(COPIED_SDK_PATH)/platform/service/system/src/sl_system_process_action.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/system/src/sl_system_process_action.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/system/src/sl_system_process_action.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/system/src/sl_system_process_action.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/system/src/sl_system_process_action.o
 
-$(OUTPUT_DIR)/sdk/platform/service/token_manager/src/sl_token_def.o: $(SDK_PATH)/platform/service/token_manager/src/sl_token_def.c
-	@echo 'Building $(SDK_PATH)/platform/service/token_manager/src/sl_token_def.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/token_manager/src/sl_token_def.c
+$(OUTPUT_DIR)/sdk/platform/service/token_manager/src/sl_token_def.o: $(COPIED_SDK_PATH)/platform/service/token_manager/src/sl_token_def.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/token_manager/src/sl_token_def.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/token_manager/src/sl_token_def.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/token_manager/src/sl_token_def.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/token_manager/src/sl_token_def.o
 
-$(OUTPUT_DIR)/sdk/platform/service/token_manager/src/sl_token_manager.o: $(SDK_PATH)/platform/service/token_manager/src/sl_token_manager.c
-	@echo 'Building $(SDK_PATH)/platform/service/token_manager/src/sl_token_manager.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/token_manager/src/sl_token_manager.c
+$(OUTPUT_DIR)/sdk/platform/service/token_manager/src/sl_token_manager.o: $(COPIED_SDK_PATH)/platform/service/token_manager/src/sl_token_manager.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/token_manager/src/sl_token_manager.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/token_manager/src/sl_token_manager.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/token_manager/src/sl_token_manager.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/token_manager/src/sl_token_manager.o
 
-$(OUTPUT_DIR)/sdk/platform/service/token_manager/src/sl_token_manufacturing.o: $(SDK_PATH)/platform/service/token_manager/src/sl_token_manufacturing.c
-	@echo 'Building $(SDK_PATH)/platform/service/token_manager/src/sl_token_manufacturing.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/token_manager/src/sl_token_manufacturing.c
+$(OUTPUT_DIR)/sdk/platform/service/token_manager/src/sl_token_manufacturing.o: $(COPIED_SDK_PATH)/platform/service/token_manager/src/sl_token_manufacturing.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/token_manager/src/sl_token_manufacturing.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/token_manager/src/sl_token_manufacturing.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/token_manager/src/sl_token_manufacturing.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/token_manager/src/sl_token_manufacturing.o
 
-$(OUTPUT_DIR)/sdk/platform/service/udelay/src/sl_udelay.o: $(SDK_PATH)/platform/service/udelay/src/sl_udelay.c
-	@echo 'Building $(SDK_PATH)/platform/service/udelay/src/sl_udelay.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/platform/service/udelay/src/sl_udelay.c
+$(OUTPUT_DIR)/sdk/platform/service/udelay/src/sl_udelay.o: $(COPIED_SDK_PATH)/platform/service/udelay/src/sl_udelay.c
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/udelay/src/sl_udelay.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/udelay/src/sl_udelay.c
 CDEPS += $(OUTPUT_DIR)/sdk/platform/service/udelay/src/sl_udelay.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/udelay/src/sl_udelay.o
 
-$(OUTPUT_DIR)/sdk/platform/service/udelay/src/sl_udelay_armv6m_gcc.o: $(SDK_PATH)/platform/service/udelay/src/sl_udelay_armv6m_gcc.S
-	@echo 'Building $(SDK_PATH)/platform/service/udelay/src/sl_udelay_armv6m_gcc.S'
-	$(ECHO)$(CC) $(ASMFLAGS) -c -o $@ $(SDK_PATH)/platform/service/udelay/src/sl_udelay_armv6m_gcc.S
+$(OUTPUT_DIR)/sdk/platform/service/udelay/src/sl_udelay_armv6m_gcc.o: $(COPIED_SDK_PATH)/platform/service/udelay/src/sl_udelay_armv6m_gcc.S
+	@echo 'Building $(COPIED_SDK_PATH)/platform/service/udelay/src/sl_udelay_armv6m_gcc.S'
+	$(ECHO)$(CC) $(ASMFLAGS) -c -o $@ $(COPIED_SDK_PATH)/platform/service/udelay/src/sl_udelay_armv6m_gcc.S
 ASMDEPS_S += $(OUTPUT_DIR)/sdk/platform/service/udelay/src/sl_udelay_armv6m_gcc.d
 OBJS += $(OUTPUT_DIR)/sdk/platform/service/udelay/src/sl_udelay_armv6m_gcc.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/core-cli.o: $(SDK_PATH)/protocol/zigbee/app/framework/cli/core-cli.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/cli/core-cli.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/cli/core-cli.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/core-cli.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/cli/core-cli.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/cli/core-cli.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/cli/core-cli.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/core-cli.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/core-cli.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/network-cli.o: $(SDK_PATH)/protocol/zigbee/app/framework/cli/network-cli.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/cli/network-cli.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/cli/network-cli.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/network-cli.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/cli/network-cli.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/cli/network-cli.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/cli/network-cli.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/network-cli.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/network-cli.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/option-cli.o: $(SDK_PATH)/protocol/zigbee/app/framework/cli/option-cli.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/cli/option-cli.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/cli/option-cli.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/option-cli.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/cli/option-cli.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/cli/option-cli.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/cli/option-cli.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/option-cli.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/option-cli.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/security-cli.o: $(SDK_PATH)/protocol/zigbee/app/framework/cli/security-cli.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/cli/security-cli.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/cli/security-cli.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/security-cli.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/cli/security-cli.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/cli/security-cli.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/cli/security-cli.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/security-cli.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/security-cli.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/zcl-cli.o: $(SDK_PATH)/protocol/zigbee/app/framework/cli/zcl-cli.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/cli/zcl-cli.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/cli/zcl-cli.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/zcl-cli.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/cli/zcl-cli.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/cli/zcl-cli.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/cli/zcl-cli.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/zcl-cli.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/zcl-cli.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/zdo-cli.o: $(SDK_PATH)/protocol/zigbee/app/framework/cli/zdo-cli.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/cli/zdo-cli.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/cli/zdo-cli.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/zdo-cli.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/cli/zdo-cli.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/cli/zdo-cli.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/cli/zdo-cli.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/zdo-cli.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/cli/zdo-cli.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/common/zigbee_app_framework_common.o: $(SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_common.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_common.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_common.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/common/zigbee_app_framework_common.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_common.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_common.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_common.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/common/zigbee_app_framework_common.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/common/zigbee_app_framework_common.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/common/zigbee_app_framework_sleep.o: $(SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_sleep.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_sleep.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_sleep.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/common/zigbee_app_framework_sleep.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_sleep.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_sleep.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_sleep.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/common/zigbee_app_framework_sleep.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/common/zigbee_app_framework_sleep.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/common/zigbee_app_framework_sleep_cli.o: $(SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_sleep_cli.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_sleep_cli.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_sleep_cli.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/common/zigbee_app_framework_sleep_cli.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_sleep_cli.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_sleep_cli.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_sleep_cli.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/common/zigbee_app_framework_sleep_cli.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/common/zigbee_app_framework_sleep_cli.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/common/zigbee_app_framework_stack_cb.o: $(SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_stack_cb.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_stack_cb.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_stack_cb.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/common/zigbee_app_framework_stack_cb.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_stack_cb.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_stack_cb.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/common/zigbee_app_framework_stack_cb.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/common/zigbee_app_framework_stack_cb.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/common/zigbee_app_framework_stack_cb.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/address-table/address-table-cli.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/address-table/address-table-cli.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/address-table/address-table-cli.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/address-table/address-table-cli.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/address-table/address-table-cli.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/address-table/address-table-cli.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/address-table/address-table-cli.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/address-table/address-table-cli.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/address-table/address-table-cli.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/address-table/address-table-cli.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/address-table/address-table.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/address-table/address-table.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/address-table/address-table.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/address-table/address-table.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/address-table/address-table.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/address-table/address-table.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/address-table/address-table.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/address-table/address-table.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/address-table/address-table.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/address-table/address-table.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/counters/counters-cb.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-cb.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-cb.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-cb.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/counters/counters-cb.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-cb.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-cb.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-cb.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/counters/counters-cb.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/counters/counters-cb.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/counters/counters-cli.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-cli.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-cli.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-cli.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/counters/counters-cli.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-cli.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-cli.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-cli.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/counters/counters-cli.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/counters/counters-cli.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/counters/counters-ota.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-ota.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-ota.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-ota.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/counters/counters-ota.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-ota.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-ota.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-ota.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/counters/counters-ota.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/counters/counters-ota.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/counters/counters-soc.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-soc.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-soc.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-soc.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/counters/counters-soc.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-soc.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-soc.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/counters/counters-soc.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/counters/counters-soc.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/counters/counters-soc.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/debug-print/sl_zigbee_debug_print.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/debug-print/sl_zigbee_debug_print.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/debug-print/sl_zigbee_debug_print.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/debug-print/sl_zigbee_debug_print.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/debug-print/sl_zigbee_debug_print.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/debug-print/sl_zigbee_debug_print.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/debug-print/sl_zigbee_debug_print.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/debug-print/sl_zigbee_debug_print.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/debug-print/sl_zigbee_debug_print.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/debug-print/sl_zigbee_debug_print.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/esi-management/esi-management.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/esi-management/esi-management.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/esi-management/esi-management.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/esi-management/esi-management.c
-CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/esi-management/esi-management.d
-OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/esi-management/esi-management.o
-
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-afv2.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-afv2.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-afv2.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-afv2.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-afv2.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-afv2.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-afv2.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-afv2.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-afv2.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-afv2.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-cb.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-cb.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-cb.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-cb.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-cb.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-cb.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-cb.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-cb.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-cb.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/form-and-join/form-and-join-cb.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation-cli.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation-cli.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation-cli.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation-cli.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation-cli.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation-cli.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation-cli.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation-cli.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation-cli.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation-cli.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation-soc.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation-soc.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation-soc.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation-soc.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation-soc.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation-soc.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation-soc.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation-soc.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation-soc.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation-soc.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/fragmentation/fragmentation.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-cb.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-cb.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-cb.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-cb.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-cb.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-cb.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-cb.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-cb.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-cb.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-cb.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-cli.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-cli.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-cli.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-cli.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-cli.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-cli.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-cli.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-cli.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-cli.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-cli.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-curve-support.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-curve-support.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-curve-support.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-curve-support.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-curve-support.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-curve-support.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-curve-support.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-curve-support.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-curve-support.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-curve-support.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-storage-buffers.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-storage-buffers.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-storage-buffers.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-storage-buffers.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-storage-buffers.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-storage-buffers.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-storage-buffers.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-storage-buffers.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-storage-buffers.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment-storage-buffers.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/key-establishment/key-establishment.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/network-find/network-find-cb.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/network-find/network-find-cb.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/network-find/network-find-cb.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/network-find/network-find-cb.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/network-find/network-find-cb.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/network-find/network-find-cb.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/network-find/network-find-cb.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/network-find/network-find-cb.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/network-find/network-find-cb.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/network-find/network-find-cb.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/network-find/network-find-cli.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/network-find/network-find-cli.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/network-find/network-find-cli.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/network-find/network-find-cli.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/network-find/network-find-cli.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/network-find/network-find-cli.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/network-find/network-find-cli.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/network-find/network-find-cli.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/network-find/network-find-cli.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/network-find/network-find-cli.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/network-find/network-find.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/network-find/network-find.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/network-find/network-find.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/network-find/network-find.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/network-find/network-find.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/network-find/network-find.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/network-find/network-find.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/network-find/network-find.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/network-find/network-find.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/network-find/network-find.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/scan-dispatch/scan-dispatch.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/scan-dispatch/scan-dispatch.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/scan-dispatch/scan-dispatch.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/scan-dispatch/scan-dispatch.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/scan-dispatch/scan-dispatch.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/scan-dispatch/scan-dispatch.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/scan-dispatch/scan-dispatch.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/scan-dispatch/scan-dispatch.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/scan-dispatch/scan-dispatch.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/scan-dispatch/scan-dispatch.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration-cli.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration-cli.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration-cli.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration-cli.c
-CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration-cli.d
-OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration-cli.o
-
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration.c
-CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration.d
-OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/smart-energy-registration/smart-energy-registration.o
-
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/test-harness/read-write-attributes.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/test-harness/read-write-attributes.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/test-harness/read-write-attributes.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/test-harness/read-write-attributes.c
-CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/test-harness/read-write-attributes.d
-OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/test-harness/read-write-attributes.o
-
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/test-harness/test-harness-soc.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/test-harness/test-harness-soc.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/test-harness/test-harness-soc.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/test-harness/test-harness-soc.c
-CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/test-harness/test-harness-soc.d
-OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/test-harness/test-harness-soc.o
-
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/test-harness/test-harness.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/test-harness/test-harness.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/test-harness/test-harness.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/test-harness/test-harness.c
-CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/test-harness/test-harness.d
-OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/test-harness/test-harness.o
-
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-cli.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-cli.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-cli.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-cli.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-cli.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-cli.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-cli.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-cli.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-cli.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-cli.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-custom-cluster-cli.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-custom-cluster-cli.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-custom-cluster-cli.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-custom-cluster-cli.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-custom-cluster-cli.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-custom-cluster-cli.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-custom-cluster-cli.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-custom-cluster-cli.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-custom-cluster-cli.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-custom-cluster-cli.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-global-cli.o: $(SDK_PATH)/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-global-cli.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-global-cli.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-global-cli.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-global-cli.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-global-cli.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-global-cli.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-global-cli.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-global-cli.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/plugin/zcl_cli/zigbee-zcl-global-cli.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/security/af-node.o: $(SDK_PATH)/protocol/zigbee/app/framework/security/af-node.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/security/af-node.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/security/af-node.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/security/af-node.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/security/af-node.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/security/af-node.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/security/af-node.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/security/af-node.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/security/af-node.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/security/af-security-common.o: $(SDK_PATH)/protocol/zigbee/app/framework/security/af-security-common.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/security/af-security-common.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/security/af-security-common.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/security/af-security-common.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/security/af-security-common.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/security/af-security-common.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/security/af-security-common.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/security/af-security-common.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/security/af-security-common.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/security/af-trust-center.o: $(SDK_PATH)/protocol/zigbee/app/framework/security/af-trust-center.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/security/af-trust-center.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/security/af-trust-center.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/security/af-trust-center.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/security/af-trust-center.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/security/af-trust-center.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/security/af-trust-center.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/security/af-trust-center.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/security/af-trust-center.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/security/crypto-state.o: $(SDK_PATH)/protocol/zigbee/app/framework/security/crypto-state.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/security/crypto-state.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/security/crypto-state.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/security/crypto-state.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/security/crypto-state.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/security/crypto-state.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/security/crypto-state.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/security/crypto-state.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/security/crypto-state.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/af-common.o: $(SDK_PATH)/protocol/zigbee/app/framework/util/af-common.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/util/af-common.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/util/af-common.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/af-common.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/af-common.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/af-common.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/af-common.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/af-common.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/af-common.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/af-event.o: $(SDK_PATH)/protocol/zigbee/app/framework/util/af-event.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/util/af-event.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/util/af-event.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/af-event.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/af-event.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/af-event.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/af-event.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/af-event.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/af-event.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/af-soc.o: $(SDK_PATH)/protocol/zigbee/app/framework/util/af-soc.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/util/af-soc.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/util/af-soc.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/af-soc.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/af-soc.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/af-soc.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/af-soc.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/af-soc.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/af-soc.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/attribute-size.o: $(SDK_PATH)/protocol/zigbee/app/framework/util/attribute-size.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/util/attribute-size.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/util/attribute-size.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/attribute-size.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/attribute-size.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/attribute-size.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/attribute-size.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/attribute-size.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/attribute-size.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/attribute-storage.o: $(SDK_PATH)/protocol/zigbee/app/framework/util/attribute-storage.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/util/attribute-storage.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/util/attribute-storage.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/attribute-storage.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/attribute-storage.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/attribute-storage.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/attribute-storage.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/attribute-storage.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/attribute-storage.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/attribute-table.o: $(SDK_PATH)/protocol/zigbee/app/framework/util/attribute-table.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/util/attribute-table.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/util/attribute-table.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/attribute-table.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/attribute-table.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/attribute-table.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/attribute-table.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/attribute-table.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/attribute-table.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/client-api.o: $(SDK_PATH)/protocol/zigbee/app/framework/util/client-api.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/util/client-api.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/util/client-api.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/client-api.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/client-api.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/client-api.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/client-api.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/client-api.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/client-api.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/global-callback.o: $(SDK_PATH)/protocol/zigbee/app/framework/util/global-callback.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/util/global-callback.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/util/global-callback.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/global-callback.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/global-callback.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/global-callback.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/global-callback.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/global-callback.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/global-callback.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/global-other-callback.o: $(SDK_PATH)/protocol/zigbee/app/framework/util/global-other-callback.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/util/global-other-callback.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/util/global-other-callback.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/global-other-callback.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/global-other-callback.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/global-other-callback.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/global-other-callback.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/global-other-callback.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/global-other-callback.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/message.o: $(SDK_PATH)/protocol/zigbee/app/framework/util/message.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/util/message.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/util/message.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/message.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/message.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/message.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/message.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/message.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/message.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/multi-network.o: $(SDK_PATH)/protocol/zigbee/app/framework/util/multi-network.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/util/multi-network.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/util/multi-network.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/multi-network.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/multi-network.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/multi-network.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/multi-network.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/multi-network.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/multi-network.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/print-formatter.o: $(SDK_PATH)/protocol/zigbee/app/framework/util/print-formatter.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/util/print-formatter.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/util/print-formatter.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/print-formatter.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/print-formatter.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/print-formatter.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/print-formatter.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/print-formatter.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/print-formatter.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/print.o: $(SDK_PATH)/protocol/zigbee/app/framework/util/print.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/util/print.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/util/print.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/print.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/print.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/print.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/print.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/print.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/print.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/process-cluster-message.o: $(SDK_PATH)/protocol/zigbee/app/framework/util/process-cluster-message.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/util/process-cluster-message.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/util/process-cluster-message.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/process-cluster-message.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/process-cluster-message.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/process-cluster-message.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/process-cluster-message.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/process-cluster-message.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/process-cluster-message.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/process-global-message.o: $(SDK_PATH)/protocol/zigbee/app/framework/util/process-global-message.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/util/process-global-message.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/util/process-global-message.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/process-global-message.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/process-global-message.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/process-global-message.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/process-global-message.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/process-global-message.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/process-global-message.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/service-discovery-common.o: $(SDK_PATH)/protocol/zigbee/app/framework/util/service-discovery-common.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/util/service-discovery-common.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/util/service-discovery-common.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/service-discovery-common.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/service-discovery-common.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/service-discovery-common.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/service-discovery-common.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/service-discovery-common.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/service-discovery-common.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/service-discovery-soc.o: $(SDK_PATH)/protocol/zigbee/app/framework/util/service-discovery-soc.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/util/service-discovery-soc.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/util/service-discovery-soc.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/service-discovery-soc.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/service-discovery-soc.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/service-discovery-soc.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/service-discovery-soc.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/service-discovery-soc.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/service-discovery-soc.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/time-util.o: $(SDK_PATH)/protocol/zigbee/app/framework/util/time-util.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/util/time-util.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/util/time-util.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/time-util.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/time-util.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/time-util.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/time-util.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/time-util.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/time-util.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/util.o: $(SDK_PATH)/protocol/zigbee/app/framework/util/util.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/framework/util/util.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/framework/util/util.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/util.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/util.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/util.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/framework/util/util.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/util.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/framework/util/util.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/common/form-and-join-node-adapter.o: $(SDK_PATH)/protocol/zigbee/app/util/common/form-and-join-node-adapter.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/util/common/form-and-join-node-adapter.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/util/common/form-and-join-node-adapter.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/common/form-and-join-node-adapter.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/util/common/form-and-join-node-adapter.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/util/common/form-and-join-node-adapter.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/util/common/form-and-join-node-adapter.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/common/form-and-join-node-adapter.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/common/form-and-join-node-adapter.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/common/form-and-join.o: $(SDK_PATH)/protocol/zigbee/app/util/common/form-and-join.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/util/common/form-and-join.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/util/common/form-and-join.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/common/form-and-join.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/util/common/form-and-join.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/util/common/form-and-join.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/util/common/form-and-join.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/common/form-and-join.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/common/form-and-join.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/common/library.o: $(SDK_PATH)/protocol/zigbee/app/util/common/library.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/util/common/library.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/util/common/library.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/common/library.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/util/common/library.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/util/common/library.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/util/common/library.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/common/library.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/common/library.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/security/security-address-cache.o: $(SDK_PATH)/protocol/zigbee/app/util/security/security-address-cache.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/util/security/security-address-cache.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/util/security/security-address-cache.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/security/security-address-cache.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/util/security/security-address-cache.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/util/security/security-address-cache.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/util/security/security-address-cache.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/security/security-address-cache.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/security/security-address-cache.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/serial/sl_zigbee_command_interpreter.o: $(SDK_PATH)/protocol/zigbee/app/util/serial/sl_zigbee_command_interpreter.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/util/serial/sl_zigbee_command_interpreter.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/util/serial/sl_zigbee_command_interpreter.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/serial/sl_zigbee_command_interpreter.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/util/serial/sl_zigbee_command_interpreter.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/util/serial/sl_zigbee_command_interpreter.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/util/serial/sl_zigbee_command_interpreter.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/serial/sl_zigbee_command_interpreter.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/serial/sl_zigbee_command_interpreter.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/zigbee-framework/zigbee-device-common.o: $(SDK_PATH)/protocol/zigbee/app/util/zigbee-framework/zigbee-device-common.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/util/zigbee-framework/zigbee-device-common.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/util/zigbee-framework/zigbee-device-common.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/zigbee-framework/zigbee-device-common.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/util/zigbee-framework/zigbee-device-common.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/util/zigbee-framework/zigbee-device-common.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/util/zigbee-framework/zigbee-device-common.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/zigbee-framework/zigbee-device-common.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/zigbee-framework/zigbee-device-common.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/zigbee-framework/zigbee-device-library.o: $(SDK_PATH)/protocol/zigbee/app/util/zigbee-framework/zigbee-device-library.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/app/util/zigbee-framework/zigbee-device-library.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/app/util/zigbee-framework/zigbee-device-library.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/zigbee-framework/zigbee-device-library.o: $(COPIED_SDK_PATH)/protocol/zigbee/app/util/zigbee-framework/zigbee-device-library.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/app/util/zigbee-framework/zigbee-device-library.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/app/util/zigbee-framework/zigbee-device-library.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/zigbee-framework/zigbee-device-library.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/app/util/zigbee-framework/zigbee-device-library.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/config/ember-configuration.o: $(SDK_PATH)/protocol/zigbee/stack/config/ember-configuration.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/stack/config/ember-configuration.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/stack/config/ember-configuration.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/config/ember-configuration.o: $(COPIED_SDK_PATH)/protocol/zigbee/stack/config/ember-configuration.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/stack/config/ember-configuration.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/stack/config/ember-configuration.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/config/ember-configuration.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/config/ember-configuration.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/framework/aes-ecb.o: $(SDK_PATH)/protocol/zigbee/stack/framework/aes-ecb.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/stack/framework/aes-ecb.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/stack/framework/aes-ecb.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/framework/aes-ecb.o: $(COPIED_SDK_PATH)/protocol/zigbee/stack/framework/aes-ecb.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/stack/framework/aes-ecb.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/stack/framework/aes-ecb.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/framework/aes-ecb.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/framework/aes-ecb.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/framework/ccm-star.o: $(SDK_PATH)/protocol/zigbee/stack/framework/ccm-star.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/stack/framework/ccm-star.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/stack/framework/ccm-star.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/framework/ccm-star.o: $(COPIED_SDK_PATH)/protocol/zigbee/stack/framework/ccm-star.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/stack/framework/ccm-star.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/stack/framework/ccm-star.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/framework/ccm-star.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/framework/ccm-star.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/framework/debug-extended-stub.o: $(SDK_PATH)/protocol/zigbee/stack/framework/debug-extended-stub.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/stack/framework/debug-extended-stub.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/stack/framework/debug-extended-stub.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/framework/debug-extended-stub.o: $(COPIED_SDK_PATH)/protocol/zigbee/stack/framework/debug-extended-stub.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/stack/framework/debug-extended-stub.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/stack/framework/debug-extended-stub.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/framework/debug-extended-stub.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/framework/debug-extended-stub.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/framework/strong-random-api.o: $(SDK_PATH)/protocol/zigbee/stack/framework/strong-random-api.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/stack/framework/strong-random-api.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/stack/framework/strong-random-api.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/framework/strong-random-api.o: $(COPIED_SDK_PATH)/protocol/zigbee/stack/framework/strong-random-api.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/stack/framework/strong-random-api.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/stack/framework/strong-random-api.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/framework/strong-random-api.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/framework/strong-random-api.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/framework/zigbee-event-logger-stub-gen.o: $(SDK_PATH)/protocol/zigbee/stack/framework/zigbee-event-logger-stub-gen.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/stack/framework/zigbee-event-logger-stub-gen.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/stack/framework/zigbee-event-logger-stub-gen.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/framework/zigbee-event-logger-stub-gen.o: $(COPIED_SDK_PATH)/protocol/zigbee/stack/framework/zigbee-event-logger-stub-gen.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/stack/framework/zigbee-event-logger-stub-gen.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/stack/framework/zigbee-event-logger-stub-gen.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/framework/zigbee-event-logger-stub-gen.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/framework/zigbee-event-logger-stub-gen.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/gp/gp-stub.o: $(SDK_PATH)/protocol/zigbee/stack/gp/gp-stub.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/stack/gp/gp-stub.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/stack/gp/gp-stub.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/gp/gp-stub.o: $(COPIED_SDK_PATH)/protocol/zigbee/stack/gp/gp-stub.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/stack/gp/gp-stub.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/stack/gp/gp-stub.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/gp/gp-stub.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/gp/gp-stub.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/mac/mac-info-element-parsing-stub.o: $(SDK_PATH)/protocol/zigbee/stack/mac/mac-info-element-parsing-stub.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/stack/mac/mac-info-element-parsing-stub.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/stack/mac/mac-info-element-parsing-stub.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/mac/mac-info-element-parsing-stub.o: $(COPIED_SDK_PATH)/protocol/zigbee/stack/mac/mac-info-element-parsing-stub.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/stack/mac/mac-info-element-parsing-stub.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/stack/mac/mac-info-element-parsing-stub.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/mac/mac-info-element-parsing-stub.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/mac/mac-info-element-parsing-stub.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/routing/zigbee/enhanced-beacon-request-stub.o: $(SDK_PATH)/protocol/zigbee/stack/routing/zigbee/enhanced-beacon-request-stub.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/stack/routing/zigbee/enhanced-beacon-request-stub.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/stack/routing/zigbee/enhanced-beacon-request-stub.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/routing/zigbee/enhanced-beacon-request-stub.o: $(COPIED_SDK_PATH)/protocol/zigbee/stack/routing/zigbee/enhanced-beacon-request-stub.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/stack/routing/zigbee/enhanced-beacon-request-stub.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/stack/routing/zigbee/enhanced-beacon-request-stub.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/routing/zigbee/enhanced-beacon-request-stub.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/routing/zigbee/enhanced-beacon-request-stub.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-sign-stub.o: $(SDK_PATH)/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-sign-stub.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-sign-stub.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-sign-stub.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-sign-stub.o: $(COPIED_SDK_PATH)/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-sign-stub.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-sign-stub.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-sign-stub.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-sign-stub.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-sign-stub.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-283k1-stub.o: $(SDK_PATH)/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-283k1-stub.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-283k1-stub.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-283k1-stub.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-283k1-stub.o: $(COPIED_SDK_PATH)/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-283k1-stub.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-283k1-stub.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-283k1-stub.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-283k1-stub.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-283k1-stub.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-stub.o: $(SDK_PATH)/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-stub.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-stub.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-stub.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-stub.o: $(COPIED_SDK_PATH)/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-stub.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-stub.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-stub.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-stub.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/security/cbke-crypto-engine-dsa-verify-stub.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/zigbee/end-device-bind-stub.o: $(SDK_PATH)/protocol/zigbee/stack/zigbee/end-device-bind-stub.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/stack/zigbee/end-device-bind-stub.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/stack/zigbee/end-device-bind-stub.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/zigbee/end-device-bind-stub.o: $(COPIED_SDK_PATH)/protocol/zigbee/stack/zigbee/end-device-bind-stub.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/stack/zigbee/end-device-bind-stub.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/stack/zigbee/end-device-bind-stub.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/zigbee/end-device-bind-stub.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/zigbee/end-device-bind-stub.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/zigbee/zdo-r22-stub.o: $(SDK_PATH)/protocol/zigbee/stack/zigbee/zdo-r22-stub.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/stack/zigbee/zdo-r22-stub.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/stack/zigbee/zdo-r22-stub.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/zigbee/zdo-r22-stub.o: $(COPIED_SDK_PATH)/protocol/zigbee/stack/zigbee/zdo-r22-stub.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/stack/zigbee/zdo-r22-stub.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/stack/zigbee/zdo-r22-stub.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/zigbee/zdo-r22-stub.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/zigbee/zdo-r22-stub.o
 
-$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/zll/zll-stubs.o: $(SDK_PATH)/protocol/zigbee/stack/zll/zll-stubs.c
-	@echo 'Building $(SDK_PATH)/protocol/zigbee/stack/zll/zll-stubs.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/protocol/zigbee/stack/zll/zll-stubs.c
+$(OUTPUT_DIR)/sdk/protocol/zigbee/stack/zll/zll-stubs.o: $(COPIED_SDK_PATH)/protocol/zigbee/stack/zll/zll-stubs.c
+	@echo 'Building $(COPIED_SDK_PATH)/protocol/zigbee/stack/zll/zll-stubs.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/protocol/zigbee/stack/zll/zll-stubs.c
 CDEPS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/zll/zll-stubs.d
 OBJS += $(OUTPUT_DIR)/sdk/protocol/zigbee/stack/zll/zll-stubs.o
 
-$(OUTPUT_DIR)/sdk/util/silicon_labs/silabs_core/memory_manager/sl_malloc.o: $(SDK_PATH)/util/silicon_labs/silabs_core/memory_manager/sl_malloc.c
-	@echo 'Building $(SDK_PATH)/util/silicon_labs/silabs_core/memory_manager/sl_malloc.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/silicon_labs/silabs_core/memory_manager/sl_malloc.c
+$(OUTPUT_DIR)/sdk/util/silicon_labs/silabs_core/memory_manager/sl_malloc.o: $(COPIED_SDK_PATH)/util/silicon_labs/silabs_core/memory_manager/sl_malloc.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/silicon_labs/silabs_core/memory_manager/sl_malloc.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/silicon_labs/silabs_core/memory_manager/sl_malloc.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/silicon_labs/silabs_core/memory_manager/sl_malloc.d
 OBJS += $(OUTPUT_DIR)/sdk/util/silicon_labs/silabs_core/memory_manager/sl_malloc.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/cipher.o: $(SDK_PATH)/util/third_party/crypto/mbedtls/library/cipher.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/mbedtls/library/cipher.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/mbedtls/library/cipher.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/cipher.o: $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/cipher.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/cipher.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/cipher.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/cipher.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/cipher.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/cipher_wrap.o: $(SDK_PATH)/util/third_party/crypto/mbedtls/library/cipher_wrap.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/mbedtls/library/cipher_wrap.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/mbedtls/library/cipher_wrap.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/cipher_wrap.o: $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/cipher_wrap.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/cipher_wrap.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/cipher_wrap.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/cipher_wrap.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/cipher_wrap.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/error.o: $(SDK_PATH)/util/third_party/crypto/mbedtls/library/error.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/mbedtls/library/error.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/mbedtls/library/error.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/error.o: $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/error.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/error.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/error.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/error.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/error.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/platform.o: $(SDK_PATH)/util/third_party/crypto/mbedtls/library/platform.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/mbedtls/library/platform.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/mbedtls/library/platform.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/platform.o: $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/platform.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/platform.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/platform.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/platform.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/platform.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/platform_util.o: $(SDK_PATH)/util/third_party/crypto/mbedtls/library/platform_util.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/mbedtls/library/platform_util.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/mbedtls/library/platform_util.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/platform_util.o: $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/platform_util.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/platform_util.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/platform_util.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/platform_util.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/platform_util.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto.o: $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto.o: $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_aead.o: $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_aead.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_aead.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_aead.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_aead.o: $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_aead.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_aead.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_aead.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_aead.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_aead.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_cipher.o: $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_cipher.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_cipher.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_cipher.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_cipher.o: $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_cipher.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_cipher.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_cipher.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_cipher.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_cipher.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_client.o: $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_client.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_client.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_client.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_client.o: $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_client.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_client.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_client.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_client.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_client.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_driver_wrappers.o: $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_driver_wrappers.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_driver_wrappers.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_driver_wrappers.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_driver_wrappers.o: $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_driver_wrappers.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_driver_wrappers.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_driver_wrappers.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_driver_wrappers.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_driver_wrappers.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_ecp.o: $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_ecp.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_ecp.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_ecp.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_ecp.o: $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_ecp.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_ecp.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_ecp.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_ecp.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_ecp.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_hash.o: $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_hash.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_hash.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_hash.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_hash.o: $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_hash.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_hash.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_hash.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_hash.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_hash.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_mac.o: $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_mac.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_mac.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_mac.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_mac.o: $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_mac.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_mac.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_mac.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_mac.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_mac.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_rsa.o: $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_rsa.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_rsa.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_rsa.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_rsa.o: $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_rsa.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_rsa.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_rsa.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_rsa.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_rsa.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_se.o: $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_se.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_se.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_se.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_se.o: $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_se.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_se.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_se.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_se.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_se.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_slot_management.o: $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_slot_management.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_slot_management.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_slot_management.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_slot_management.o: $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_slot_management.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_slot_management.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_slot_management.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_slot_management.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_slot_management.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_storage.o: $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_storage.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_storage.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_storage.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_storage.o: $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_storage.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_storage.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_crypto_storage.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_storage.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_crypto_storage.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_its_file.o: $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_its_file.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_its_file.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_its_file.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_its_file.o: $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_its_file.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_its_file.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/psa_its_file.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_its_file.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/psa_its_file.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/threading.o: $(SDK_PATH)/util/third_party/crypto/mbedtls/library/threading.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/mbedtls/library/threading.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/mbedtls/library/threading.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/threading.o: $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/threading.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/threading.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/mbedtls/library/threading.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/threading.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/mbedtls/library/threading.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager.o: $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_attestation.o: $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_attestation.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_attestation.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_attestation.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_attestation.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_attestation.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_attestation.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_attestation.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_attestation.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_attestation.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_cipher.o: $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_cipher.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_cipher.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_cipher.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_cipher.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_cipher.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_cipher.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_cipher.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_cipher.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_cipher.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_entropy.o: $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_entropy.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_entropy.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_entropy.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_entropy.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_entropy.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_entropy.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_entropy.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_entropy.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_entropy.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_hash.o: $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_hash.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_hash.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_hash.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_hash.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_hash.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_hash.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_hash.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_hash.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_hash.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_key_derivation.o: $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_key_derivation.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_key_derivation.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_key_derivation.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_key_derivation.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_key_derivation.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_key_derivation.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_key_derivation.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_key_derivation.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_key_derivation.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_key_handling.o: $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_key_handling.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_key_handling.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_key_handling.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_key_handling.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_key_handling.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_key_handling.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_key_handling.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_key_handling.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_key_handling.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_signature.o: $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_signature.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_signature.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_signature.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_signature.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_signature.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_signature.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_signature.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_signature.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_signature.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_util.o: $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_util.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_util.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_util.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_util.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_util.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_util.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_util.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_util.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/se_manager/src/sl_se_manager_util.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_mbedtls_support/src/sl_mbedtls.o: $(SDK_PATH)/util/third_party/crypto/sl_component/sl_mbedtls_support/src/sl_mbedtls.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/sl_mbedtls_support/src/sl_mbedtls.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/sl_mbedtls_support/src/sl_mbedtls.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_mbedtls_support/src/sl_mbedtls.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_mbedtls_support/src/sl_mbedtls.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_mbedtls_support/src/sl_mbedtls.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_mbedtls_support/src/sl_mbedtls.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_mbedtls_support/src/sl_mbedtls.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_mbedtls_support/src/sl_mbedtls.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_driver_common.o: $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_driver_common.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_driver_common.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_driver_common.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_driver_common.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_driver_common.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_driver_common.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_driver_common.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_driver_common.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_driver_common.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_driver_init.o: $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_driver_init.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_driver_init.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_driver_init.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_driver_init.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_driver_init.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_driver_init.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_driver_init.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_driver_init.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_driver_init.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_trng.o: $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_trng.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_trng.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_trng.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_trng.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_trng.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_trng.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_trng.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_trng.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_psa_trng.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_aead.o: $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_aead.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_aead.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_aead.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_aead.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_aead.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_aead.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_aead.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_aead.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_aead.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_builtin_keys.o: $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_builtin_keys.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_builtin_keys.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_builtin_keys.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_builtin_keys.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_builtin_keys.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_builtin_keys.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_builtin_keys.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_builtin_keys.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_builtin_keys.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_cipher.o: $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_cipher.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_cipher.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_cipher.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_cipher.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_cipher.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_cipher.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_cipher.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_cipher.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_cipher.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_key_derivation.o: $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_key_derivation.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_key_derivation.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_key_derivation.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_key_derivation.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_key_derivation.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_key_derivation.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_key_derivation.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_key_derivation.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_key_derivation.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_key_management.o: $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_key_management.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_key_management.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_key_management.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_key_management.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_key_management.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_key_management.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_key_management.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_key_management.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_key_management.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_mac.o: $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_mac.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_mac.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_mac.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_mac.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_mac.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_mac.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_mac.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_mac.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_mac.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_signature.o: $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_signature.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_signature.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_signature.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_signature.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_signature.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_signature.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_signature.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_signature.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_driver_signature.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_aead.o: $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_aead.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_aead.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_aead.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_aead.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_aead.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_aead.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_aead.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_aead.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_aead.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_cipher.o: $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_cipher.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_cipher.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_cipher.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_cipher.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_cipher.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_cipher.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_cipher.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_cipher.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_cipher.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_mac.o: $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_mac.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_mac.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_mac.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_mac.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_mac.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_mac.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_mac.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_mac.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_driver_mac.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_key_derivation.o: $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_key_derivation.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_key_derivation.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_key_derivation.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_key_derivation.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_key_derivation.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_key_derivation.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_key_derivation.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_key_derivation.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_opaque_key_derivation.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_aead.o: $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_aead.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_aead.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_aead.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_aead.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_aead.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_aead.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_aead.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_aead.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_aead.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_cipher.o: $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_cipher.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_cipher.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_cipher.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_cipher.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_cipher.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_cipher.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_cipher.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_cipher.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_cipher.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_hash.o: $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_hash.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_hash.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_hash.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_hash.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_hash.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_hash.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_hash.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_hash.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_hash.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_mac.o: $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_mac.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_mac.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_mac.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_mac.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_mac.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_mac.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_mac.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_mac.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_driver_mac.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_key_derivation.o: $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_key_derivation.c
-	@echo 'Building $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_key_derivation.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_key_derivation.c
+$(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_key_derivation.o: $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_key_derivation.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_key_derivation.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_key_derivation.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_key_derivation.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/crypto/sl_component/sl_psa_driver/src/sli_se_transparent_key_derivation.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/printf/printf.o: $(SDK_PATH)/util/third_party/printf/printf.c
-	@echo 'Building $(SDK_PATH)/util/third_party/printf/printf.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/printf/printf.c
+$(OUTPUT_DIR)/sdk/util/third_party/printf/printf.o: $(COPIED_SDK_PATH)/util/third_party/printf/printf.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/printf/printf.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/printf/printf.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/printf/printf.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/printf/printf.o
 
-$(OUTPUT_DIR)/sdk/util/third_party/printf/src/iostream_printf.o: $(SDK_PATH)/util/third_party/printf/src/iostream_printf.c
-	@echo 'Building $(SDK_PATH)/util/third_party/printf/src/iostream_printf.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(SDK_PATH)/util/third_party/printf/src/iostream_printf.c
+$(OUTPUT_DIR)/sdk/util/third_party/printf/src/iostream_printf.o: $(COPIED_SDK_PATH)/util/third_party/printf/src/iostream_printf.c
+	@echo 'Building $(COPIED_SDK_PATH)/util/third_party/printf/src/iostream_printf.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $(COPIED_SDK_PATH)/util/third_party/printf/src/iostream_printf.c
 CDEPS += $(OUTPUT_DIR)/sdk/util/third_party/printf/src/iostream_printf.d
 OBJS += $(OUTPUT_DIR)/sdk/util/third_party/printf/src/iostream_printf.o
 
@@ -1649,5 +1610,5 @@ OBJS += $(OUTPUT_DIR)/project/ZigbeeMinimal_callbacks.o
 
 # Automatically-generated Simplicity Studio Metadata
 # Please do not edit or delete these lines!
-# SIMPLICITY_STUDIO_METADATA=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END_SIMPLICITY_STUDIO_METADATA
+# SIMPLICITY_STUDIO_METADATA=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END_SIMPLICITY_STUDIO_METADATA
 # END OF METADATA
