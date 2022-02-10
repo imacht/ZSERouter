@@ -33,11 +33,19 @@
 
 static sl_zigbee_event_t commissioning_event;
 static sl_zigbee_event_t init_ke_event;
+static sl_zigbee_event_t find_services_event;
 #define commissioningEvent (&commissioning_event)
 #define initKeEvent (&init_ke_event)
+#define findSvcsEvent (&find_services_event)
+
+typedef enum {
+    FIND_METERS,
+    FIND_PRICES,
+//TODO:    FIND_OTA,
+} DiscoStage_t;
+static DiscoStage_t findState;
 
 static void find_result(const EmberAfServiceDiscoveryResult *r);
-
 
 void commissioningEventHandler(SLXU_UC_EVENT)
 {
@@ -68,57 +76,80 @@ boolean emberAfPluginKeyEstablishmentEventCallback(EmberAfKeyEstablishmentNotify
                                         EmberNodeId partnerShortId,
                                         int8u delayInSeconds)
 {
-    EmberStatus stat;
-
     slxu_zigbee_event_set_inactive(initKeEvent);
     emberAfCorePrintln("------- KE_notification status: 0x%X  partnerID: 0x%X  delay 0x%Xs",
                        status, partnerShortId, delayInSeconds);
     if (LINK_KEY_ESTABLISHED == status)
     {
         emberAfCorePrintln("------- LINK_KEY_ESTABLISHED ------");
-
-        if ((stat = emberAfFindDevicesByProfileAndCluster(EMBER_RX_ON_WHEN_IDLE_BROADCAST_ADDRESS,
-                                                          SE_PROFILE_ID,
-                                                          //ZCL_SIMPLE_METERING_CLUSTER_ID,
-                                                          ZCL_TIME_CLUSTER_ID,
-                                                          EMBER_AF_SERVER_CLUSTER_DISCOVERY,
-                                                          find_result)))
-            emberAfCorePrintln("------- KE_xxxxxxx 0x%Xs",stat    );
+        findState = FIND_METERS;
+        slxu_zigbee_event_set_delay_ms(findSvcsEvent, 100);
     }
     return true;
+}
+
+void findServicesHandler()
+{
+    EmberStatus stat;
+    uint16_t clust_id = 0;
+
+    slxu_zigbee_event_set_inactive(findSvcsEvent);
+    switch (findState) {
+     case FIND_METERS:
+         clust_id = ZCL_SIMPLE_METERING_CLUSTER_ID; break;
+     case FIND_PRICES:
+         clust_id = ZCL_PRICE_CLUSTER_ID; break;
+     default: ;
+    }
+    stat = emberAfFindDevicesByProfileAndCluster(
+                                    EMBER_RX_ON_WHEN_IDLE_BROADCAST_ADDRESS,
+                                    SE_PROFILE_ID,
+                                    ZCL_SIMPLE_METERING_CLUSTER_ID,
+                                    EMBER_AF_SERVER_CLUSTER_DISCOVERY,
+                                    find_result);
 }
 
 static void find_result(const EmberAfServiceDiscoveryResult *r)
 {
     const EmberAfEndpointList* l;
-    boolean resp_rcvd = false;
-    emberAfCorePrintln("------- Meter Find result = 0x%04X", r);
+    char label[20];
+
+    switch (findState) {
+     case FIND_METERS:  strcpy(label, "Meter"); break;
+     case FIND_PRICES:  strcpy(label, "Price"); break;
+     default: ;
+    }
     switch (r->status) {
         case EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE:
-            emberAfCorePrintln("------- Meter Find result status = EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE");
+            emberAfCorePrintln("------- %s Find result status = EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE", label);
             break;
         case EMBER_AF_BROADCAST_SERVICE_DISCOVERY_RESPONSE_RECEIVED  :
-            emberAfCorePrintln("------- Meter Find result status = EMBER_AF_BROADCAST_SERVICE_DISCOVERY_RESPONSE_RECEIVED");
-            resp_rcvd = true;
+            emberAfCorePrintln("------- %s Find result status = EMBER_AF_BROADCAST_SERVICE_DISCOVERY_RESPONSE_RECEIVED", label);
             break;
         case EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE_WITH_RESPONSE  :
-            emberAfCorePrintln("------- Meter Find result status = EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE_WITH_RESPONSE");
-            resp_rcvd = true;
+            emberAfCorePrintln("------- %s Find result status = EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE_WITH_RESPONSE", label);
             break;
         case EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE_WITH_EMPTY_RESPONSE :
-            emberAfCorePrintln("------- Meter Find result status = EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE_WITH_EMPTY_RESPONSE");
-            resp_rcvd = true;
+            emberAfCorePrintln("------- %s Find result status = EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE_WITH_EMPTY_RESPONSE", label);
             break;
         default:
             emberAfCorePrintln("------- UNICAST or unknown result status");
+            return;
     }
-    if (resp_rcvd && r) {
+    if (emberAfHaveDiscoveryResponseStatus(r->status)) {
         l = r->responseData;
-        emberAfCorePrintln("-------           l = 0x%04X", l);
-        emberAfCorePrintln("------- Meter Find result: addr: 0x%02X  count: %d",
-                           r->matchAddress, l->count);
+        emberAfCorePrintln("------- %s Find result: addr: 0x%02X  count: %d",
+                                   label, r->matchAddress, l->count);
         if (l->count && l->list)
-            emberAfCorePrintln("------- Meter Find result: list entry: 0x%X", *l->list);
+            emberAfCorePrintln("-------                    list entry: 0x%X", *l->list);
+    }
+    if (EMBER_AF_BROADCAST_SERVICE_DISCOVERY_RESPONSE_RECEIVED != r->status) {
+        // Discovery complete
+        if (FIND_METERS == findState)
+        {
+            findState +=1;
+            slxu_zigbee_event_set_delay_ms(findSvcsEvent, 100);
+        }
     }
 }
 
@@ -126,6 +157,7 @@ void emberAfMainInitCallback(void)
 {
     slxu_zigbee_event_init(commissioningEvent, commissioningEventHandler);
     slxu_zigbee_event_init(initKeEvent, initKeEventHandler);
+    slxu_zigbee_event_init(findSvcsEvent, findServicesHandler);
 }
 
 /** @brief Stack Status
