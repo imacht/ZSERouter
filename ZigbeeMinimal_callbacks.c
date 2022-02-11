@@ -104,7 +104,7 @@ void findServicesHandler()
     stat = emberAfFindDevicesByProfileAndCluster(
                                     EMBER_RX_ON_WHEN_IDLE_BROADCAST_ADDRESS,
                                     SE_PROFILE_ID,
-                                    ZCL_SIMPLE_METERING_CLUSTER_ID,
+                                    clust_id,
                                     EMBER_AF_SERVER_CLUSTER_DISCOVERY,
                                     find_result);
 }
