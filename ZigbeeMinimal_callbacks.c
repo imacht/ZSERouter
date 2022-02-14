@@ -23,6 +23,8 @@
 #include "app/framework/include/af.h"
 #include "network-find.h"
 //#include "update-tc-link-key.h"
+#include "zmeter/zmeter.h"
+#include "gubbins.h"
 
 #define ROUTER_ENDPOINT (1)
 
@@ -37,6 +39,8 @@ static sl_zigbee_event_t find_services_event;
 #define commissioningEvent (&commissioning_event)
 #define initKeEvent (&init_ke_event)
 #define findSvcsEvent (&find_services_event)
+
+static struct cluster *aclust;
 
 typedef enum {
     FIND_METERS,
@@ -111,12 +115,15 @@ void findServicesHandler()
 
 static void find_result(const EmberAfServiceDiscoveryResult *r)
 {
-    const EmberAfEndpointList* l;
     char label[20];
+	uint16_t cluster_id;
+
+	if (r->zdoRequestClusterId != MATCH_DESCRIPTORS_REQUEST || r->matchAddress == emberAfGetNodeId())
+		return;
 
     switch (findState) {
-     case FIND_METERS:  strcpy(label, "Meter"); break;
-     case FIND_PRICES:  strcpy(label, "Price"); break;
+     case FIND_METERS:  strcpy(label, "Meter"); cluster_id = ZCL_SIMPLE_METERING_CLUSTER_ID; break;
+     case FIND_PRICES:  strcpy(label, "Price"); cluster_id = ZCL_PRICE_CLUSTER_ID; break;
      default: ;
     }
     switch (r->status) {
@@ -137,7 +144,14 @@ static void find_result(const EmberAfServiceDiscoveryResult *r)
             return;
     }
     if (emberAfHaveDiscoveryResponseStatus(r->status)) {
-        l = r->responseData;
+		const EmberAfEndpointList* l = r->responseData;
+//		  struct cluster* nc = cluster_next_circular(aclust);
+//        emberAfCorePrintln("------- %s Find cluster#0: addr: 0x%02X", nc);
+		endpoint_add_new(r->matchAddress, l->list, l->count, cluster_id);
+//		  if (nc) aclust = nc;
+//  	  nc = cluster_next_circular(aclust);
+//        emberAfCorePrintln("------- %s Find cluster#1: addr: 0x%02X", nc);
+
         emberAfCorePrintln("------- %s Find result: addr: 0x%02X  count: %d",
                                    label, r->matchAddress, l->count);
         if (l->count && l->list)

@@ -56,7 +56,7 @@ LIBS =
 C_DEFS   = 
 ASM_DEFS = 
 
-INCLUDES = 
+INCLUDES =
 
 C_FLAGS           = 
 C_FLAGS_DEBUG     = 
@@ -69,7 +69,7 @@ ASM_FLAGS_DEBUG   =
 ASM_FLAGS_RELEASE = 
 LD_FLAGS          = 
 
-OBJS = 
+OBJS =
 
 ####################################################################
 # Definitions of toolchain.                                        #
@@ -86,8 +86,42 @@ LD      = "$(ARM_GCC_DIR)/bin/arm-none-eabi-gcc"
 # Include sub-makefiles                                            #
 # Define a makefile here to add files/settings to the build.       #
 ####################################################################
--include ZSERouter.project.mak
 
+# IMac  my additions
+INCLUDES += -I. -Izmeter
+
+$(OUTPUT_DIR)/zmeter/%.o: zmeter/%.c
+	@echo 'Building $<'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $<
+
+CDEPS += $(OUTPUT_DIR)/zmeter/tree.d
+OBJS += $(OUTPUT_DIR)/zmeter/tree.o
+CDEPS += $(OUTPUT_DIR)/zmeter/meters.d
+OBJS += $(OUTPUT_DIR)/zmeter/meters.o
+CDEPS += $(OUTPUT_DIR)/zmeter/calendar.d
+OBJS += $(OUTPUT_DIR)/zmeter/calendar.o
+CDEPS += $(OUTPUT_DIR)/zmeter/msg.d
+OBJS += $(OUTPUT_DIR)/zmeter/msg.o
+CDEPS += $(OUTPUT_DIR)/zmeter/devman.d
+OBJS += $(OUTPUT_DIR)/zmeter/devman.o
+CDEPS += $(OUTPUT_DIR)/zmeter/price.d
+OBJS += $(OUTPUT_DIR)/zmeter/price.o
+CDEPS += $(OUTPUT_DIR)/zmeter/prepay.d
+OBJS += $(OUTPUT_DIR)/zmeter/prepay.o
+#CDEPS += $(OUTPUT_DIR)/zmeter/cad.d
+#OBJS += $(OUTPUT_DIR)/zmeter/cad.o
+CDEPS += $(OUTPUT_DIR)/zmeter/time.d
+OBJS += $(OUTPUT_DIR)/zmeter/time.o
+
+$(OUTPUT_DIR)/project/gubbins.o: gubbins.c
+	@echo 'Building gubbins.c'
+	$(ECHO)$(CC) $(CFLAGS) -c -o $@ gubbins.c
+CDEPS += $(OUTPUT_DIR)/project/gubbins.d
+OBJS += $(OUTPUT_DIR)/project/gubbins.o
+
+# IMac end
+
+-include ZSERouter.project.mak
 
 ####################################################################
 # Rules                                                            #
