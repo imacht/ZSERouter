@@ -52,11 +52,16 @@ static void find_result(const EmberAfServiceDiscoveryResult *r);
 void commissioningEventHandler(SLXU_UC_EVENT)
 {
     EmberStatus status;
+    EmberNetworkStatus n_stat;
 
     slxu_zigbee_event_set_inactive(commissioningEvent);
     
+    n_stat = emberAfNetworkState();
+    emberAfCorePrintln("------- commissioningEvent nwk status: 0x%02X", n_stat);
+    if (EMBER_NO_NETWORK != n_stat)
+        return;
+    
     r_state = SCANNING;
-
     // allow joining on all possible channels
     // TODO: might be quicker to search preferred first, investigate?
     status = emberAfSetFormAndJoinChannelMask(0, ALL_CHANNELS_MASK);
@@ -124,6 +129,11 @@ void findServicesHandler()
                                     find_result);
 }
 
+void dbgprnt_clst(struct endpoint* endp) {
+    emberAfCorePrintln("-------  ep next: 0x%02X   ep node: 0x%02X   ep meter: 0x%02X",
+                       endp->next?endp->next:0, endp->node?endp->node:0, endp->meter?endp->meter:0);
+}
+
 static void find_result(const EmberAfServiceDiscoveryResult *r)
 {
     char label[20];
@@ -156,17 +166,38 @@ static void find_result(const EmberAfServiceDiscoveryResult *r)
     }
     if (emberAfHaveDiscoveryResponseStatus(r->status)) {
         const EmberAfEndpointList* l = r->responseData;
-        struct cluster* nc = cluster_next_circular(aclust);
-        endpoint_add_new(r->matchAddress, l->list, l->count, cluster_id);
-        if (nc) aclust = nc;
-        nc = cluster_next_circular(aclust);
-      emberAfCorePrintln("------- %s Find cluster#1: addr: 0x%02X", label, nc);
-      if (nc) emberAfCorePrintln("-------    cluster#1->next:  0x%02X", nc->next);
-
+        struct cluster* nc;
+        
         emberAfCorePrintln("------- %s Find result: addr: 0x%02X  count: %d",
                                    label, r->matchAddress, l->count);
-        if (l->count && l->list)
-            emberAfCorePrintln("-------                    list entry: 0x%X", *l->list);
+        emberAfCorePrintln("------- Adding %s endpoint: addr: 0x%02X  clustId:0x%02X", label, r->matchAddress, cluster_id);
+        endpoint_add_new(r->matchAddress, l->list, l->count, cluster_id);
+
+        nc = cluster_next_circular(aclust);
+        if (nc) aclust = nc;
+        int i = 1;
+        emberAfCorePrintln("------- %s Find cluster: addr: 0x%02X", label, nc);
+        while (nc) {
+            emberAfCorePrintln("-------  cluster#%d  id: 0x%02X   ep: 0x%02X   ops: 0x%02X   next: 0x%02X", 
+                                         i++, nc->id, nc->ep, nc->ops?nc->ops:0, nc->next?nc->next:0);
+            if (nc->ep) dbgprnt_clst(nc->ep);
+            nc = nc->next;
+        }
+
+        nc = cluster_next_circular(nc);
+        if (nc != aclust) {
+            i = 1;
+            emberAfCorePrintln("------- %s next circ cluster: addr: 0x%02X", label, nc);
+            while (nc) {
+                emberAfCorePrintln("-------  cluster#%d  id: 0x%02X   ep: 0x%02X   ops: 0x%02X   next: 0x%02X", 
+                                             i++, nc->id, nc->ep, nc->ops?nc->ops:0, nc->next?nc->next:0);
+                if (nc->ep) dbgprnt_clst(nc->ep);
+                nc = nc->next;
+            }
+        }
+        i = 0;
+        while (i < l->count)
+            emberAfCorePrintln("-------             ep list entry: 0x%X", (uint8_t *)l->list[i++]);
     }
     if (EMBER_AF_BROADCAST_SERVICE_DISCOVERY_RESPONSE_RECEIVED != r->status) {
         // Discovery complete
