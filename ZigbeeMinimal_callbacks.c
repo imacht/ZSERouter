@@ -24,10 +24,11 @@
 // flag bits
 #define COMMISSIONED	(1)
 
-
+static sl_zigbee_event_t action_event;
 static sl_zigbee_event_t commissioning_event;
 static sl_zigbee_event_t init_ke_event;
 static sl_zigbee_event_t find_services_event;
+#define actionEvent (&action_event)
 #define commissioningEvent (&commissioning_event)
 #define initKeEvent (&init_ke_event)
 #define findSvcsEvent (&find_services_event)
@@ -42,8 +43,11 @@ typedef enum {
     START_KE,
     FIND_METERS,
     FIND_PRICES,
+    GET_SDRS,
+    GET_IEEE,
 //TODO:    FIND_OTA,
 } JoinStage_t;
+
 static JoinStage_t r_state = UNINITIALISED;
 static uint8_t flags = 0;
 
@@ -95,7 +99,6 @@ boolean emberAfPluginKeyEstablishmentEventCallback(EmberAfKeyEstablishmentNotify
                                         EmberNodeId partnerShortId,
                                         int8u delayInSeconds)
 {
-    slxu_zigbee_event_set_inactive(initKeEvent);
     emberAfCorePrintln("------- KE_notification status: 0x%X  partnerID: 0x%X  delay 0x%Xs",
                        status, partnerShortId, delayInSeconds);
     if (LINK_KEY_ESTABLISHED == status)
@@ -103,16 +106,16 @@ boolean emberAfPluginKeyEstablishmentEventCallback(EmberAfKeyEstablishmentNotify
         emberAfCorePrintln("------- LINK_KEY_ESTABLISHED ------");
         flags |= COMMISSIONED;
         r_state = FIND_METERS;
-        slxu_zigbee_event_set_delay_ms(findSvcsEvent, 100);
+        slxu_zigbee_event_set_active(actionEvent);
     }
     return true;
 }
 
-void findServicesHandler()
+void findServicesHandler(void)
 {
     EmberStatus stat;
     uint16_t clust_id = 0;
-
+    
     slxu_zigbee_event_set_inactive(findSvcsEvent);
     switch (r_state) {
      case FIND_METERS:
@@ -201,21 +204,80 @@ static void find_result(const EmberAfServiceDiscoveryResult *r)
     }
     if (EMBER_AF_BROADCAST_SERVICE_DISCOVERY_RESPONSE_RECEIVED != r->status) {
         // Discovery complete
-        if (FIND_METERS == r_state)
+        if (FIND_METERS == r_state || FIND_PRICES == r_state)
         {
             r_state +=1;
-            slxu_zigbee_event_set_delay_ms(findSvcsEvent, 100);
+            slxu_zigbee_event_set_delay_ms(findSvcsEvent, 50);
         }
+    }
+}
+
+static void got_sdr(const EmberAfServiceDiscoveryResult *r)
+{
+	if (r->zdoRequestClusterId != SIMPLE_DESCRIPTOR_REQUEST)
+		return;
+
+	if (emberAfHaveDiscoveryResponseStatus(r->status)) {
+		EmberAfClusterList *l = (EmberAfClusterList*)r->responseData;
+		struct endpoint *e = endp_find(r->matchAddress, l->endpoint);
+		if (e) {
+			e->profid = l->profileId;
+			e->devid = l->deviceId;
+			const uint16_t *p = l->inClusterList, *end = p + l->inClusterCount;
+			emberAfCorePrintln("-------  Simple Descriptor Req  %04X/%X", e->node->addr, e->num);
+			while (p < end) {
+				emberAfCorePrintln("-------     %04X", *p);
+				cluster_get(e, *p++);
+			}
+		}
+	}
+
+	if (GET_SDRS == r_state)
+		slxu_zigbee_event_set_active(actionEvent);
+}
+
+void actionRun(void)
+{
+	struct endpoint *ep;
+   	EmberStatus stat;
+
+    slxu_zigbee_event_set_inactive(actionEvent);
+    
+    switch(r_state) {
+     case UNINITIALISED:
+        slxu_zigbee_event_set_delay_ms(commissioningEvent, COMMISSIONING_DELAY_MS);
+        break;
+        // successful join advances state to SCANNING in commissioningEventHandler
+        // result picked up in emberAfStackStatusCallback, success advances to START_KE
+     case START_KE:
+        slxu_zigbee_event_set_delay_ms(initKeEvent, INIT_KE_DELAY_MS);
+        break;
+     case FIND_METERS:
+        slxu_zigbee_event_set_delay_ms(findSvcsEvent, 50);
+        break;
+     case GET_SDRS:
+		if (!(ep = endpoint_find_undescribed()))
+        {
+            r_state = GET_IEEE;
+            slxu_zigbee_event_set_active(actionEvent);
+        }
+		else if ((stat = emberAfFindClustersByDeviceAndEndpoint(ep->node->addr, ep->num, got_sdr)))
+        {
+			slxu_zigbee_event_set_delay_ms(actionEvent, 50);
+            emberAfCorePrintln("------- Got SDR FindClusters ret = %4X", stat); 
+        }
+        break;
+     default:
+        emberAfCorePrintln("------- Unexpected actionEvent r_state = %04X", r_state); 
     }
 }
 
 void emberAfMainInitCallback(void)
 {
+    slxu_zigbee_event_init(actionEvent, actionRun);
     slxu_zigbee_event_init(commissioningEvent, commissioningEventHandler);
     slxu_zigbee_event_init(initKeEvent, initKeEventHandler);
     slxu_zigbee_event_init(findSvcsEvent, findServicesHandler);
-    
-    slxu_zigbee_event_set_delay_ms(commissioningEvent, COMMISSIONING_DELAY_MS);
 }
 
 void emberAfMainTickCallback(void)
@@ -257,7 +319,7 @@ void emberAfStackStatusCallback(EmberStatus status)
     
     if (EMBER_NETWORK_UP == status && SCANNING == r_state) {
         r_state = START_KE;
-        slxu_zigbee_event_set_active(initKeEvent);
+        slxu_zigbee_event_set_active(actionEvent);
     }
 }
 
