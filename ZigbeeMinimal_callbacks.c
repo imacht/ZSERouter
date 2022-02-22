@@ -17,12 +17,15 @@
 
 #define ALL_CHANNELS_MASK       (0x07FFF800)
 #define COMMISSIONING_DELAY_MS  (5000)
+#define REPEAT_DELAY_MS         (3000)
 #define INIT_KE_DELAY_MS        (1000)
+#define SHORT_DELAY_MS          (200)
+#define RETRY_DELAY_QS          (40)
 #define BUTTON0                 (0)
 #define BUTTON1                 (1)
 
 // flag bits
-#define COMMISSIONED	(1)
+#define COMMISSIONED    (1)
 
 static sl_zigbee_event_t action_event;
 static sl_zigbee_event_t commissioning_event;
@@ -45,6 +48,7 @@ typedef enum {
     FIND_PRICES,
     GET_SDRS,
     GET_IEEE,
+    DO_PLKE,
 //TODO:    FIND_OTA,
 } JoinStage_t;
 
@@ -71,7 +75,7 @@ void commissioningEventHandler(SLXU_UC_EVENT)
     status = emberAfSetFormAndJoinChannelMask(0, ALL_CHANNELS_MASK);
     emberAfCorePrintln("------- SetFormAndJoinChannelMask returned : 0x%X", status);
     EmberNetworkInitStruct init_struct = { EMBER_NETWORK_INIT_PARENT_INFO_IN_TOKEN };
-   	status = emberNetworkInit(&init_struct);
+       status = emberNetworkInit(&init_struct);
     
     if (EMBER_NOT_JOINED == status) {
         emberAfCorePrintln("------- NetworkInit returned EMBER_NOT_JOINED, searching for network...");
@@ -122,7 +126,9 @@ void findServicesHandler(void)
          clust_id = ZCL_SIMPLE_METERING_CLUSTER_ID; break;
      case FIND_PRICES:
          clust_id = ZCL_PRICE_CLUSTER_ID; break;
-     default: ;
+     default: 
+        emberAfCorePrintln("-------  UNEXPECTED findServices event: r_state = %d", r_state);
+        return;
     }
     stat = emberAfFindDevicesByProfileAndCluster(
                                     EMBER_RX_ON_WHEN_IDLE_BROADCAST_ADDRESS,
@@ -133,14 +139,15 @@ void findServicesHandler(void)
 }
 
 void dbgprnt_clst(struct endpoint* endp) {
-    emberAfCorePrintln("-------  ep next: 0x%02X   ep node: 0x%02X   ep meter: 0x%02X",
+    emberAfCorePrintln("-------  ep next: 0x%2X   ep node: 0x%2X   ep meter: 0x%2X",
                        endp->next?endp->next:0, endp->node?endp->node:0, endp->meter?endp->meter:0);
 }
 
 static void find_result(const EmberAfServiceDiscoveryResult *r)
 {
     char label[20];
-    uint16_t cluster_id;
+    uint16_t cluster_id = 0;
+    boolean discoveryComplete = false;
 
     if (r->zdoRequestClusterId != MATCH_DESCRIPTORS_REQUEST || r->matchAddress == emberAfGetNodeId())
         return;
@@ -153,15 +160,18 @@ static void find_result(const EmberAfServiceDiscoveryResult *r)
     switch (r->status) {
         case EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE:
             emberAfCorePrintln("------- %s Find result status = EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE\n", label);
+            discoveryComplete = true;
             break;
         case EMBER_AF_BROADCAST_SERVICE_DISCOVERY_RESPONSE_RECEIVED  :
             emberAfCorePrintln("------- %s Find result status = EMBER_AF_BROADCAST_SERVICE_DISCOVERY_RESPONSE_RECEIVED", label);
             break;
         case EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE_WITH_RESPONSE  :
             emberAfCorePrintln("------- %s Find result status = EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE_WITH_RESPONSE", label);
+            discoveryComplete = true;
             break;
         case EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE_WITH_EMPTY_RESPONSE :
             emberAfCorePrintln("------- %s Find result status = EMBER_AF_BROADCAST_SERVICE_DISCOVERY_COMPLETE_WITH_EMPTY_RESPONSE", label);
+            discoveryComplete = true;
             break;
         default:
             emberAfCorePrintln("------- UNICAST or unknown result status");
@@ -171,17 +181,17 @@ static void find_result(const EmberAfServiceDiscoveryResult *r)
         const EmberAfEndpointList* l = r->responseData;
         struct cluster* nc;
         
-        emberAfCorePrintln("------- %s Find result: addr: 0x%02X  count: %d",
+        emberAfCorePrintln("------- %s Find result: addr: 0x%2X  count: %d",
                                    label, r->matchAddress, l->count);
-        emberAfCorePrintln("------- Adding %s endpoint: addr: 0x%02X  clustId:0x%02X", label, r->matchAddress, cluster_id);
+        emberAfCorePrintln("------- Adding %s endpoint: addr: 0x%2X  clustId:0x%2X", label, r->matchAddress, cluster_id);
         endpoint_add_new(r->matchAddress, l->list, l->count, cluster_id);
 
         nc = cluster_next_circular(aclust);
         if (nc) aclust = nc;
         int i = 1;
-        emberAfCorePrintln("------- %s Find cluster: addr: 0x%02X", label, nc);
+        emberAfCorePrintln("------- %s Find cluster: addr: 0x%2X", label, nc);
         while (nc) {
-            emberAfCorePrintln("-------  cluster#%d  id: 0x%02X   ep: 0x%02X   ops: 0x%02X   next: 0x%02X", 
+            emberAfCorePrintln("-------  cluster#%d  id: 0x%2X   ep: %d   ops: 0x%2X   next: 0x%2X", 
                                          i++, nc->id, nc->ep, nc->ops?nc->ops:0, nc->next?nc->next:0);
             if (nc->ep) dbgprnt_clst(nc->ep);
             nc = nc->next;
@@ -190,9 +200,9 @@ static void find_result(const EmberAfServiceDiscoveryResult *r)
         nc = cluster_next_circular(nc);
         if (nc != aclust) {
             i = 1;
-            emberAfCorePrintln("------- %s next circ cluster: addr: 0x%02X", label, nc);
+            emberAfCorePrintln("------- %s next circ cluster: addr: 0x%2X", label, nc);
             while (nc) {
-                emberAfCorePrintln("-------  cluster#%d  id: 0x%02X   ep: 0x%02X   ops: 0x%02X   next: 0x%02X", 
+                emberAfCorePrintln("-------  cluster#%d  id: 0x%2X   ep: 0x%2X   ops: 0x%2X   next: 0x%2X", 
                                              i++, nc->id, nc->ep, nc->ops?nc->ops:0, nc->next?nc->next:0);
                 if (nc->ep) dbgprnt_clst(nc->ep);
                 nc = nc->next;
@@ -200,46 +210,77 @@ static void find_result(const EmberAfServiceDiscoveryResult *r)
         }
         i = 0;
         while (i < l->count)
-            emberAfCorePrintln("-------             ep list entry: 0x%X", (uint8_t *)l->list[i++]);
+            emberAfCorePrintln("-------         ep list entry: 0x%2X", (uint8_t *)l->list[i++]);
     }
-    if (EMBER_AF_BROADCAST_SERVICE_DISCOVERY_RESPONSE_RECEIVED != r->status) {
-        // Discovery complete
-        if (FIND_METERS == r_state || FIND_PRICES == r_state)
-        {
-            r_state +=1;
-            slxu_zigbee_event_set_delay_ms(findSvcsEvent, 50);
-        }
+    if (discoveryComplete) {
+        r_state +=1;
+        slxu_zigbee_event_set_active(actionEvent);
     }
 }
 
 static void got_sdr(const EmberAfServiceDiscoveryResult *r)
 {
-	if (r->zdoRequestClusterId != SIMPLE_DESCRIPTOR_REQUEST)
-		return;
+    if (r->zdoRequestClusterId != SIMPLE_DESCRIPTOR_REQUEST)
+        return;
 
-	if (emberAfHaveDiscoveryResponseStatus(r->status)) {
-		EmberAfClusterList *l = (EmberAfClusterList*)r->responseData;
-		struct endpoint *e = endp_find(r->matchAddress, l->endpoint);
-		if (e) {
-			e->profid = l->profileId;
-			e->devid = l->deviceId;
-			const uint16_t *p = l->inClusterList, *end = p + l->inClusterCount;
-			emberAfCorePrintln("-------  Simple Descriptor Req  %04X/%X", e->node->addr, e->num);
-			while (p < end) {
-				emberAfCorePrintln("-------     %04X", *p);
-				cluster_get(e, *p++);
-			}
-		}
-	}
+    if (emberAfHaveDiscoveryResponseStatus(r->status)) {
+        EmberAfClusterList *l = (EmberAfClusterList*)r->responseData;
+        struct endpoint *e = endp_find(r->matchAddress, l->endpoint);
+        if (e) {
+            e->profid = l->profileId;
+            e->devid = l->deviceId;
+            const uint16_t *p = l->inClusterList, *end = p + l->inClusterCount;
+            emberAfCorePrintln("-------  Simple Descriptor Req  %2X / %X", e->node->addr, e->num);
+            while (p < end) {
+                emberAfCorePrintln("-------     %2X", *p);
+                cluster_get(e, *p++);
+            }
+        }
+    }
 
-	if (GET_SDRS == r_state)
-		slxu_zigbee_event_set_active(actionEvent);
+    if (GET_SDRS == r_state)
+        slxu_zigbee_event_set_active(actionEvent);
+}
+
+static void show_aps_key(struct node *n)
+{
+    uint8_t i;
+    EmberKeyStruct k;
+    if ((n->addr == EMBER_TRUST_CENTER_NODE_ID  &&  emberGetKey(EMBER_TRUST_CENTER_LINK_KEY, &k) == EMBER_SUCCESS) 
+        || ((i = emberFindKeyTableEntry(n->ieee, true)) < 255  &&  emberGetKeyTableEntry(i, &k) == EMBER_SUCCESS))
+//        emberAfCorePrintln("-------  APS key = %X,%X", k.partnerEUI64, *(uint32_t*)(&k.key.contents[0]));
+        emberAfCorePrintln("-------  APS key = %X   %X %X %X %X  %X %X %X %X", k.partnerEUI64,
+                            k.key.contents[0], k.key.contents[1], k.key.contents[2], k.key.contents[3],
+                            k.key.contents[4], k.key.contents[5], k.key.contents[6], k.key.contents[7]);
+
+//        emberAfCorePrintln("-------  APS key = %X, %X %X %X %X  %X %X %X %X",
+//                k.partnerEUI64, k.key.contents[0], k.key.contents[1], k.key.contents[2], k.key.contents[3], 
+//                k.key.contents[4], k.key.contents[5], k.key.contents[6], k.key.contents[7]);
+}
+
+static void got_ieee(const EmberAfServiceDiscoveryResult *r)
+{
+    struct node *n = node_find_by_nwk(r->matchAddress);
+   emberAfCorePrintln("got_ieee n=%2X", n);
+   show_nodes("got_ieee before");
+    if (n && r->status == EMBER_AF_UNICAST_SERVICE_DISCOVERY_COMPLETE_WITH_RESPONSE) {
+        MEMMOVE(n->ieee, r->responseData, 8);
+        emberAfCorePrintln("-------  IEEE addr rcvd = %X %X %X %X  %X %X %X %X",
+                            n->ieee[0], n->ieee[1], n->ieee[2], n->ieee[3], n->ieee[4], n->ieee[5], n->ieee[6], n->ieee[7]);
+        emberAfAddAddressTableEntry(n->ieee, n->addr);
+        show_aps_key(n);
+   show_nodes("got_ieee after");
+    }
+
+    if (GET_IEEE == r_state)
+        slxu_zigbee_event_set_active(actionEvent);
 }
 
 void actionRun(void)
 {
-	struct endpoint *ep;
-   	EmberStatus stat;
+    struct endpoint *ep;
+    struct node *nd;
+    EmberStatus stat;
 
     slxu_zigbee_event_set_inactive(actionEvent);
     
@@ -253,22 +294,43 @@ void actionRun(void)
         slxu_zigbee_event_set_delay_ms(initKeEvent, INIT_KE_DELAY_MS);
         break;
      case FIND_METERS:
-        slxu_zigbee_event_set_delay_ms(findSvcsEvent, 50);
+        slxu_zigbee_event_set_delay_ms(findSvcsEvent, SHORT_DELAY_MS);
+        break;
+     case FIND_PRICES:
+        slxu_zigbee_event_set_delay_ms(findSvcsEvent, SHORT_DELAY_MS);
         break;
      case GET_SDRS:
-		if (!(ep = endpoint_find_undescribed()))
+        if (!(ep = endpoint_find_undescribed()))
         {
             r_state = GET_IEEE;
             slxu_zigbee_event_set_active(actionEvent);
         }
-		else if ((stat = emberAfFindClustersByDeviceAndEndpoint(ep->node->addr, ep->num, got_sdr)))
+        else if ((stat = emberAfFindClustersByDeviceAndEndpoint(ep->node->addr, ep->num, got_sdr)))
         {
-			slxu_zigbee_event_set_delay_ms(actionEvent, 50);
-            emberAfCorePrintln("------- Got SDR FindClusters ret = %4X", stat); 
+            emberAfCorePrintln("------- GET_SDRs: %d", stat);
+            slxu_zigbee_event_set_delay_qs(actionEvent, RETRY_DELAY_QS);
+        }
+        break;
+     case GET_IEEE:
+        show_nodes("GET_IEEE action");
+        if ((nd = node_find_unknown()))
+        {
+          show_nodes("unknown found");
+            if (EMBER_SUCCESS != (stat = emberAfFindIeeeAddress(nd->addr, got_ieee)))
+            {                
+                emberAfCorePrintln("------- GET_IEEE: %d", stat);
+                slxu_zigbee_event_set_delay_qs(actionEvent, RETRY_DELAY_QS);
+            }
+        }
+        else 
+        {
+            r_state = DO_PLKE;
+            emberAfCorePrintln("------- State GET_IEEE: moving to DO_PLKE = %2X", stat);
+            slxu_zigbee_event_set_active(actionEvent);
         }
         break;
      default:
-        emberAfCorePrintln("------- Unexpected actionEvent r_state = %04X", r_state); 
+        emberAfCorePrintln("------- Unexpected actionEvent r_state = %2X", r_state); 
     }
 }
 
@@ -283,14 +345,14 @@ void emberAfMainInitCallback(void)
 void emberAfMainTickCallback(void)
 {
     if (STOPPING == r_state) {
-		if (!emberPendingAckedMessages() && emberOkToNap()) {
-			emberStackPowerDown();
-			r_state = REBOOT;
-		}
-	} else if (REBOOT == r_state) {
-		//if (emberSerialWriteUsed(APP_SERIAL) == 0)
-			halReboot();
-	}
+        if (!emberPendingAckedMessages() && emberOkToNap()) {
+            emberStackPowerDown();
+            r_state = REBOOT;
+        }
+    } else if (REBOOT == r_state) {
+        //if (emberSerialWriteUsed(APP_SERIAL) == 0)
+            halReboot();
+    }
 }
 
 /** @brief Stack Status
@@ -305,16 +367,16 @@ void emberAfMainTickCallback(void)
  */
 void emberAfStackStatusCallback(EmberStatus status)
 {
-	if (UNINITIALISED == r_state)   // ignore early bollocks reports
-		return;
+    if (UNINITIALISED == r_state)   // ignore early bollocks reports
+        return;
         
-	emberAfCorePrintln("------  StackStatus = 0x%02X,  NetworkState = %d\n", status, emberAfNetworkState());
+    emberAfCorePrintln("------  StackStatus = 0x%X,  NetworkState = %d\n", status, emberAfNetworkState());
 
-	if (EMBER_NETWORK_UP != status && EMBER_TRUST_CENTER_EUI_HAS_CHANGED != status)
-		if (flags & COMMISSIONED && emberAfNetworkState() == EMBER_NO_NETWORK) {
+    if (EMBER_NETWORK_UP != status && EMBER_TRUST_CENTER_EUI_HAS_CHANGED != status)
+        if (flags & COMMISSIONED && emberAfNetworkState() == EMBER_NO_NETWORK) {
             flags &= ~COMMISSIONED;
             emberAfCorePrintln("------  StackStatusCb  doing loss-of-network reboot");            
-			r_state = STOPPING;
+            r_state = STOPPING;
         }
     
     if (EMBER_NETWORK_UP == status && SCANNING == r_state) {
@@ -325,17 +387,17 @@ void emberAfStackStatusCallback(EmberStatus status)
 
 void emberAfPluginNetworkFindFinishedCallback(EmberStatus status)
 {
-	emberAfCorePrintln("------- PluginNetworkFindFinishedCallback status : 0x%02X", status);
-	if (EMBER_NO_BEACONS == status && SCANNING == r_state) {
-		// set BACKING_OFF - 
-	}
+    emberAfCorePrintln("------- PluginNetworkFindFinishedCallback status : 0x%X", status);
+    if (EMBER_NO_BEACONS == status && SCANNING == r_state) {
+        // set BACKING_OFF - 
+    }
 }
 
 bool emberAfPluginNetworkFindJoinCallback(EmberZigbeeNetwork *n, uint8_t lqi, int8_t rssi)
 {
-	emberAfCorePrintln("------- PluginNetworkFindFinishedCallback nwk found chan: %d  panId: 0x%02X  lqi:%d  rssi: %d\n", 
+    emberAfCorePrintln("------- PluginNetworkFindFinishedCallback nwk found chan: %d  panId: 0x%X  lqi:%d  rssi: %d\n", 
                     n->channel, n->panId, lqi, rssi);
-	return true;
+    return true;
 }
 
 /** @brief Hal Button Isr
