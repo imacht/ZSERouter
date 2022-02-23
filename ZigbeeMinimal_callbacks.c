@@ -36,8 +36,6 @@ static sl_zigbee_event_t find_services_event;
 #define initKeEvent (&init_ke_event)
 #define findSvcsEvent (&find_services_event)
 
-static struct cluster *aclust;
-
 typedef enum {
     UNINITIALISED,
     STOPPING,
@@ -138,11 +136,6 @@ void findServicesHandler(void)
                                     find_result);
 }
 
-void dbgprnt_clst(struct endpoint* endp) {
-    emberAfCorePrintln("-------  ep next: 0x%2X   ep node: 0x%2X   ep meter: 0x%2X",
-                       endp->next?endp->next:0, endp->node?endp->node:0, endp->meter?endp->meter:0);
-}
-
 static void find_result(const EmberAfServiceDiscoveryResult *r)
 {
     char label[20];
@@ -179,38 +172,15 @@ static void find_result(const EmberAfServiceDiscoveryResult *r)
     }
     if (emberAfHaveDiscoveryResponseStatus(r->status)) {
         const EmberAfEndpointList* l = r->responseData;
-        struct cluster* nc;
         
+        show_endpoints("find_result before");
+      show_clusters("find_result before");
         emberAfCorePrintln("------- %s Find result: addr: 0x%2X  count: %d",
                                    label, r->matchAddress, l->count);
         emberAfCorePrintln("------- Adding %s endpoint: addr: 0x%2X  clustId:0x%2X", label, r->matchAddress, cluster_id);
         endpoint_add_new(r->matchAddress, l->list, l->count, cluster_id);
-
-        nc = cluster_next_circular(aclust);
-        if (nc) aclust = nc;
-        int i = 1;
-        emberAfCorePrintln("------- %s Find cluster: addr: 0x%2X", label, nc);
-        while (nc) {
-            emberAfCorePrintln("-------  cluster#%d  id: 0x%2X   ep: %d   ops: 0x%2X   next: 0x%2X", 
-                                         i++, nc->id, nc->ep, nc->ops?nc->ops:0, nc->next?nc->next:0);
-            if (nc->ep) dbgprnt_clst(nc->ep);
-            nc = nc->next;
-        }
-
-        nc = cluster_next_circular(nc);
-        if (nc != aclust) {
-            i = 1;
-            emberAfCorePrintln("------- %s next circ cluster: addr: 0x%2X", label, nc);
-            while (nc) {
-                emberAfCorePrintln("-------  cluster#%d  id: 0x%2X   ep: 0x%2X   ops: 0x%2X   next: 0x%2X", 
-                                             i++, nc->id, nc->ep, nc->ops?nc->ops:0, nc->next?nc->next:0);
-                if (nc->ep) dbgprnt_clst(nc->ep);
-                nc = nc->next;
-            }
-        }
-        i = 0;
-        while (i < l->count)
-            emberAfCorePrintln("-------         ep list entry: 0x%2X", (uint8_t *)l->list[i++]);
+        show_endpoints("find_result after");
+      show_clusters("find_result after");
     }
     if (discoveryComplete) {
         r_state +=1;
@@ -236,6 +206,8 @@ static void got_sdr(const EmberAfServiceDiscoveryResult *r)
                 cluster_get(e, *p++);
             }
         }
+      show_clusters("after got_sdr");
+      show_endpoints("after got_sdr");
     }
 
     if (GET_SDRS == r_state)
@@ -248,28 +220,24 @@ static void show_aps_key(struct node *n)
     EmberKeyStruct k;
     if ((n->addr == EMBER_TRUST_CENTER_NODE_ID  &&  emberGetKey(EMBER_TRUST_CENTER_LINK_KEY, &k) == EMBER_SUCCESS) 
         || ((i = emberFindKeyTableEntry(n->ieee, true)) < 255  &&  emberGetKeyTableEntry(i, &k) == EMBER_SUCCESS))
-//        emberAfCorePrintln("-------  APS key = %X,%X", k.partnerEUI64, *(uint32_t*)(&k.key.contents[0]));
-        emberAfCorePrintln("-------  APS key = %X   %X %X %X %X  %X %X %X %X", k.partnerEUI64,
-                            k.key.contents[0], k.key.contents[1], k.key.contents[2], k.key.contents[3],
-                            k.key.contents[4], k.key.contents[5], k.key.contents[6], k.key.contents[7]);
-
-//        emberAfCorePrintln("-------  APS key = %X, %X %X %X %X  %X %X %X %X",
-//                k.partnerEUI64, k.key.contents[0], k.key.contents[1], k.key.contents[2], k.key.contents[3], 
-//                k.key.contents[4], k.key.contents[5], k.key.contents[6], k.key.contents[7]);
+    {
+        uint8_t *m = k.key.contents, *n = k.partnerEUI64;
+        emberAfCorePrintln("-------  APS key = %X %X %X %X %X %X %X %X  %X %X %X %X %X %X %X %X    Partner EUI64 = %X %X %X %X %X %X %X %X", 
+                            m[0],m[1],m[2],m[3],m[4],m[5],m[6],m[7],m[8],m[9],m[10],m[11],m[12],m[13],m[14],m[15],
+                            n[0],n[1],n[2],n[3],n[4],n[5],n[6],n[7]); // EUI64_SIZE=8
+    }
 }
 
 static void got_ieee(const EmberAfServiceDiscoveryResult *r)
 {
     struct node *n = node_find_by_nwk(r->matchAddress);
-   emberAfCorePrintln("got_ieee n=%2X", n);
-   show_nodes("got_ieee before");
     if (n && r->status == EMBER_AF_UNICAST_SERVICE_DISCOVERY_COMPLETE_WITH_RESPONSE) {
         MEMMOVE(n->ieee, r->responseData, 8);
         emberAfCorePrintln("-------  IEEE addr rcvd = %X %X %X %X  %X %X %X %X",
                             n->ieee[0], n->ieee[1], n->ieee[2], n->ieee[3], n->ieee[4], n->ieee[5], n->ieee[6], n->ieee[7]);
         emberAfAddAddressTableEntry(n->ieee, n->addr);
         show_aps_key(n);
-   show_nodes("got_ieee after");
+      show_nodes("after got_ieee");
     }
 
     if (GET_IEEE == r_state)
@@ -300,19 +268,24 @@ void actionRun(void)
         slxu_zigbee_event_set_delay_ms(findSvcsEvent, SHORT_DELAY_MS);
         break;
      case GET_SDRS:
-        if (!(ep = endpoint_find_undescribed()))
+        if ((ep = endpoint_find_undescribed()))
+        {
+          show_endpoints("found undescribed");
+          show_clusters("found undescribed");
+            if ((stat = emberAfFindClustersByDeviceAndEndpoint(ep->node->addr, ep->num, got_sdr)))
+            {
+                emberAfCorePrintln("------- GET_SDRs: %d", stat);
+                slxu_zigbee_event_set_delay_qs(actionEvent, RETRY_DELAY_QS);
+            }
+        }
+        else
         {
             r_state = GET_IEEE;
+            emberAfCorePrintln("------- State GET_IEEE: moving to GET_IEEE = %2X", stat);
             slxu_zigbee_event_set_active(actionEvent);
-        }
-        else if ((stat = emberAfFindClustersByDeviceAndEndpoint(ep->node->addr, ep->num, got_sdr)))
-        {
-            emberAfCorePrintln("------- GET_SDRs: %d", stat);
-            slxu_zigbee_event_set_delay_qs(actionEvent, RETRY_DELAY_QS);
-        }
+        }            
         break;
      case GET_IEEE:
-        show_nodes("GET_IEEE action");
         if ((nd = node_find_unknown()))
         {
           show_nodes("unknown found");

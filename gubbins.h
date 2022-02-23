@@ -8,3 +8,5 @@ struct endpoint* endp_find(uint16_t addr, int ep);
 void endpoint_add_new(uint16_t addr, const uint8_t *eps, int count, uint16_t cluster);
 
 void show_nodes(char *);
+void show_clusters(char *label);
+void show_endpoints(char *label);

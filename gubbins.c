@@ -83,10 +83,35 @@ void show_nodes(char *label)
     struct node *n = nodes;
     emberAfCorePrintln("------- nodes: %2X  (%s)", n, label);
     while (n) {
-        emberAfCorePrint("-------   ->  addr: %2X  ieee:", n->next, n->addr);
+        emberAfCorePrint("-------   ->  addr: %2X  ieee:", n->addr);
         for (int i=0;i<8;i++) emberAfCorePrint(" %X", n->ieee[i]);
-        emberAfCorePrintln("  plke: %d  unJoined: %d   next: %2  ", n->plke, n->unJoined);
+        emberAfCorePrintln("  plke: %d  unJoined: %d   next: %2X  ", n->plke, n->unJoined, n->next);
         n = n->next;
+    }
+    emberAfCorePrintln("");
+}
+
+void show_clusters(char *label)
+{
+    struct cluster *c = clusters;
+    emberAfCorePrintln("------- clusters: %2X  (%s)", c, label);
+    while (c) {
+        emberAfCorePrint("-------   ->  ep: %2X  id: %2X  ops: %2X" , c->ep, c->id, c->ops);
+        if (c->ops) emberAfCorePrint("  ops->attr: %2X  ops->cmd: %2X  ops->def_rsp: %2X", c->ops->attr, c->ops->cmd, c->ops->def_rsp);
+        emberAfCorePrintln("  fetch: %d  retry: %d   next: %2X  ", c->fetch, c->retry, c->next);
+        c = c->next;
+    }
+    emberAfCorePrintln("");
+}
+
+void show_endpoints(char *label)
+{
+    struct endpoint *e = endpoints;
+    emberAfCorePrintln("------- endpoints: %2X  (%s)", e, label);
+    while (e) {
+        emberAfCorePrint("-------   ->  node: %2X  num: %d  meter: %2X  stall: %2X  profid: %2X  devid: %2X  rewind: %d  backoff: %d   next: %2X", 
+                            e->node, e->num, e->meter, e->stall, e->profid, e->devid, e->rewind, e->backoff, e->next);
+        e = e->next;
     }
     emberAfCorePrintln("");
 }
