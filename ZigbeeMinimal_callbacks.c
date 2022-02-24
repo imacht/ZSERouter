@@ -12,6 +12,9 @@
 #include "zmeter/zmeter.h"
 #include "gubbins.h"
 
+/* define for node/endpoint/cluster list debug prints */
+//#define IM_LIST_DEBUG
+
 #define ROUTER_ENDPOINT (1)
 #define COORD_ENDPOINT  (1)
 
@@ -48,12 +51,21 @@ typedef enum {
     GET_IEEE,
     DO_PLKE,
 //TODO:    FIND_OTA,
-} JoinStage_t;
+    IDLE
+} ZseState_t;
 
-static JoinStage_t r_state = UNINITIALISED;
+static ZseState_t r_state = UNINITIALISED;
 static uint8_t flags = 0;
+static uint16_t sec;
 
 static void find_result(const EmberAfServiceDiscoveryResult *r);
+
+
+static void short_wait(char *logstr, uint32_t state)   // need to increase delay - nom. 10s
+{
+    emberAfCorePrintln(logstr, state);
+    slxu_zigbee_event_set_delay_ms(actionEvent, SHORT_DELAY_MS);
+}
 
 void commissioningEventHandler(SLXU_UC_EVENT)
 {
@@ -173,14 +185,18 @@ static void find_result(const EmberAfServiceDiscoveryResult *r)
     if (emberAfHaveDiscoveryResponseStatus(r->status)) {
         const EmberAfEndpointList* l = r->responseData;
         
+#ifdef IM_LIST_DEBUG
         show_endpoints("find_result before");
-      show_clusters("find_result before");
+        show_clusters("find_result before");
+#endif
         emberAfCorePrintln("------- %s Find result: addr: 0x%2X  count: %d",
                                    label, r->matchAddress, l->count);
         emberAfCorePrintln("------- Adding %s endpoint: addr: 0x%2X  clustId:0x%2X", label, r->matchAddress, cluster_id);
         endpoint_add_new(r->matchAddress, l->list, l->count, cluster_id);
+#ifdef IM_LIST_DEBUG
         show_endpoints("find_result after");
-      show_clusters("find_result after");
+        show_clusters("find_result after");
+#endif
     }
     if (discoveryComplete) {
         r_state +=1;
@@ -206,8 +222,10 @@ static void got_sdr(const EmberAfServiceDiscoveryResult *r)
                 cluster_get(e, *p++);
             }
         }
-      show_clusters("after got_sdr");
-      show_endpoints("after got_sdr");
+#ifdef IM_LIST_DEBUG
+        show_clusters("after got_sdr");
+        show_endpoints("after got_sdr");
+#endif
     }
 
     if (GET_SDRS == r_state)
@@ -224,7 +242,7 @@ static void show_aps_key(struct node *n)
         uint8_t *m = k.key.contents, *n = k.partnerEUI64;
         emberAfCorePrintln("-------  APS key = %X %X %X %X %X %X %X %X  %X %X %X %X %X %X %X %X    Partner EUI64 = %X %X %X %X %X %X %X %X", 
                             m[0],m[1],m[2],m[3],m[4],m[5],m[6],m[7],m[8],m[9],m[10],m[11],m[12],m[13],m[14],m[15],
-                            n[0],n[1],n[2],n[3],n[4],n[5],n[6],n[7]); // EUI64_SIZE=8
+                            n[7],n[6],n[5],n[4],n[3],n[2],n[1],n[0]); // EUI64_SIZE=8
     }
 }
 
@@ -237,17 +255,31 @@ static void got_ieee(const EmberAfServiceDiscoveryResult *r)
                             n->ieee[0], n->ieee[1], n->ieee[2], n->ieee[3], n->ieee[4], n->ieee[5], n->ieee[6], n->ieee[7]);
         emberAfAddAddressTableEntry(n->ieee, n->addr);
         show_aps_key(n);
-      show_nodes("after got_ieee");
+#ifdef IM_LIST_DEBUG
+        show_nodes("after got_ieee");
+#endif
     }
 
     if (GET_IEEE == r_state)
         slxu_zigbee_event_set_active(actionEvent);
 }
 
+static void did_plke(bool success)
+{
+    if (DO_PLKE != r_state) return;
+    
+    if (success) {
+        r_state = IDLE;
+        short_wait("------- PLKE succeeded, r_state = %d", r_state);
+    } else
+        short_wait("------- PLKE failed, r_state = %d", r_state);
+}
+
 void actionRun(void)
 {
     struct endpoint *ep;
     struct node *nd;
+    struct cluster *cl;
     EmberStatus stat;
 
     slxu_zigbee_event_set_inactive(actionEvent);
@@ -258,50 +290,67 @@ void actionRun(void)
         break;
         // successful join advances state to SCANNING in commissioningEventHandler
         // result picked up in emberAfStackStatusCallback, success advances to START_KE
+        
      case START_KE:
         slxu_zigbee_event_set_delay_ms(initKeEvent, INIT_KE_DELAY_MS);
         break;
+        
      case FIND_METERS:
         slxu_zigbee_event_set_delay_ms(findSvcsEvent, SHORT_DELAY_MS);
         break;
+        
      case FIND_PRICES:
         slxu_zigbee_event_set_delay_ms(findSvcsEvent, SHORT_DELAY_MS);
         break;
+        
      case GET_SDRS:
         if ((ep = endpoint_find_undescribed()))
         {
-          show_endpoints("found undescribed");
-          show_clusters("found undescribed");
-            if ((stat = emberAfFindClustersByDeviceAndEndpoint(ep->node->addr, ep->num, got_sdr)))
-            {
-                emberAfCorePrintln("------- GET_SDRs: %d", stat);
-                slxu_zigbee_event_set_delay_qs(actionEvent, RETRY_DELAY_QS);
-            }
-        }
-        else
-        {
+#ifdef IM_LIST_DEBUG
+            show_endpoints("found undescribed");
+            show_clusters("found undescribed");
+#endif
+            if (EMBER_SUCCESS != (stat = emberAfFindClustersByDeviceAndEndpoint(ep->node->addr, ep->num, got_sdr)))
+                short_wait("------- GET_SDRs: %d", stat);
+        } else {
             r_state = GET_IEEE;
-            emberAfCorePrintln("------- State GET_IEEE: moving to GET_IEEE = %2X", stat);
-            slxu_zigbee_event_set_active(actionEvent);
+            short_wait("------- State GET_SDRS: moving to GET_IEEE = %2X", stat);
         }            
         break;
+
      case GET_IEEE:
         if ((nd = node_find_unknown()))
         {
-          show_nodes("unknown found");
+#ifdef IM_LIST_DEBUG
+            show_nodes("unknown found");
+#endif
             if (EMBER_SUCCESS != (stat = emberAfFindIeeeAddress(nd->addr, got_ieee)))
-            {                
-                emberAfCorePrintln("------- GET_IEEE: %d", stat);
-                slxu_zigbee_event_set_delay_qs(actionEvent, RETRY_DELAY_QS);
-            }
-        }
-        else 
-        {
+                short_wait("------- GET_IEEE: %d", stat);
+        } else {
             r_state = DO_PLKE;
-            emberAfCorePrintln("------- State GET_IEEE: moving to DO_PLKE = %2X", stat);
-            slxu_zigbee_event_set_active(actionEvent);
+            short_wait("------- State GET_IEEE: moving to DO_PLKE = %2X", stat);
         }
         break;
+
+      case DO_PLKE:
+#ifdef IM_LIST_DEBUG
+        show_nodes("before find_unplked");
+#endif
+        if ((cl = cluster_find_unplked()))
+        {
+            emberAfCorePrintln("------- Found unPLKd KE cluster   c=%2X", cl); 
+            if ((stat = emberAfInitiatePartnerLinkKeyExchange(cl->ep->node->addr, cl->ep->num, did_plke)))
+                short_wait("------- DO_PLKE: %d", stat);
+            else
+                cl->ep->node->plke++;
+        } else {
+            sec = 0;
+            r_state = IDLE;
+            if (cl && cl->ep && cl->ep->node) 
+                emberAfCorePrintln("-------   bailing - plke = %2X", cl->ep->node->plke); 
+            short_wait("------- DO_PLKE - going to IDLE, cl = %2", cl);
+        }
+
      default:
         emberAfCorePrintln("------- Unexpected actionEvent r_state = %2X", r_state); 
     }

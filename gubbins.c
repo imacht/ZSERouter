@@ -7,11 +7,14 @@
 
 #include "app/framework/include/af.h"
 
-/* debug use */
+/* define for node/endpoint/cluster list debug prints */
+//#define IM_LIST_DEBUG
+
+#ifdef IM_LIST_DEBUG
 extern struct node *nodes;
 extern struct endpoint *endpoints;
 extern struct cluster *clusters;
-/*****/
+#endif
 
 /* default defs to match externs in zmeter.h */
 void* zalloc(size_t bytes) { return calloc(bytes,1); }
@@ -41,6 +44,18 @@ static const uint16_t coi[] =
             ZCL_KEY_ESTABLISHMENT_CLUSTER_ID, 
             //ZCL_TUNNELING_CLUSTER_ID
             };
+            
+uint8_t link_key_ok(uint8_t *ieee)
+{
+	EmberKeyStruct k;
+            emberAfCorePrintln("------- l_k_ok start"); 
+	uint8_t i = emberFindKeyTableEntry(ieee, true);
+            emberAfCorePrintln("------- l_k_ok table entry i = %d", i); 
+	//return i != 0xFF && emberGetKeyTableEntry(i, &k) == EMBER_SUCCESS;
+    return true;
+}
+
+            
             
 struct cluster* cluster_get(struct endpoint *e, uint16_t id)
 {
@@ -78,6 +93,7 @@ void endpoint_add_new(uint16_t addr, const uint8_t *eps, int count, uint16_t clu
     }
 }
 
+#ifdef IM_LIST_DEBUG
 void show_nodes(char *label)
 {
     struct node *n = nodes;
@@ -115,3 +131,4 @@ void show_endpoints(char *label)
     }
     emberAfCorePrintln("");
 }
+#endif
