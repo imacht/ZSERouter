@@ -125,7 +125,7 @@ void show_endpoints(char *label)
     struct endpoint *e = endpoints;
     emberAfCorePrintln("------- endpoints: %2X  (%s)", e, label);
     while (e) {
-        emberAfCorePrint("-------   ->  node: %2X  num: %d  meter: %2X  stall: %2X  profid: %2X  devid: %2X  rewind: %d  backoff: %d   next: %2X", 
+        emberAfCorePrintln("-------   ->  node: %2X  num: %d  meter: %2X  stall: %2X  profid: %2X  devid: %2X  rewind: %d  backoff: %d   next: %2X", 
                             e->node, e->num, e->meter, e->stall, e->profid, e->devid, e->rewind, e->backoff, e->next);
         e = e->next;
     }

@@ -52,9 +52,9 @@ typedef enum {
     DO_PLKE,
 //TODO:    FIND_OTA,
     IDLE
-} ZseState_t;
+} SxpState_t;
 
-static ZseState_t r_state = UNINITIALISED;
+static SxpState_t r_state = UNINITIALISED;
 static uint8_t flags = 0;
 static uint16_t sec;
 
@@ -332,7 +332,7 @@ void actionRun(void)
         }
         break;
 
-      case DO_PLKE:
+     case DO_PLKE:
 #ifdef IM_LIST_DEBUG
         show_nodes("before find_unplked");
 #endif
@@ -348,11 +348,22 @@ void actionRun(void)
             r_state = IDLE;
             if (cl && cl->ep && cl->ep->node) 
                 emberAfCorePrintln("-------   bailing - plke = %2X", cl->ep->node->plke); 
-            short_wait("------- DO_PLKE - going to IDLE, cl = %2", cl);
+            short_wait("------- DO_PLKE - going to IDLE, cl = %2X", cl?cl:0);
         }
+        break;
+        
+	 case IDLE:
+		if (sec >= 60 * 180)
+        {
+			r_state = FIND_METERS;
+            short_wait("------- Returning to FIND_METERS", r_state);
+        }
+		else if (EMBER_JOINED_NETWORK == emberAfNetworkState())
+			/*fetch_run()*/ ;
+        break;
 
      default:
-        emberAfCorePrintln("------- Unexpected actionEvent r_state = %2X", r_state); 
+        emberAfCorePrintln("------- Unexpected actionEvent r_state = %d", r_state); 
     }
 }
 
