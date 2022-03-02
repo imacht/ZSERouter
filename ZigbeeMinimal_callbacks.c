@@ -21,14 +21,17 @@
 #define ALL_CHANNELS_MASK       (0x07FFF800)
 #define COMMISSIONING_DELAY_MS  (5000)
 #define REPEAT_DELAY_MS         (3000)
-#define INIT_KE_DELAY_MS        (1000)
+#define ONE_SEC_DELAY_MS        (1000)
 #define SHORT_DELAY_MS          (200)
+#define SIX_SEC_DELAY_QS        (240)
 #define RETRY_DELAY_QS          (40)
+#define FETCH_RETRY_QS          (60)
 #define BUTTON0                 (0)
 #define BUTTON1                 (1)
 
 // flag bits
-#define COMMISSIONED    (1)
+#define COMMISSIONED            (0x01)
+#define APS_QUEUED              (0x02)
 
 static sl_zigbee_event_t action_event;
 static sl_zigbee_event_t commissioning_event;
@@ -39,32 +42,29 @@ static sl_zigbee_event_t find_services_event;
 #define initKeEvent (&init_ke_event)
 #define findSvcsEvent (&find_services_event)
 
-typedef enum {
-    UNINITIALISED,
-    STOPPING,
-    REBOOT,
-    SCANNING,
-    START_KE,
-    FIND_METERS,
-    FIND_PRICES,
-    GET_SDRS,
-    GET_IEEE,
-    DO_PLKE,
-//TODO:    FIND_OTA,
-    IDLE
-} SxpState_t;
-
 static SxpState_t r_state = UNINITIALISED;
 static uint8_t flags = 0;
 static uint16_t sec;
 
+static struct {
+    struct cluster *cluster, *fetcher;
+    uint8_t seq, cmd;
+} req;
+
 static void find_result(const EmberAfServiceDiscoveryResult *r);
 
 
-static void short_wait(char *logstr, uint32_t state)   // need to increase delay - nom. 10s
+static void schedule_action(char *logstr, uint32_t state)
+{
+    emberAfCorePrintln(logstr);
+    r_state = state;
+    slxu_zigbee_event_set_active(actionEvent);
+}
+
+static void retry_wait(char *logstr, uint32_t state)
 {
     emberAfCorePrintln(logstr, state);
-    slxu_zigbee_event_set_delay_ms(actionEvent, SHORT_DELAY_MS);
+    slxu_zigbee_event_set_delay_qs(actionEvent, RETRY_DELAY_QS);
 }
 
 void commissioningEventHandler(SLXU_UC_EVENT)
@@ -268,12 +268,66 @@ static void did_plke(bool success)
 {
     if (DO_PLKE != r_state) return;
     
-    if (success) {
-        r_state = IDLE;
-        short_wait("------- PLKE succeeded, r_state = %d", r_state);
-    } else
-        short_wait("------- PLKE failed, r_state = %d", r_state);
+    if (success)
+        schedule_action("------- PLKE succeeded, entering IDLE", IDLE);
+    else
+        retry_wait("------- PLKE failed, r_state = %d", r_state);
 }
+
+static void fetch_run(void)
+{
+    cluster_do_rewind();
+
+    struct cluster *anchor = cluster_next_circular(req.fetcher), *c;
+    utc_t now = utc_now();
+    emberAfCorePrintln("-------  fetch_run reads utc_now = %4X");
+    if ((c = anchor)) do {
+        struct endpoint *e = c->ep;
+        if (e->node->unJoined >= 2); // ESME, don't probe
+        else if (now >= e->stall) // skip if stalled endpoint
+            fetch_run_steps(c);
+    } while (IDLE == r_state && (c = cluster_next_circular(c)) != anchor);
+    req.fetcher = c;
+
+    if (IDLE == r_state)
+        slxu_zigbee_event_set_delay_qs(actionEvent, FETCH_RETRY_QS); // try again in 15 seconds
+    else
+        emberAfCorePrintln("-------RAN %2X  %d  %2X  %d\n", c->ep->node->addr, c->ep->num, c->id, c->fetch);
+}
+
+static void return_to_idle(void)
+{
+    if ((STOPPING != r_state) && (REBOOT != r_state)) {
+        r_state = IDLE;     // clear old request
+        slxu_zigbee_event_set_active(actionEvent);
+    }
+}
+
+static void fetch_next(void)
+{
+    struct cluster *c = req.fetcher;
+    if (c) {
+        c->fetch++;
+        c->retry = 0;
+        c->ep->backoff = 0;
+    }
+    return_to_idle();
+}
+
+/*
+void fetch_cancel(struct cluster *c)
+{
+    if (req.fetcher == c)
+        req.fetcher = 0;
+}
+
+void fetch_resume(void)
+{
+//    if (!req.fetcher) todo this is wrong, should move unbackoff here?
+    if (r_state == IDLE)
+        return_to_idle();
+}
+*/
 
 void actionRun(void)
 {
@@ -292,7 +346,7 @@ void actionRun(void)
         // result picked up in emberAfStackStatusCallback, success advances to START_KE
         
      case START_KE:
-        slxu_zigbee_event_set_delay_ms(initKeEvent, INIT_KE_DELAY_MS);
+        slxu_zigbee_event_set_delay_ms(initKeEvent, ONE_SEC_DELAY_MS);
         break;
         
      case FIND_METERS:
@@ -311,11 +365,9 @@ void actionRun(void)
             show_clusters("found undescribed");
 #endif
             if (EMBER_SUCCESS != (stat = emberAfFindClustersByDeviceAndEndpoint(ep->node->addr, ep->num, got_sdr)))
-                short_wait("------- GET_SDRs: %d", stat);
-        } else {
-            r_state = GET_IEEE;
-            short_wait("------- State GET_SDRS: moving to GET_IEEE = %2X", stat);
-        }            
+                retry_wait("------- GET_SDRs: %d", stat);
+        } else
+            schedule_action("------- State GET_SDRS: moving to GET_IEEE", GET_IEEE);
         break;
 
      case GET_IEEE:
@@ -325,11 +377,9 @@ void actionRun(void)
             show_nodes("unknown found");
 #endif
             if (EMBER_SUCCESS != (stat = emberAfFindIeeeAddress(nd->addr, got_ieee)))
-                short_wait("------- GET_IEEE: %d", stat);
-        } else {
-            r_state = DO_PLKE;
-            short_wait("------- State GET_IEEE: moving to DO_PLKE = %2X", stat);
-        }
+                retry_wait("------- GET_IEEE: %d", stat);
+        } else
+            schedule_action("------- State GET_IEEE: moving to DO_PLKE", DO_PLKE);
         break;
 
      case DO_PLKE:
@@ -340,26 +390,22 @@ void actionRun(void)
         {
             emberAfCorePrintln("------- Found unPLKd KE cluster   c=%2X", cl); 
             if ((stat = emberAfInitiatePartnerLinkKeyExchange(cl->ep->node->addr, cl->ep->num, did_plke)))
-                short_wait("------- DO_PLKE: %d", stat);
+                retry_wait("------- DO_PLKE: %d", stat);
             else
                 cl->ep->node->plke++;
         } else {
             sec = 0;
-            r_state = IDLE;
             if (cl && cl->ep && cl->ep->node) 
                 emberAfCorePrintln("-------   bailing - plke = %2X", cl->ep->node->plke); 
-            short_wait("------- DO_PLKE - going to IDLE, cl = %2X", cl?cl:0);
+            schedule_action("------- DO_PLKE - going to IDLE", IDLE);
         }
         break;
         
-	 case IDLE:
-		if (sec >= 60 * 180)
-        {
-			r_state = FIND_METERS;
-            short_wait("------- Returning to FIND_METERS", r_state);
-        }
-		else if (EMBER_JOINED_NETWORK == emberAfNetworkState())
-			/*fetch_run()*/ ;
+     case IDLE:
+        if (sec >= 60 * 180)
+            schedule_action("------- Returning to FIND_METERS", FIND_METERS);
+        else if (EMBER_JOINED_NETWORK == emberAfNetworkState())
+            fetch_run();
         break;
 
      default:
@@ -417,6 +463,85 @@ void emberAfStackStatusCallback(EmberStatus status)
         slxu_zigbee_event_set_active(actionEvent);
     }
 }
+
+void attr_get(struct cluster *c, int num, ...)
+{
+    uint16_t buf[16], got = 0;
+    va_list l;
+    va_start(l, num);
+    while (got < num)
+        buf[got++] = va_arg(l, int);
+    va_end(l);
+
+    emberAfFillCommandGlobalClientToServerReadAttributes(c->id, buf, got * 2);
+    send_common(c, DO_ATTR);
+}
+
+uint8_t finish_send(struct cluster *c, char type, EmberStatus stat, uint8_t seq)
+{
+    if (stat == EMBER_NETWORK_DOWN); // don't do shit, stay idle until back on HAN
+    else if (stat)
+        retry_wait("send status = %02X", stat);
+    else {
+        req.cluster = c;
+        r_state = type;
+        flags |= APS_QUEUED;
+        slxu_zigbee_event_set_delay_qs(actionEvent, SIX_SEC_DELAY_QS);
+    }
+    return req.seq = seq;
+}
+
+static void not_authorised(struct cluster *c)
+{
+	// back off for 1 2 4 8 16 32 32 32 32 32 32 32 32 32 = 319 minutes total, 14 distinct periods
+	struct endpoint *e = c->ep;
+	if (e->backoff < 14) {
+		uint8_t i = e->backoff < 5 ? e->backoff : 5;
+		uint32_t w = 60 << i;
+		if (time_ok())
+			e->backoff++;
+		e->stall = utc_now() + w;
+	} else
+		e->stall = 0xFFFFFFFF;
+    emberAfCorePrintln("------  Stalling %2X:%X till %d\n", e->node->addr, e->num, e->stall);
+    slxu_zigbee_event_set_active(actionEvent);
+}
+
+bool emberAfReadAttributesResponseCallback(EmberAfClusterId clusterId, uint8_t *buffer, uint16_t bufLen)
+{
+    EmberAfClusterCommand *af = emberAfCurrentCommand();
+    emberAfCorePrintln("------  ReadAttr Response Cb  cl: %2X  ClCmd: %2X", clusterId, af?af->commandId:0);            
+    //csafe("0a", af);
+
+    struct cluster *c = clus_find_af(af);
+    if (!c || !c->ops || !c->ops->attr)
+        return false; // unknown cluster or no handler
+
+    uint8_t *p = buffer, *end = p + bufLen;
+    while (p < end) {
+        struct zattr a;
+        a.id = p[0] | p[1] << 8, p += 2;
+        a.status = *p++;
+        if (a.status == 0) {
+            a.type = *p++;
+            a.data = p;
+            p += emberAfIsThisDataTypeAStringType(a.type) ? 1 + emberAfStringLength(p) : emberAfGetDataSize(a.type); // find length
+        } else if (a.status == EMBER_ZCL_STATUS_NOT_AUTHORIZED && c->ep->node->unJoined) {
+            not_authorised(c);
+            return true;
+        }
+        c->ops->attr(c, &a); // dispatch
+    }
+
+    if (~af->buffer[0] & ZCL_DISABLE_DEFAULT_RESPONSE_MASK)
+        emberAfSendDefaultResponse(af, EMBER_ZCL_STATUS_SUCCESS);
+
+    if (DO_ATTR == r_state && req.cluster == c && req.seq == af->seqNum)
+        fetch_next();
+
+    return true;
+}
+
 
 void emberAfPluginNetworkFindFinishedCallback(EmberStatus status)
 {
