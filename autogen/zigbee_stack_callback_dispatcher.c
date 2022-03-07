@@ -640,6 +640,7 @@ void emAfZigbeeKeyEstablishment(
 (void)partner;
 (void)status;
 
+emberAfPluginPartnerLinkKeyExchangeZigbeeKeyEstablishmentCallback(partner, status);
 }
 
 

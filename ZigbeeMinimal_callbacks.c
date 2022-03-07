@@ -78,7 +78,7 @@ void commissioningEventHandler(SLXU_UC_EVENT)
     slxu_zigbee_event_set_inactive(commissioningEvent);
     
     n_stat = emberAfNetworkState();
-    emberAfCorePrintln("------- commissioningEvent nwk status: 0x%02X", n_stat);
+    emberAfCorePrintln("------- commissioningEvent nwk status: 0x%X", n_stat);
     if (EMBER_NO_NETWORK != n_stat)
         return;
     
@@ -274,7 +274,7 @@ static void did_plke(bool success)
     if (success)
         schedule_action("------- PLKE succeeded, entering IDLE", IDLE);
     else
-        retry_wait("------- PLKE failed, r_state = %d", r_state);
+        retry_wait("------- PLKE failed, r_state = 0x%X", r_state);
 }
 
 static void fetch_run(void)
@@ -388,6 +388,7 @@ void actionRun(void)
      case DO_PLKE:
 #ifdef IM_LIST_DEBUG
         show_nodes("before find_unplked");
+        show_clusters("before find_unplked");
 #endif
         if ((cl = cluster_find_unplked()))
         {
@@ -399,7 +400,7 @@ void actionRun(void)
         } else {
             sec = 0;
             if (cl && cl->ep && cl->ep->node) 
-                emberAfCorePrintln("-------   bailing - plke = %2X", cl->ep->node->plke); 
+                emberAfCorePrintln("-------   bailing - plke = %d", cl->ep->node->plke); 
             schedule_action("------- DO_PLKE - going to IDLE", IDLE);
         }
         break;
@@ -412,7 +413,7 @@ void actionRun(void)
         break;
 
      default:
-        emberAfCorePrintln("------- Unexpected actionEvent r_state = %d", r_state); 
+        emberAfCorePrintln("------- Unexpected actionEvent r_state = 0x%X", r_state); 
     }
 }
 

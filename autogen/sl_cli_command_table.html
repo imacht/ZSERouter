@@ -1688,6 +1688,71 @@ Example syntax (.slcc or .slcp) for populating this file:
   </div>
     </div>
   </div>
+</div>
+<div class="group">
+  <div class="group-header">
+    <h3 class="group-name"> partner-link-key-exchange</h3>
+  </div>
+  <div class="group-info">
+    <span class="help">partner-link-key-exchange related commands</span>
+    
+    <div class="command-list">
+    
+    
+  
+  <div class="command">
+    <div class="command-header-bar"></div>
+    <div class="command-header">
+      <span class="command-name"> partner-link-key-exchange partner</span>
+        <span class="command-argument">u16</span>
+        <span class="command-argument">u8</span>
+      <span class="command-handler">cbkePartnerCommand</span>
+    </div>
+    <div class="command-info">
+      <div class="help">Initiate partner link key exchange.</div>
+      
+      
+      <div class="argument-list">
+      <div class="arguments-title">Arguments</div>
+      <ul>
+        <li>
+        <span class="argument-name">u16</span>The 2 byte short address of the node
+        </li>
+        <li>
+        <span class="argument-name">u8</span>The endpoint of the device with whom ot start cbke.
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+    
+    
+  
+  <div class="command">
+    <div class="command-header-bar"></div>
+    <div class="command-header">
+      <span class="command-name"> partner-link-key-exchange allow-partner</span>
+        <span class="command-argument">u8</span>
+      <span class="command-handler">cbkeAllowPartner</span>
+    </div>
+    <div class="command-info">
+      <div class="help">Set the allow partner flag within the device for Certificate Based Key Exchange</div>
+      
+      
+      <div class="argument-list">
+      <div class="arguments-title">Arguments</div>
+      <ul>
+        <li>
+        <span class="argument-name">u8</span>Boolean value to allow or disallow partner based key exchange
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+    </div>
+  </div>
 </div></div>
   </div>
 </div>

@@ -29,6 +29,7 @@ void emAfPluginFormAndJoinInitCallback(uint8_t init_level);
 void emberAfPluginFragmentationInitCallback(uint8_t init_level);
 void emAfPluginKeyEstablishmentInitCallback(uint8_t init_level);
 void emberAfPluginNetworkFindInitCallback(uint8_t init_level);
+void emAfPluginPartnerLinkKeyExchangeInitCallback(uint8_t init_level);
 void emAfPluginScanDispatchInitCallback(uint8_t init_level);
 // Local data Init
 void emAfLocalDataInit(void);

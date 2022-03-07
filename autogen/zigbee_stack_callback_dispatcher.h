@@ -515,6 +515,14 @@ void emAfZigbeeKeyEstablishment(
       // establishment failed.
       EmberKeyStatus status)
 ;
+void emberAfPluginPartnerLinkKeyExchangeZigbeeKeyEstablishmentCallback(
+      // This is the IEEE address of the partner that the device successfully
+      // established a key with. This value is all zeros on a failure.
+      EmberEUI64 partner,
+      // This is the status indicating what was established or why the key
+      // establishment failed.
+      EmberKeyStatus status)
+;
 
 // Generate Cbke Keys
 void emAfGenerateCbkeKeys(
