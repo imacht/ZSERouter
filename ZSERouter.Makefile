@@ -109,6 +109,8 @@ OBJS += $(OUTPUT_DIR)/zmeter/prepay.o
 CDEPS += $(OUTPUT_DIR)/zmeter/time.d
 OBJS += $(OUTPUT_DIR)/zmeter/time.o
 
+CDEPS += $(OUTPUT_DIR)/mywallclk.d
+OBJS += $(OUTPUT_DIR)/mywallclk.o
 CDEPS += $(OUTPUT_DIR)/gubbins.d
 OBJS += $(OUTPUT_DIR)/gubbins.o
 

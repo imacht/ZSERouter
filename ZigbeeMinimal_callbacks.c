@@ -41,10 +41,13 @@ static sl_zigbee_event_t find_services_event;
 #define commissioningEvent (&commissioning_event)
 #define initKeEvent (&init_ke_event)
 #define findSvcsEvent (&find_services_event)
+static sl_zigbee_event_t metro_event;
+#define metroEvent (&metro_event)
 
 static SxpState_t r_state = UNINITIALISED;
 static uint8_t flags = 0;
 static uint16_t sec;
+//static utc_t han_loss;
 
 static struct {
     struct cluster *cluster, *fetcher;
@@ -280,7 +283,7 @@ static void fetch_run(void)
 
     struct cluster *anchor = cluster_next_circular(req.fetcher), *c;
     utc_t now = utc_now();
-    emberAfCorePrintln("-------  fetch_run reads utc_now = %4X");
+    emberAfCorePrintln("-------  fetch_run reads utc_now = %4X", now);
     if ((c = anchor)) do {
         struct endpoint *e = c->ep;
         if (e->node->unJoined >= 2); // ESME, don't probe
@@ -292,7 +295,7 @@ static void fetch_run(void)
     if (IDLE == r_state)
         slxu_zigbee_event_set_delay_qs(actionEvent, FETCH_RETRY_QS); // try again in 15 seconds
     else
-        emberAfCorePrintln("-------RAN %2X  %d  %2X  %d\n", c->ep->node->addr, c->ep->num, c->id, c->fetch);
+        emberAfCorePrintln("------- fetch_run RAN %2X  %d  %2X  %d\n", c->ep->node->addr, c->ep->num, c->id, c->fetch);
 }
 
 static void return_to_idle(void)
@@ -314,7 +317,6 @@ static void fetch_next(void)
     return_to_idle();
 }
 
-/*
 void fetch_cancel(struct cluster *c)
 {
     if (req.fetcher == c)
@@ -327,7 +329,6 @@ void fetch_resume(void)
     if (r_state == IDLE)
         return_to_idle();
 }
-*/
 
 void actionRun(void)
 {
@@ -339,8 +340,10 @@ void actionRun(void)
     slxu_zigbee_event_set_inactive(actionEvent);
     
     switch(r_state) {
-     case UNINITIALISED:
-        slxu_zigbee_event_set_delay_ms(commissioningEvent, COMMISSIONING_DELAY_MS);
+     case UNINITIALISED:   
+     case STARTING:
+        // auto-restart - disabled in early dev
+        //slxu_zigbee_event_set_delay_ms(commissioningEvent, COMMISSIONING_DELAY_MS);
         break;
         // successful join advances state to SCANNING in commissioningEventHandler
         // result picked up in emberAfStackStatusCallback, success advances to START_KE
@@ -413,17 +416,94 @@ void actionRun(void)
     }
 }
 
+void metroRun(void)
+{
+    utc_t now = time_run(metroEvent), ok = time_ok();
+
+    if (r_state >= IDLE)
+    {
+        sec++;
+        emberAfCorePrint("%ds ",sec);
+    }
+
+    if (ok && sec % 10 == 0) {
+        tree_rewind(0, REWIND_TENSECS);
+        if (sec % 60 == 0) {
+            tree_rewind(0, REWIND_MINUTE);
+            if (sec % 1800 == 0)
+                tree_rewind(0, REWIND_HALFHOUR);
+//            if (han_loss)
+//                time_lost_han((now - han_loss) / 60);
+    emberAfCorePrintln("meter_metro call");
+//            meter_metronome(now);
+        }
+        fetch_resume();
+    }
+    if (ok)
+    emberAfCorePrintln("meter_metro call");
+//        meter_metronome(now);
+}
+
+void attr_get(struct cluster *c, int num, ...)
+{
+    uint16_t buf[16], got = 0;
+    va_list l;
+    va_start(l, num);
+    while (got < num)
+        buf[got++] = va_arg(l, int);
+    va_end(l);
+
+    emberAfFillCommandGlobalClientToServerReadAttributes(c->id, buf, got * 2);
+    send_common(c, DO_ATTR);
+}
+
+uint8_t finish_send(struct cluster *c, char type, EmberStatus stat, uint8_t seq)
+{
+    if (stat == EMBER_NETWORK_DOWN); // don't do shit, stay idle until back on HAN
+    else if (stat)
+        retry_wait("send status = %02X", stat);
+    else {
+        req.cluster = c;
+        r_state = type;
+        flags |= APS_QUEUED;
+        slxu_zigbee_event_set_delay_qs(actionEvent, SIX_SEC_DELAY_QS);
+    }
+    return req.seq = seq;
+}
+
+static void not_authorised(struct cluster *c)
+{
+    // back off for 1 2 4 8 16 32 32 32 32 32 32 32 32 32 = 319 minutes total, 14 distinct periods
+    struct endpoint *e = c->ep;
+    if (e->backoff < 14) {
+        uint8_t i = e->backoff < 5 ? e->backoff : 5;
+        uint32_t w = 60 << i;
+        if (time_ok())
+            e->backoff++;
+        e->stall = utc_now() + w;
+    } else
+        e->stall = 0xFFFFFFFF;
+    emberAfCorePrintln("------  Stalling %2X:%X till %d\n", e->node->addr, e->num, e->stall);
+    slxu_zigbee_event_set_active(actionEvent);
+}
+
 void emberAfMainInitCallback(void)
 {
     slxu_zigbee_event_init(actionEvent, actionRun);
     slxu_zigbee_event_init(commissioningEvent, commissioningEventHandler);
     slxu_zigbee_event_init(initKeEvent, initKeEventHandler);
     slxu_zigbee_event_init(findSvcsEvent, findServicesHandler);
+    slxu_zigbee_event_init(metroEvent, metroRun);
 }
 
 void emberAfMainTickCallback(void)
 {
-    if (STOPPING == r_state) {
+    if (UNINITIALISED == r_state) {
+        r_state = STARTING;
+        slxu_zigbee_event_set_active(actionEvent);
+        slxu_zigbee_event_set_active(metroEvent);
+    }
+    else if (STOPPING == r_state) {
         if (!emberPendingAckedMessages() && emberOkToNap()) {
             emberStackPowerDown();
             r_state = REBOOT;
@@ -462,49 +542,6 @@ void emberAfStackStatusCallback(EmberStatus status)
         r_state = START_KE;
         slxu_zigbee_event_set_active(actionEvent);
     }
-}
-
-void attr_get(struct cluster *c, int num, ...)
-{
-    uint16_t buf[16], got = 0;
-    va_list l;
-    va_start(l, num);
-    while (got < num)
-        buf[got++] = va_arg(l, int);
-    va_end(l);
-
-    emberAfFillCommandGlobalClientToServerReadAttributes(c->id, buf, got * 2);
-    send_common(c, DO_ATTR);
-}
-
-uint8_t finish_send(struct cluster *c, char type, EmberStatus stat, uint8_t seq)
-{
-    if (stat == EMBER_NETWORK_DOWN); // don't do shit, stay idle until back on HAN
-    else if (stat)
-        retry_wait("send status = %02X", stat);
-    else {
-        req.cluster = c;
-        r_state = type;
-        flags |= APS_QUEUED;
-        slxu_zigbee_event_set_delay_qs(actionEvent, SIX_SEC_DELAY_QS);
-    }
-    return req.seq = seq;
-}
-
-static void not_authorised(struct cluster *c)
-{
-	// back off for 1 2 4 8 16 32 32 32 32 32 32 32 32 32 = 319 minutes total, 14 distinct periods
-	struct endpoint *e = c->ep;
-	if (e->backoff < 14) {
-		uint8_t i = e->backoff < 5 ? e->backoff : 5;
-		uint32_t w = 60 << i;
-		if (time_ok())
-			e->backoff++;
-		e->stall = utc_now() + w;
-	} else
-		e->stall = 0xFFFFFFFF;
-    emberAfCorePrintln("------  Stalling %2X:%X till %d\n", e->node->addr, e->num, e->stall);
-    slxu_zigbee_event_set_active(actionEvent);
 }
 
 bool emberAfReadAttributesResponseCallback(EmberAfClusterId clusterId, uint8_t *buffer, uint16_t bufLen)

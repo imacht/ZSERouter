@@ -5,17 +5,18 @@
 
 typedef enum {
     UNINITIALISED,  // 0
+    STARTING,
     STOPPING,
     REBOOT,
     SCANNING,
-    START_KE,
-    FIND_METERS,    // 5
+    START_KE,       // 5
+    FIND_METERS,
     FIND_PRICES,
     GET_SDRS,
     GET_IEEE,
-    DO_PLKE,
+    DO_PLKE,        // 10
 //TODO:    FIND_OTA,
-    IDLE,           // 10
+    IDLE,
     DO_ATTR,
     DO_CMD
 } SxpState_t;
@@ -40,3 +41,10 @@ uint8_t send_common(struct cluster *c, char type);
 void show_nodes(char *);
 void show_clusters(char *label);
 void show_endpoints(char *label);
+
+// Time
+
+/** Set up metro event to tick in 1 second.
+ \param e metro event
+ \return Current UTC time */
+uint32_t time_run(sl_zigbee_event_t *e);

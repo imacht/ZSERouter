@@ -104,7 +104,7 @@ void fetch_run_steps(struct cluster *c)
     {
         uint8_t step;
         do {     // run current step, repeat if fetch updated
-            emberAfCorePrintln("----------  run_step at step = %2X", c->fetch);
+            emberAfCorePrintln("-------   run_step at step = %2X", c->fetch);
             fetch[step = c->fetch](c, c->ep->meter);
         } while (step != c->fetch);
 
@@ -117,13 +117,14 @@ void fetch_run_steps(struct cluster *c)
     // look for cluster Id match, run step(s) 
     while (cle < fr_table + sizeof(frt) / sizeof(fr_table[0])) {
         if ( cle->id == c->id) {
-            emberAfCorePrintln("----------  fetch_run_steps running for clId = %2X", c->id);
+            emberAfCorePrintln("-------  fetch_run_steps running for clId = %2X", c->id);
             run_step(c, cle->f, cle->r);
             break;
         }
         cle++;
     }
 }
+
 
 // zmeter dependencies
 
@@ -217,11 +218,13 @@ int cmd_call(struct cluster *c, int id, const char *fmt, ...)
 
 void utc_set(utc_t t)
 {
+    emberAfSetTimeCallback(t);
 }
 
 utc_t utc_now(void)
 {
-    return 1; // subtract baseline?
+//    return 1; // subtract baseline?
+    return emberAfGetCurrentTimeCallback();
 }
 
 int utc_decompose(uint32_t utc, uint8_t *mdhms)
