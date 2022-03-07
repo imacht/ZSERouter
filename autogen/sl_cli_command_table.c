@@ -161,6 +161,8 @@ void emAfKeyEstablishmentInterpanCommand(sl_cli_command_arg_t *arguments);
 void findMaskCommand(sl_cli_command_arg_t *arguments);
 void findModeCommand(sl_cli_command_arg_t *arguments);
 void findPrintCommand(sl_cli_command_arg_t *arguments);
+void cbkePartnerCommand(sl_cli_command_arg_t *arguments);
+void cbkeAllowPartner(sl_cli_command_arg_t *arguments);
 void networkFormCommand(sl_cli_command_arg_t *arguments);
 void networkJoinCommand(sl_cli_command_arg_t *arguments);
 void networkPermitJoinCommand(sl_cli_command_arg_t *arguments);
@@ -465,6 +467,18 @@ static const sl_cli_command_info_t cli_cmd_find_print = \
                  "Print network search parameters (mode and channel masks).",
                   "",
                  {SL_CLI_ARG_END, });
+
+static const sl_cli_command_info_t cli_cmd_partner_hyphen_link_hyphen_key_hyphen_exchange_partner = \
+  SL_CLI_COMMAND(cbkePartnerCommand,
+                 "Initiate partner link key exchange.",
+                  "The 2 byte short address of the node" SL_CLI_UNIT_SEPARATOR "The endpoint of the device with whom ot start cbke." SL_CLI_UNIT_SEPARATOR,
+                 {SL_CLI_ARG_UINT16, SL_CLI_ARG_UINT8, SL_CLI_ARG_END, });
+
+static const sl_cli_command_info_t cli_cmd_partner_hyphen_link_hyphen_key_hyphen_exchange_allow_hyphen_partner = \
+  SL_CLI_COMMAND(cbkeAllowPartner,
+                 "Set the allow partner flag within the device for Certificate Based Key Exchange",
+                  "Boolean value to allow or disallow partner based key exchange" SL_CLI_UNIT_SEPARATOR,
+                 {SL_CLI_ARG_UINT8, SL_CLI_ARG_END, });
 
 static const sl_cli_command_info_t cli_cmd_network_form = \
   SL_CLI_COMMAND(networkFormCommand,
@@ -982,6 +996,14 @@ static const sl_cli_command_entry_t network_group_table[] = {
 static const sl_cli_command_info_t cli_cmd_grp_network = \
   SL_CLI_COMMAND_GROUP(network_group_table, "network related commands");
 
+static const sl_cli_command_entry_t partner_hyphen_link_hyphen_key_hyphen_exchange_group_table[] = {
+  { "partner", &cli_cmd_partner_hyphen_link_hyphen_key_hyphen_exchange_partner, false },
+  { "allow-partner", &cli_cmd_partner_hyphen_link_hyphen_key_hyphen_exchange_allow_hyphen_partner, false },
+  { NULL, NULL, false },
+};
+static const sl_cli_command_info_t cli_cmd_grp_partner_hyphen_link_hyphen_key_hyphen_exchange = \
+  SL_CLI_COMMAND_GROUP(partner_hyphen_link_hyphen_key_hyphen_exchange_group_table, "partner-link-key-exchange related commands");
+
 static const sl_cli_command_entry_t plugin_group_table[] = {
   { "address-table", &cli_cmd_grp_address_hyphen_table, false },
   { "idle-sleep", &cli_cmd_grp_idle_hyphen_sleep, false },
@@ -989,6 +1011,7 @@ static const sl_cli_command_entry_t plugin_group_table[] = {
   { "counter", &cli_cmd_grp_counter, false },
   { "fragmentation", &cli_cmd_grp_fragmentation, false },
   { "key-establishment", &cli_cmd_grp_key_hyphen_establishment, false },
+  { "partner-link-key-exchange", &cli_cmd_grp_partner_hyphen_link_hyphen_key_hyphen_exchange, false },
   { NULL, NULL, false },
 };
 static const sl_cli_command_info_t cli_cmd_grp_plugin = \

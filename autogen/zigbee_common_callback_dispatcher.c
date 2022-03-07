@@ -28,6 +28,7 @@ void emAfEventInit(void)
   emberAfPluginFragmentationInitCallback(SL_ZIGBEE_INIT_LEVEL_EVENT);
   emAfPluginKeyEstablishmentInitCallback(SL_ZIGBEE_INIT_LEVEL_EVENT);
   emberAfPluginNetworkFindInitCallback(SL_ZIGBEE_INIT_LEVEL_EVENT);
+  emAfPluginPartnerLinkKeyExchangeInitCallback(SL_ZIGBEE_INIT_LEVEL_EVENT);
   emAfPluginScanDispatchInitCallback(SL_ZIGBEE_INIT_LEVEL_EVENT);
 }
 

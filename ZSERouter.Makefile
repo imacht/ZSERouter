@@ -59,7 +59,7 @@ ASM_DEFS =
 INCLUDES =
 
 C_FLAGS           = 
-C_FLAGS_DEBUG     = 
+C_FLAGS_DEBUG     = -DIM_LIST_DEBUG
 C_FLAGS_RELEASE   = 
 CXX_FLAGS         = 
 CXX_FLAGS_DEBUG   = 
@@ -90,10 +90,6 @@ LD      = "$(ARM_GCC_DIR)/bin/arm-none-eabi-gcc"
 # IMac  my additions
 INCLUDES += -I. -Izmeter
 
-$(OUTPUT_DIR)/zmeter/%.o: zmeter/%.c
-	@echo 'Building $<'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ $<
-
 CDEPS += $(OUTPUT_DIR)/zmeter/tree.d
 OBJS += $(OUTPUT_DIR)/zmeter/tree.o
 CDEPS += $(OUTPUT_DIR)/zmeter/meters.d
@@ -113,11 +109,10 @@ OBJS += $(OUTPUT_DIR)/zmeter/prepay.o
 CDEPS += $(OUTPUT_DIR)/zmeter/time.d
 OBJS += $(OUTPUT_DIR)/zmeter/time.o
 
-$(OUTPUT_DIR)/project/gubbins.o: gubbins.c
-	@echo 'Building gubbins.c'
-	$(ECHO)$(CC) $(CFLAGS) -c -o $@ gubbins.c
-CDEPS += $(OUTPUT_DIR)/project/gubbins.d
-OBJS += $(OUTPUT_DIR)/project/gubbins.o
+CDEPS += $(OUTPUT_DIR)/mywallclk.d
+OBJS += $(OUTPUT_DIR)/mywallclk.o
+CDEPS += $(OUTPUT_DIR)/gubbins.d
+OBJS += $(OUTPUT_DIR)/gubbins.o
 
 # IMac end
 
