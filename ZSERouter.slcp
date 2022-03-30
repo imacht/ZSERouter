@@ -38,7 +38,7 @@ sdk: {id: gecko_sdk, version: 3.3.0}
 toolchain_settings: []
 component:
 - {id: zigbee_multi_network_stub}
-- instance: [btn0]
+- instance: [btn0, btn1]
   id: simple_button
 - instance: [example]
   id: cli
@@ -53,8 +53,8 @@ component:
 - {id: zigbee_network_find}
 - {id: zigbee_counters}
 - {id: zigbee_cbke_163k1}
-- {id: brd4001a}
 - {id: brd4186b}
+- {id: brd4001a}
 - instance: [vcom]
   id: iostream_usart
 - {id: zigbee_scan_dispatch}

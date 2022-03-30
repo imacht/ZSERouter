@@ -56,6 +56,13 @@ uint8_t link_key_ok(uint8_t *ieee)
     return (i != 0xFF) && (EMBER_SUCCESS == emberGetKeyTableEntry(i, &k));
 }
 
+bool no_tc_link_key(void)
+{
+    EmberKeyStruct k;
+    return 0 == ((emberGetKey(EMBER_TRUST_CENTER_LINK_KEY, &k) == EMBER_SUCCESS)
+                   && (k.bitmask & EMBER_KEY_IS_AUTHORIZED));
+}
+
 struct cluster* clus_find_af(EmberAfClusterCommand *af)
 {
     struct endpoint *e = endp_find(af->source, af->apsFrame->sourceEndpoint);
@@ -113,15 +120,16 @@ void fetch_run_steps(struct cluster *c)
             emberAfCorePrint("%x:%x:%x step=%u, clearing unJoined\n", n->addr, c->ep->num, c->id, step), n->unJoined = 0;
     }
 
-       const frt *cle = fr_table;
     // look for cluster Id match, run step(s) 
-    while (cle < fr_table + sizeof(frt) / sizeof(fr_table[0])) {
-        if ( cle->id == c->id) {
-            emberAfCorePrintln("-------  fetch_run_steps running for clId = %2X", c->id);
-            run_step(c, cle->f, cle->r);
+    emberAfCorePrintln("-------  fetch_run_steps looking for cluster %2X, id %2X", c, c->id);
+    for (uint8_t i = 0; i < (frt_size()/sizeof(frt)); i++) {
+//        emberAfCorePrintln("-------    fetch_run_steps  frt id = %2X", fr_table[i].id);
+        if (fr_table[i].id == c->id) {
+            emberAfCorePrintln("-------  fetch_run_steps running for clId = %2X, c->fetch = %d, c->ep->meter = %2X", c->id, c->fetch, c->ep->meter);
+            run_step(c, fr_table[i].f, fr_table[i].r);
+            emberAfCorePrintln("-------   quit run_steps loop at step = %2X", c->fetch);
             break;
         }
-        cle++;
     }
 }
 
@@ -313,8 +321,15 @@ void show_endpoints(char *label)
     emberAfCorePrintln("");
 }
 
-/* 
-show_meters()
-*/
+void show_meter(char *label, struct endpoint *e)
+{
+    struct meter *m = e->meter;
+    if (m)
+//        emberAfCorePrintln("-------  meter ep %2X  (%s)  meter: %2X", e, label, m);
+        emberAfCorePrintln("-------  meter ep %2X  (%s)  AppVer: %2X  StackVer: %2X  HWVer: %2X  ManName: %s  ModelId: %s  type: %X  mclust: %2X", 
+                            e, label, m->ApplicationVersion, m->StackVersion, m->HWVersion, m->ManufacturerName, m->ModelIdentifier, m->type, m->mcluster);
+    else
+        emberAfCorePrintln("-------  meter ep %2X  (%s)  = null", e, label);
+}
 
 #endif

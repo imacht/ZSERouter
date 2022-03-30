@@ -21,6 +21,8 @@ typedef enum {
     DO_CMD
 } SxpState_t;
 
+void prepare_ack_ddr(int subghz);
+bool no_tc_link_key(void);
 struct cluster* clus_find_af(EmberAfClusterCommand *af);
 struct cluster* cluster_get(struct endpoint *e, uint16_t id);
 struct endpoint* endpoint_get(uint16_t addr, uint8_t ep);
@@ -41,6 +43,7 @@ uint8_t send_common(struct cluster *c, char type);
 void show_nodes(char *);
 void show_clusters(char *label);
 void show_endpoints(char *label);
+void show_meter(char *label, struct endpoint *e);
 
 // Time
 
