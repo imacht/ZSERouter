@@ -12,9 +12,10 @@ typedef enum {
     START_KE,       // 5
     FIND_METERS,
     FIND_PRICES,
+    FIND_TIMES,
     GET_SDRS,
-    GET_IEEE,
-    DO_PLKE,        // 10
+    GET_IEEE,       // 10
+    DO_PLKE,
 //TODO:    FIND_OTA,
     IDLE,
     DO_ATTR,

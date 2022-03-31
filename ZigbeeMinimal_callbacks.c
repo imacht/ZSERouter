@@ -126,7 +126,7 @@ boolean emberAfPluginKeyEstablishmentEventCallback(EmberAfKeyEstablishmentNotify
         emberAfCorePrintln("------- LINK_KEY_ESTABLISHED ------");
         flags |= COMMISSIONED;
         r_state = FIND_METERS;
-        slxu_zigbee_event_set_active(actionEvent);
+//        slxu_zigbee_event_set_active(actionEvent);
     }
     return true;
 }
@@ -142,6 +142,8 @@ void findServicesHandler(void)
          clust_id = ZCL_SIMPLE_METERING_CLUSTER_ID; break;
      case FIND_PRICES:
          clust_id = ZCL_PRICE_CLUSTER_ID; break;
+     case FIND_TIMES:
+         clust_id = ZCL_TIME_CLUSTER_ID; break;
      default: 
         emberAfCorePrintln("-------  UNEXPECTED findServices event: r_state = %d", r_state);
         return;
@@ -166,6 +168,7 @@ static void find_result(const EmberAfServiceDiscoveryResult *r)
     switch (r_state) {
      case FIND_METERS:  strcpy(label, "Meter"); cluster_id = ZCL_SIMPLE_METERING_CLUSTER_ID; break;
      case FIND_PRICES:  strcpy(label, "Price"); cluster_id = ZCL_PRICE_CLUSTER_ID; break;
+     case FIND_TIMES:  strcpy(label, "Time"); cluster_id = ZCL_TIME_CLUSTER_ID; break;
      default: ;
     }
     switch (r->status) {
@@ -309,6 +312,7 @@ void actionRun(void)
         break;
         
      case FIND_PRICES:
+     case FIND_TIMES:
         slxu_zigbee_event_set_delay_ms(findSvcsEvent, SHORT_DELAY_MS);
         break;
         
@@ -354,7 +358,7 @@ void actionRun(void)
         break;
         
      case IDLE:
-        if (sec >= 60 * 180)
+        if (sec >= 60 * 180)        // re-search for meters after 3 hrs
             schedule_action("------- Returning to FIND_METERS", FIND_METERS);
         else if (EMBER_JOINED_NETWORK == emberAfNetworkState())
             fetch_run();
@@ -374,13 +378,13 @@ static void fetch_run(void)
     cluster_do_rewind();
 
     struct cluster *anchor = cluster_next_circular(req.fetcher), *c;
-    emberAfCorePrintln("\n\n-------  fetch_run first next_circular = %2X", anchor);
+//    emberAfCorePrintln("\n\n-------  fetch_run first next_circular = %2X", anchor);
     utc_t now = utc_now();
     if ((c = anchor)) do {
         struct endpoint *e = c->ep;
 //        if (e->node->unJoined >= 2); // ESME, don't probe
 //        else if (now >= e->stall) // skip if stalled endpoint
-        emberAfCorePrintln("-------  fetch_run next cluster = %2X  e->stall = %d", c, e->stall);
+//        emberAfCorePrintln("-------  fetch_run next cluster = %2X  e->stall = %d", c, e->stall);
         if (now >= e->stall) // skip if stalled endpoint
             fetch_run_steps(c);
     } while (IDLE == r_state && (c = cluster_next_circular(c)) != anchor);
@@ -608,9 +612,10 @@ bool emberAfReadAttributesResponseCallback(EmberAfClusterId clusterId, uint8_t *
             p += emberAfIsThisDataTypeAStringType(a.type) ? 1 + emberAfStringLength(p) : emberAfGetDataSize(a.type); // find length
         } else if (a.status == EMBER_ZCL_STATUS_NOT_AUTHORIZED && c->ep->node->unJoined) {
             not_authorised(c);
+emberAfCorePrintln("------  NOT AUTHORISED  NOT AUTHORISED ETC. ETC.  a.id=%2X  a.status=%2X  ----", a.id, a.status);
             return true;
         }
-        emberAfCorePrintln("------  ReadAttr running attr(%2X) for cl %2X -  zattr.id: %2X  zattr.type: %2X", c->ops->attr, c, a.id, a.type);
+        emberAfCorePrintln("------  ReadAttr running attr(%2X) for cl %2X -  zattr.id: %2X  zattr.status: %2X  zattr.type: %2X", c->ops->attr, c, a.id, a.status, a.type);
         show_meter("before attr", c->ep);
         c->ops->attr(c, &a); // dispatch
         show_meter("after attr", c->ep);
@@ -620,7 +625,10 @@ bool emberAfReadAttributesResponseCallback(EmberAfClusterId clusterId, uint8_t *
         emberAfSendDefaultResponse(af, EMBER_ZCL_STATUS_SUCCESS);
 
     if (DO_ATTR == r_state && req.cluster == c && req.seq == af->seqNum)
+{
         fetch_next();
+show_clusters("ReadAttrsResp finished");
+}
 
     return true;
 }
@@ -663,8 +671,8 @@ void sl_button_on_change(const sl_button_t *handle)
     }
     else if (SL_SIMPLE_BUTTON_INSTANCE(BUTTON1) == handle) {
         if (SL_SIMPLE_BUTTON_RELEASED == sl_button_get_state(handle)) {
-            if ((IDLE == r_state) && (EMBER_JOINED_NETWORK == emberAfNetworkState()))
-                fetch_run();
+            r_state = FIND_METERS;
+            slxu_zigbee_event_set_active(actionEvent);
         }
     }
 }
