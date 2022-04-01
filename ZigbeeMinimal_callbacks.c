@@ -31,7 +31,6 @@
 
 // flag bits
 #define COMMISSIONED            (0x01)
-#define APS_QUEUED              (0x02)
 #define BACKING_OFF             (0x04)
 
 static sl_zigbee_event_t action_event;
@@ -456,14 +455,14 @@ void metroRun(void)
                 tree_rewind(0, REWIND_HALFHOUR);
 //            if (han_loss)
 //                time_lost_han((now - han_loss) / 60);
-    emberAfCorePrintln("meter_metro call");
-//            meter_metronome(now);
+//    emberAfCorePrintln("meter_metro call");
+            meter_metronome(now);
         }
         fetch_resume();
     }
-//    if (ok)
+    if (ok)
 //    emberAfCorePrintln("meter_metro call");
-//        meter_metronome(now);
+        meter_metronome(now);
 }
 
 void attr_get(struct cluster *c, int num, ...)
@@ -488,7 +487,6 @@ uint8_t finish_send(struct cluster *c, char type, EmberStatus stat, uint8_t seq)
     else {
         req.cluster = c;
         r_state = type;
-        flags |= APS_QUEUED;
         slxu_zigbee_event_set_delay_qs(actionEvent, SIX_SEC_DELAY_QS);
     }
     return req.seq = seq;
@@ -524,7 +522,7 @@ void emberAfMainTickCallback(void)
     if (UNINITIALISED == r_state) {
         r_state = STARTING;
         slxu_zigbee_event_set_active(actionEvent);
-//        slxu_zigbee_event_set_active(metroEvent);
+        slxu_zigbee_event_set_active(metroEvent);
     }
     else if (STOPPING == r_state) {
         if (!emberPendingAckedMessages() && emberOkToNap()) {
@@ -570,7 +568,7 @@ void emberAfStackStatusCallback(EmberStatus status)
 			han_loss = 0;
 		}
 */
-		if (status == EMBER_TRUST_CENTER_EUI_HAS_CHANGED || no_tc_link_key())
+		if (EMBER_TRUST_CENTER_EUI_HAS_CHANGED == status || no_tc_link_key())
             r_state = START_KE;
 
         slxu_zigbee_event_set_active(actionEvent);
@@ -633,6 +631,72 @@ show_clusters("ReadAttrsResp finished");
     return true;
 }
 
+bool emberAfPreCommandReceivedCallback(EmberAfClusterCommand *af)
+{
+	if (!af->clusterSpecific)
+		return false;
+
+	struct cluster *c = clus_find_af(af);
+	if (!c)
+		return false; // unknown cluster
+
+	int r = 0;
+	struct zcmd z = {af->buffer + af->payloadStartIndex, af->buffer + af->bufLen, 
+                        af->bufLen - af->payloadStartIndex, af->commandId, af->seqNum, af->type, 
+                        af->mfgSpecific, af->direction, af->type == EMBER_INCOMING_BROADCAST};
+	if (c->ops && c->ops->cmd)
+		r = c->ops->cmd(c, &z);
+	else
+		return false; // no ops or no command op
+
+	if (r != 'R') { // handler sent a (non-default) response
+		if (r || ~af->buffer[0] & ZCL_DISABLE_DEFAULT_RESPONSE_MASK)
+			emberAfSendDefaultResponse(af, (EmberAfStatus)r);
+	}
+
+	if (DO_CMD == r_state && req.cluster == c && req.seq == af->seqNum)
+		fetch_next();
+
+	return true;
+}
+
+bool emberAfDefaultResponseCallback(EmberAfClusterId clusterId, uint8_t commandId, EmberAfStatus status)
+{
+	EmberAfClusterCommand *af = emberAfCurrentCommand();
+
+	struct cluster *c = clus_find_af(af);
+	if (c == 0 || c->ops == 0)
+		return false; // unknown cluster or no handler
+	if (EMBER_ZCL_STATUS_NOT_AUTHORIZED == status) {
+		not_authorised(c);
+		return false;
+	}
+
+	if (c->ops->def_rsp)
+		c->ops->def_rsp(c, commandId, status);
+    
+	if (DO_CMD == r_state && req.cluster == c && req.seq == af->seqNum)
+		fetch_next();
+
+	return false; // ignored
+}
+
+bool emberAfPreZDOMessageReceivedCallback(EmberNodeId emberNodeId, EmberApsFrame *aps, uint8_t *msg, uint16_t length)
+{
+	if (BIND_RESPONSE == aps->clusterId && DO_BIND == r_state && req.seq == msg[0])
+		fetch_next();
+//	return handle_zdo_request(emberNodeId, aps, msg, length, incomingMessageType);
+    return false;
+}
+
+bool emberAfMessageSentCallback(EmberOutgoingMessageType type, uint16_t indexOrDestination, EmberApsFrame *aps, uint16_t msgLen, uint8_t *msg, EmberStatus status)
+{
+	if ((FIND_METERS <= r_state && r_state <= GET_IEEE) || r_state > IDLE) {
+		if (status)
+            slxu_zigbee_event_set_active(actionEvent);
+	}
+	return true;
+}
 
 void emberAfPluginNetworkFindFinishedCallback(EmberStatus status)
 {

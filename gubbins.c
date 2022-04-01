@@ -6,6 +6,7 @@
 #include "zap-id.h"
 
 #include "app/framework/include/af.h"
+#include <zigbee-device-common.h>
 
 /* define for node/endpoint/cluster list debug prints */
 //#define IM_LIST_DEBUG
@@ -111,7 +112,7 @@ void fetch_run_steps(struct cluster *c)
     {
         uint8_t step;
         do {     // run current step, repeat if fetch updated
-//            emberAfCorePrintln("-------   run_step at step = %2X", c->fetch);
+//            emberAfCorePrintln("-------   run_step at step = %d", c->fetch);
             fetch[step = c->fetch](c, c->ep->meter);
         } while (step != c->fetch);
 
@@ -127,7 +128,7 @@ void fetch_run_steps(struct cluster *c)
         if (fr_table[i].id == c->id) {
 //            emberAfCorePrintln("-------  fetch_run_steps running for clId = %2X, c->fetch = %d, c->ep->meter = %2X", c->id, c->fetch, c->ep->meter);
             run_step(c, fr_table[i].f, fr_table[i].r);
-            emberAfCorePrintln("-------   quit run_steps loop at step = %2X", c->fetch);
+            emberAfCorePrintln("-------   quit run_steps loop at step = %d", c->fetch);
             break;
         }
     }
@@ -264,9 +265,8 @@ void bind_do(struct cluster *c)
 {
     EmberEUI64 me; // TODO aExtendedAddress?
     emberAfGetEui64(me);
-    return;  // let's not get carried away here...
-//    EmberStatus s = emberBindRequest(c->ep->node->addr, c->ep->node->ieee, c->ep->num, c->id, UNICAST_BINDING, me, 0, emberAfPrimaryEndpointForCurrentNetworkIndex(), EMBER_AF_DEFAULT_APS_OPTIONS);
-//    finish_send(c, DO_BIND, s, emberGetLastAppZigDevRequestSequence());
+    EmberStatus s = emberBindRequest(c->ep->node->addr, c->ep->node->ieee, c->ep->num, c->id, UNICAST_BINDING, me, 0, emberAfPrimaryEndpointForCurrentNetworkIndex(), EMBER_AF_DEFAULT_APS_OPTIONS);
+    finish_send(c, DO_BIND, s, emberGetLastAppZigDevRequestSequence());
 }
 
 uint8_t send_common(struct cluster *c, char type)

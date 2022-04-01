@@ -19,6 +19,7 @@ typedef enum {
 //TODO:    FIND_OTA,
     IDLE,
     DO_ATTR,
+    DO_BIND,
     DO_CMD
 } SxpState_t;
 
