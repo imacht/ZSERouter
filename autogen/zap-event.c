@@ -21,15 +21,7 @@
 
 #ifdef SL_CATALOG_ZIGBEE_ZCL_FRAMEWORK_CORE_PRESENT
 
-WEAK(void emberAfIdentifyClusterServerTickCallback(uint8_t enpoint))
-{
-}
-
 WEAK(void emberAfKeyEstablishmentClusterServerTickCallback(uint8_t enpoint))
-{
-}
-
-WEAK(void emberAfTimeClusterServerTickCallback(uint8_t enpoint))
 {
 }
 

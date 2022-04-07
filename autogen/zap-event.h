@@ -23,23 +23,15 @@
 #include "af.h"
 
 #define EMBER_AF_GENERATED_UC_EVENTS_DEF \
-sl_zigbee_event_t emberAfIdentifyClusterServerTickCallbackEvent1; \
-sl_zigbee_event_t emberAfTimeClusterServerTickCallbackEvent1; \
 sl_zigbee_event_t emberAfKeyEstablishmentClusterServerTickCallbackEvent1; \
 
 
 #define EMBER_AF_GENERATED_UC_EVENTS_INIT \
-extern void emberAfIdentifyClusterServerTickCallback(uint8_t enpoint); \
 extern void emberAfKeyEstablishmentClusterServerTickCallback(uint8_t enpoint); \
-extern void emberAfTimeClusterServerTickCallback(uint8_t enpoint); \
-sl_zigbee_endpoint_event_init(&emberAfIdentifyClusterServerTickCallbackEvent1, (void *)emberAfIdentifyClusterServerTickCallback, 1); \
-sl_zigbee_endpoint_event_init(&emberAfTimeClusterServerTickCallbackEvent1, (void *)emberAfTimeClusterServerTickCallback, 1); \
 sl_zigbee_endpoint_event_init(&emberAfKeyEstablishmentClusterServerTickCallbackEvent1, (void *)emberAfKeyEstablishmentClusterServerTickCallback, 1); \
 
 // sl_zigbee_event_context_t structs used to populate the sli_zigbee_app_event_context table
 #define EMBER_AF_GENERATED_UC_EVENT_CONTEXT \
-{ 1, 0x3, false, EMBER_AF_LONG_POLL, EMBER_AF_OK_TO_SLEEP, &emberAfIdentifyClusterServerTickCallbackEvent1 },     \
-{ 1, 0xA, false, EMBER_AF_LONG_POLL, EMBER_AF_OK_TO_SLEEP, &emberAfTimeClusterServerTickCallbackEvent1 },     \
 { 1, 0x800, false, EMBER_AF_LONG_POLL, EMBER_AF_OK_TO_SLEEP, &emberAfKeyEstablishmentClusterServerTickCallbackEvent1 },     \
 
 #endif // SL_CATALOG_ZIGBEE_ZCL_FRAMEWORK_CORE_PRESENT

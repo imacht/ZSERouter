@@ -28,7 +28,7 @@
 #define GENERATED_MIN_MAX_DEFAULTS { \
 }
 
-#define GENERATED_ATTRIBUTE_COUNT (17)
+#define GENERATED_ATTRIBUTE_COUNT (9)
 // This is an array of EmberAfAttributeMetadata structures.
 #define GENERATED_ATTRIBUTES { \
   { 0x0000, ZCL_INT8U_ATTRIBUTE_TYPE, 1, (ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)0x08  } }, /* 0 Cluster: Basic, Attribute: ZCL version, Side: server*/ \
@@ -36,45 +36,34 @@
 	  { 0x0005, ZCL_CHAR_STRING_ATTRIBUTE_TYPE, 33, (ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)&(generatedDefaults[0]) } }, /* 2 Cluster: Basic, Attribute: model identifier, Side: server*/ \
   { 0x0007, ZCL_ENUM8_ATTRIBUTE_TYPE, 1, (ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)0x00  } }, /* 3 Cluster: Basic, Attribute: power source, Side: server*/ \
 	  { 0xFFFD, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)3  } }, /* 4 Cluster: Basic, Attribute: cluster revision, Side: server*/ \
-	  { 0x0000, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (ATTRIBUTE_MASK_WRITABLE), { (uint8_t*)0x0000  } }, /* 5 Cluster: Identify, Attribute: identify time, Side: server*/ \
-	  { 0xFFFD, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)2  } }, /* 6 Cluster: Identify, Attribute: cluster revision, Side: server*/ \
-	  { 0x0000, ZCL_UTC_TIME_ATTRIBUTE_TYPE, 4, (ATTRIBUTE_MASK_WRITABLE| ATTRIBUTE_MASK_SINGLETON), { NULL } }, /* 7 Cluster: Time, Attribute: time, Side: server*/ \
-  { 0x0001, ZCL_BITMAP8_ATTRIBUTE_TYPE, 1, (ATTRIBUTE_MASK_WRITABLE| ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)0x00  } }, /* 8 Cluster: Time, Attribute: time status, Side: server*/ \
-	  { 0xFFFD, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)2  } }, /* 9 Cluster: Time, Attribute: cluster revision, Side: server*/ \
-	  { 0x0000, ZCL_INT8U_ATTRIBUTE_TYPE, 1, (ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)1  } }, /* 10 Cluster: Keep-Alive, Attribute: Keep-Alive Base, Side: server*/ \
-	  { 0x0001, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)60  } }, /* 11 Cluster: Keep-Alive, Attribute: Keep-Alive Jitter, Side: server*/ \
-	  { 0xFFFD, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)0x0001  } }, /* 12 Cluster: Keep-Alive, Attribute: cluster revision, Side: server*/ \
-	  { 0x0000, ZCL_ENUM16_ATTRIBUTE_TYPE, 2, (ATTRIBUTE_MASK_CLIENT| ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)0x0000  } }, /* 13 Cluster: Key Establishment, Attribute: key establishment suite (client), Side: client*/ \
-	  { 0xFFFD, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (ATTRIBUTE_MASK_CLIENT| ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)2  } }, /* 14 Cluster: Key Establishment, Attribute: cluster revision, Side: client*/ \
-	  { 0x0000, ZCL_ENUM16_ATTRIBUTE_TYPE, 2, (ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)0x0000  } }, /* 15 Cluster: Key Establishment, Attribute: key establishment suite (server), Side: server*/ \
-	  { 0xFFFD, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)2  } } /* 16 Cluster: Key Establishment, Attribute: cluster revision, Side: server*/ \
+	  { 0x0000, ZCL_ENUM16_ATTRIBUTE_TYPE, 2, (ATTRIBUTE_MASK_CLIENT| ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)0x0000  } }, /* 5 Cluster: Key Establishment, Attribute: key establishment suite (client), Side: client*/ \
+	  { 0xFFFD, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (ATTRIBUTE_MASK_CLIENT| ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)2  } }, /* 6 Cluster: Key Establishment, Attribute: cluster revision, Side: client*/ \
+	  { 0x0000, ZCL_ENUM16_ATTRIBUTE_TYPE, 2, (ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)0x0000  } }, /* 7 Cluster: Key Establishment, Attribute: key establishment suite (server), Side: server*/ \
+	  { 0xFFFD, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)2  } } /* 8 Cluster: Key Establishment, Attribute: cluster revision, Side: server*/ \
 	}
 
-#define GENERATED_CLUSTER_COUNT (6)
+#define GENERATED_CLUSTER_COUNT (3)
 // This is an array of EmberAfCluster structures.
 #define GENERATED_CLUSTERS { \
   { 0x0000, (EmberAfAttributeMetadata*)&(generatedAttributes[0]), 5, 38, CLUSTER_MASK_SERVER, NULL }, /* 0, Endpoint Id: 1, Cluster: Basic, Side: server*/ \
-  { 0x0003, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 2, 4, CLUSTER_MASK_SERVER, NULL }, /* 1, Endpoint Id: 1, Cluster: Identify, Side: server*/ \
-  { 0x000A, (EmberAfAttributeMetadata*)&(generatedAttributes[7]), 3, 7, CLUSTER_MASK_SERVER, NULL }, /* 2, Endpoint Id: 1, Cluster: Time, Side: server*/ \
-  { 0x0025, (EmberAfAttributeMetadata*)&(generatedAttributes[10]), 3, 5, CLUSTER_MASK_SERVER, NULL }, /* 3, Endpoint Id: 1, Cluster: Keep-Alive, Side: server*/ \
-  { 0x0800, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 2, 4, CLUSTER_MASK_CLIENT, NULL }, /* 4, Endpoint Id: 1, Cluster: Key Establishment, Side: client*/ \
-  { 0x0800, (EmberAfAttributeMetadata*)&(generatedAttributes[15]), 2, 4, CLUSTER_MASK_SERVER, NULL } /* 5, Endpoint Id: 1, Cluster: Key Establishment, Side: server*/ \
+  { 0x0800, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 2, 4, CLUSTER_MASK_CLIENT, NULL }, /* 1, Endpoint Id: 1, Cluster: Key Establishment, Side: client*/ \
+  { 0x0800, (EmberAfAttributeMetadata*)&(generatedAttributes[7]), 2, 4, CLUSTER_MASK_SERVER, NULL } /* 2, Endpoint Id: 1, Cluster: Key Establishment, Side: server*/ \
 }
 
 #define GENERATED_ENDPOINT_TYPE_COUNT (1)
 // This is an array of EmberAfEndpointType structures.
 #define GENERATED_ENDPOINT_TYPES { \
-  { ((EmberAfCluster*)&(generatedClusters[0])), 6, 62 }, \
+  { ((EmberAfCluster*)&(generatedClusters[0])), 3, 46 }, \
 }
 
 // Largest attribute size is needed for various buffers
 #define ATTRIBUTE_LARGEST (33)
 
 // Total size of singleton attributes
-#define ATTRIBUTE_SINGLETONS_SIZE (57)
+#define ATTRIBUTE_SINGLETONS_SIZE (45)
 
 // Total size of attribute storage
-#define ATTRIBUTE_MAX_SIZE (62)
+#define ATTRIBUTE_MAX_SIZE (46)
 
 // Number of fixed endpoints
 #define FIXED_ENDPOINT_COUNT (1)
@@ -153,19 +142,13 @@
 
 // All Enabled Clusters
 #define ZCL_USING_BASIC_CLUSTER_SERVER
-#define ZCL_USING_IDENTIFY_CLUSTER_SERVER
-#define ZCL_USING_KEEPALIVE_CLUSTER_SERVER
 #define ZCL_USING_KEY_ESTABLISHMENT_CLUSTER_CLIENT
 #define ZCL_USING_KEY_ESTABLISHMENT_CLUSTER_SERVER
-#define ZCL_USING_TIME_CLUSTER_SERVER
 
 // Cluster Counts
 #define EMBER_AF_BASIC_CLUSTER_SERVER_ENDPOINT_COUNT (1)
-#define EMBER_AF_IDENTIFY_CLUSTER_SERVER_ENDPOINT_COUNT (1)
-#define EMBER_AF_KEEPALIVE_CLUSTER_SERVER_ENDPOINT_COUNT (1)
 #define EMBER_AF_KEY_ESTABLISHMENT_CLUSTER_CLIENT_ENDPOINT_COUNT (1)
 #define EMBER_AF_KEY_ESTABLISHMENT_CLUSTER_SERVER_ENDPOINT_COUNT (1)
-#define EMBER_AF_TIME_CLUSTER_SERVER_ENDPOINT_COUNT (1)
 
 // All Enabled Cluster Attributes
 #define ZCL_USING_BASIC_CLUSTER_VERSION_ATTRIBUTE
@@ -173,14 +156,6 @@
 #define ZCL_USING_BASIC_CLUSTER_MODEL_IDENTIFIER_ATTRIBUTE
 #define ZCL_USING_BASIC_CLUSTER_POWER_SOURCE_ATTRIBUTE
 #define ZCL_USING_BASIC_CLUSTER_CLUSTER_REVISION_SERVER_ATTRIBUTE
-#define ZCL_USING_IDENTIFY_CLUSTER_IDENTIFY_TIME_ATTRIBUTE
-#define ZCL_USING_IDENTIFY_CLUSTER_CLUSTER_REVISION_SERVER_ATTRIBUTE
-#define ZCL_USING_TIME_CLUSTER_TIME_ATTRIBUTE
-#define ZCL_USING_TIME_CLUSTER_TIME_STATUS_ATTRIBUTE
-#define ZCL_USING_TIME_CLUSTER_CLUSTER_REVISION_SERVER_ATTRIBUTE
-#define ZCL_USING_KEEPALIVE_CLUSTER_KEEPALIVE_BASE_ATTRIBUTE
-#define ZCL_USING_KEEPALIVE_CLUSTER_KEEPALIVE_JITTER_ATTRIBUTE
-#define ZCL_USING_KEEPALIVE_CLUSTER_CLUSTER_REVISION_SERVER_ATTRIBUTE
 #define ZCL_USING_KEY_ESTABLISHMENT_CLUSTER_KEY_ESTABLISHMENT_SUITE_CLIENT_ATTRIBUTE
 #define ZCL_USING_KEY_ESTABLISHMENT_CLUSTER_CLUSTER_REVISION_CLIENT_ATTRIBUTE
 #define ZCL_USING_KEY_ESTABLISHMENT_CLUSTER_KEY_ESTABLISHMENT_SUITE_SERVER_ATTRIBUTE

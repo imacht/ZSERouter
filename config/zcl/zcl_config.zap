@@ -55,7 +55,7 @@
     },
     {
       "name": "Anonymous Endpoint Type",
-      "deviceTypeName": "SE1.4-rangeextender",
+      "deviceTypeName": "SE-rangeextender",
       "deviceTypeCode": 8,
       "deviceTypeProfileId": 265,
       "clusters": [
@@ -220,7 +220,7 @@
           "mfgCode": null,
           "define": "IDENTIFY_CLUSTER",
           "side": "server",
-          "enabled": 1,
+          "enabled": 0,
           "commands": [
             {
               "name": "IdentifyQueryResponse",
@@ -296,7 +296,7 @@
           "mfgCode": null,
           "define": "TIME_CLUSTER",
           "side": "server",
-          "enabled": 1,
+          "enabled": 0,
           "commands": [],
           "attributes": [
             {
@@ -378,7 +378,7 @@
           "mfgCode": null,
           "define": "KEEPALIVE_CLUSTER",
           "side": "server",
-          "enabled": 1,
+          "enabled": 0,
           "commands": [],
           "attributes": [
             {
