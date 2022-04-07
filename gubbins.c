@@ -115,20 +115,16 @@ void fetch_run_steps(struct cluster *c)
 //            emberAfCorePrintln("-------   run_step at step = %d", c->fetch);
             fetch[step = c->fetch](c, c->ep->meter);
         } while (step != c->fetch);
-
-        struct node *n = c->ep->node;
-        if (n->unJoined && rew[0] && step > rew[0] && c->id != 0x019)
-            emberAfCorePrint("%x:%x:%x step=%u, clearing unJoined\n", n->addr, c->ep->num, c->id, step), n->unJoined = 0;
     }
 
     // look for cluster Id match, run step(s) 
-    emberAfCorePrintln("-------  fetch_run_steps looking for cluster %2X, id %2X", c, c->id);
+  //emberAfCorePrintln("-------  fetch_run_steps looking for cluster %2X, id %2X", c, c->id);
     for (uint8_t i = 0; i < (frt_size()/sizeof(frt)); i++) {
 //        emberAfCorePrintln("-------    fetch_run_steps  frt id = %2X", fr_table[i].id);
         if (fr_table[i].id == c->id) {
 //            emberAfCorePrintln("-------  fetch_run_steps running for clId = %2X, c->fetch = %d, c->ep->meter = %2X", c->id, c->fetch, c->ep->meter);
             run_step(c, fr_table[i].f, fr_table[i].r);
-            emberAfCorePrintln("-------   quit run_steps loop at step = %d", c->fetch);
+  //          emberAfCorePrintln("-------   quit run_steps loop at step = %d", c->fetch);
             break;
         }
     }
@@ -290,7 +286,7 @@ void show_nodes(char *label)
     while (n) {
         emberAfCorePrint("-------   %2X -> addr: %2X  ieee:", n, n->addr);
         for (int i=0;i<8;i++) emberAfCorePrint(" %X", n->ieee[i]);
-        emberAfCorePrintln("  plke: %d  unJoined: %d   next: %2X  ", n->plke, n->unJoined, n->next);
+        emberAfCorePrintln("  plke: %d  next: %2X  ", n->plke, n->next);
         n = n->next;
     }
     emberAfCorePrintln("");

@@ -293,7 +293,6 @@ void actionRun(void)
     slxu_zigbee_event_set_inactive(actionEvent);
     
     switch(r_state) {
-     case UNINITIALISED:   
      case STARTING:
         // auto-restart - disabled in early dev
         //slxu_zigbee_event_set_delay_ms(commissioningEvent, COMMISSIONING_DELAY_MS);
@@ -344,7 +343,7 @@ void actionRun(void)
         if ((cl = cluster_find_unplked()))
         {
             emberAfCorePrintln("------- Found unPLKd KE cluster   c=%2X", cl); 
-            if ((stat = emberAfInitiatePartnerLinkKeyExchange(cl->ep->node->addr, cl->ep->num, did_plke)))
+            if (EMBER_SUCCESS != (stat = emberAfInitiatePartnerLinkKeyExchange(cl->ep->node->addr, cl->ep->num, did_plke)))
                 retry_wait("------- DO_PLKE: %d", stat);
             else
                 cl->ep->node->plke++;
@@ -381,9 +380,6 @@ static void fetch_run(void)
     utc_t now = utc_now();
     if ((c = anchor)) do {
         struct endpoint *e = c->ep;
-//        if (e->node->unJoined >= 2); // ESME, don't probe
-//        else if (now >= e->stall) // skip if stalled endpoint
-//        emberAfCorePrintln("-------  fetch_run next cluster = %2X  e->stall = %d", c, e->stall);
         if (now >= e->stall) // skip if stalled endpoint
             fetch_run_steps(c);
     } while (IDLE == r_state && (c = cluster_next_circular(c)) != anchor);
@@ -429,9 +425,7 @@ void fetch_resume(void)
 
 static void fetch_timeout(struct cluster *c)
 {
-	if (c && c->ep->node->unJoined)
-		not_authorised(c);
-	else if (c && ++c->retry == 5)
+    if (c && ++c->retry == 5)
 		fetch_next(); // still some shitty meters that just ignore commands forever
 	else
 		return_to_idle();
@@ -608,10 +602,6 @@ bool emberAfReadAttributesResponseCallback(EmberAfClusterId clusterId, uint8_t *
             a.type = *p++;
             a.data = p;
             p += emberAfIsThisDataTypeAStringType(a.type) ? 1 + emberAfStringLength(p) : emberAfGetDataSize(a.type); // find length
-        } else if (a.status == EMBER_ZCL_STATUS_NOT_AUTHORIZED && c->ep->node->unJoined) {
-            not_authorised(c);
-emberAfCorePrintln("------  NOT AUTHORISED  NOT AUTHORISED ETC. ETC.  a.id=%2X  a.status=%2X  ----", a.id, a.status);
-            return true;
         }
         emberAfCorePrintln("------  ReadAttr running attr(%2X) for cl %2X -  zattr.id: %2X  zattr.status: %2X  zattr.type: %2X", c->ops->attr, c, a.id, a.status, a.type);
         show_meter("before attr", c->ep);
@@ -639,19 +629,24 @@ bool emberAfPreCommandReceivedCallback(EmberAfClusterCommand *af)
 	struct cluster *c = clus_find_af(af);
 	if (!c)
 		return false; // unknown cluster
+  emberAfCorePrintln("XXX  PreCmdRcvCb   cl=%2X   cmdId=%2X   r_state=%d", c, af->commandId, r_state);
 
 	int r = 0;
 	struct zcmd z = {af->buffer + af->payloadStartIndex, af->buffer + af->bufLen, 
                         af->bufLen - af->payloadStartIndex, af->commandId, af->seqNum, af->type, 
                         af->mfgSpecific, af->direction, af->type == EMBER_INCOMING_BROADCAST};
+  emberAfCorePrintln("XXXX  PreCmdRcvCb   cl=%2X   cmdId=%2X  z->id=%2X  seqNum=%X  c->ops=%2X  ->cmd:%2X  af->type=%d", 
+                                                c, af->commandId, z.id, af->seqNum, c->ops, c->ops?c->ops->cmd:0, af->type);
 	if (c->ops && c->ops->cmd)
 		r = c->ops->cmd(c, &z);
 	else
 		return false; // no ops or no command op
-
+  emberAfCorePrintln("XXXXX  PreCmdRcvCb  ops call returned %d %c", r, r);
 	if (r != 'R') { // handler sent a (non-default) response
 		if (r || ~af->buffer[0] & ZCL_DISABLE_DEFAULT_RESPONSE_MASK)
+        {  emberAfCorePrintln("XXXXXXX  PreCmdRcvCb  sending DefResp, af_b[0]=%X  status=%d", af->buffer[0], r);
 			emberAfSendDefaultResponse(af, (EmberAfStatus)r);
+        }
 	}
 
 	if (DO_CMD == r_state && req.cluster == c && req.seq == af->seqNum)
@@ -673,7 +668,10 @@ bool emberAfDefaultResponseCallback(EmberAfClusterId clusterId, uint8_t commandI
 	}
 
 	if (c->ops->def_rsp)
+    {
+      emberAfCorePrintln("--- DefRspCb calling  %2X->ops->def_rsp  cl=%2X  cmdId=%2X  status=%X   r_state=%d", c, clusterId, commandId, status, r_state);
 		c->ops->def_rsp(c, commandId, status);
+    }
     
 	if (DO_CMD == r_state && req.cluster == c && req.seq == af->seqNum)
 		fetch_next();
