@@ -125,6 +125,7 @@ boolean emberAfPluginKeyEstablishmentEventCallback(EmberAfKeyEstablishmentNotify
         emberAfCorePrintln("------- LINK_KEY_ESTABLISHED ------");
         flags |= COMMISSIONED;
         r_state = FIND_METERS;
+// pause to wait for PB1 press        
 //        slxu_zigbee_event_set_active(actionEvent);
     }
     return true;
@@ -278,7 +279,8 @@ static void did_plke(bool success)
     if (DO_PLKE != r_state) return;
     
     if (success)
-        schedule_action("------- PLKE succeeded, entering IDLE", IDLE);
+        // continue back to try again in actionRun
+        slxu_zigbee_event_set_active(actionEvent);
     else
         retry_wait("------- PLKE failed, r_state = 0x%X", r_state);
 }
