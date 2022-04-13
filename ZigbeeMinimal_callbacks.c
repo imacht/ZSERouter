@@ -47,7 +47,7 @@ static sl_zigbee_event_t metro_event;
 static SxpState_t r_state = UNINITIALISED;
 static uint8_t flags = 0;
 static uint16_t sec;
-//static utc_t han_loss;
+static utc_t han_loss;
 
 static struct {
     struct cluster *cluster, *fetcher;
@@ -449,15 +449,19 @@ void metroRun(void)
             tree_rewind(0, REWIND_MINUTE);
             if (sec % 1800 == 0)
                 tree_rewind(0, REWIND_HALFHOUR);
-//            if (han_loss)
-//                time_lost_han((now - han_loss) / 60);
-//    emberAfCorePrintln("meter_metro call");
+            if (han_loss)
+            {
+          emberAfCorePrintln("_-'-_-'-_-'-_-'-_----  metroRun HAN loss lost Han Duo  m=%d", (now - han_loss) / 60);            
+                time_lost_han((now - han_loss) / 60);
+            }
             meter_metronome(now);
         }
         fetch_resume();
     }
+    
+    // TODO: Identify?
+    
     if (ok)
-//    emberAfCorePrintln("meter_metro call");
         meter_metronome(now);
 }
 
@@ -557,13 +561,14 @@ void emberAfStackStatusCallback(EmberStatus status)
         //    prepare_ack_ddr(np.radioChannel >= 128);
         //}
         flags &= ~BACKING_OFF;
-/*
+
 		if (han_loss) {
+          emberAfCorePrintln("_-'-_-'-_-'-_-'-_----  HAN loss loupin' aff");            
 			if (utc_now() >= han_loss + 30)
 				tree_rewind(0, REWIND_RESTART);
 			han_loss = 0;
 		}
-*/
+
 		if (EMBER_TRUST_CENTER_EUI_HAS_CHANGED == status || no_tc_link_key())
             r_state = START_KE;
 
@@ -576,19 +581,25 @@ void emberAfStackStatusCallback(EmberStatus status)
             emberAfCorePrintln("------  StackStatusCb  doing loss-of-network reboot");            
             r_state = STOPPING;
         }
-/*
+
+     emberAfCorePrintln("_____________  Other dodgy Network Stack status = %2X", status);  
 		if (han_loss == 0) {
+          emberAfCorePrintln("_-'-_-'-_-'-_-'-_----  HAN loss ya bass");            
 			han_loss = utc_now();
 			time_lost_han(0);
 		}
-*/
     }
 }
 
 bool emberAfReadAttributesResponseCallback(EmberAfClusterId clusterId, uint8_t *buffer, uint16_t bufLen)
 {
+    boolean meters_interest(EmberAfClusterId clId, uint16_t zattrId)
+    {
+        return (ZCL_SIMPLE_METERING_CLUSTER_ID == clId) && (ZCL_METERING_DEVICE_TYPE_ATTRIBUTE_ID == zattrId);
+    }
+    
     EmberAfClusterCommand *af = emberAfCurrentCommand();
-    emberAfCorePrintln("------  ReadAttr Response Cb  cl: %2X  ClCmd: %2X", clusterId, af?af->commandId:0);            
+    //emberAfCorePrintln("------  ReadAttr Response Cb  cl: %2X  ClCmd: %2X", clusterId, af?af->commandId:0);            
     //csafe("0a", af);
 
     struct cluster *c = clus_find_af(af);
@@ -606,9 +617,13 @@ bool emberAfReadAttributesResponseCallback(EmberAfClusterId clusterId, uint8_t *
             p += emberAfIsThisDataTypeAStringType(a.type) ? 1 + emberAfStringLength(p) : emberAfGetDataSize(a.type); // find length
         }
         emberAfCorePrintln("------  ReadAttr running attr(%2X) for cl %2X -  zattr.id: %2X  zattr.status: %2X  zattr.type: %2X", c->ops->attr, c, a.id, a.status, a.type);
-        show_meter("before attr", c->ep);
+#ifdef IM_LIST_DEBUG
+        if (meters_interest(clusterId, a.id)) show_meter("before attr", c->ep);
+#endif
         c->ops->attr(c, &a); // dispatch
-        show_meter("after attr", c->ep);
+#ifdef IM_LIST_DEBUG
+        if (meters_interest(clusterId, a.id)) show_meter("after attr", c->ep);
+#endif
     }
 
     if (~af->buffer[0] & ZCL_DISABLE_DEFAULT_RESPONSE_MASK)
@@ -617,7 +632,9 @@ bool emberAfReadAttributesResponseCallback(EmberAfClusterId clusterId, uint8_t *
     if (DO_ATTR == r_state && req.cluster == c && req.seq == af->seqNum)
 {
         fetch_next();
-show_clusters("ReadAttrsResp finished");
+#ifdef IM_LIST_DEBUG
+show_clusters("ReadAttrsResp finished - fetch_next");
+#endif
 }
 
     return true;
